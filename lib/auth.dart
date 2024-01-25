@@ -29,56 +29,58 @@ class _AuthState extends State<Auth> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Builder(
-          builder: (context) {
-            if (loginToken == "") {
-              return Scaffold(
-                body: Center(
-                  child: Column(
-                    children: [
-                      const SizedBox(
-                        height: 200,
-                      ),
-                      SvgPicture.asset(
-                        'assets/svg/dumbell.svg',
-                      ),
-                      const Text(
-                        "workout",
-                        style: TextStyle(
-                          fontFamily: "JejuHallasan",
-                          fontSize: 30,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 60,
-                      ),
-                      NavButton(
-                        title: "Login",
-                        handleClick: loginClick,
-                      ),
-                      const SizedBox(
-                        height: 22,
-                      ),
-                      NavButton(
-                        title: "Signup",
-                        handleClick: signupClick,
-                      ),
-                    ],
+    return Builder(
+      builder: (context) {
+        if (loginToken == "") {
+          return Scaffold(
+            body: Center(
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 200,
                   ),
-                ),
-              );
-              // return Login(
-              //   token: loginToken,
-              //   setToken: setToken,
-              // );
-            } else {
-              return const Home();
-            }
-          },
-        ),
-      ),
+                  SvgPicture.asset(
+                    'assets/svg/dumbell.svg',
+                  ),
+                  const Text(
+                    "workout",
+                    style: TextStyle(
+                      fontFamily: "JejuHallasan",
+                      fontSize: 30,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 60,
+                  ),
+                  NavButton(
+                    title: "Login",
+                    handleClick: loginClick,
+                  ),
+                  const SizedBox(
+                    height: 22,
+                  ),
+                  NavButton(
+                    title: "Signup",
+                    handleClick: signupClick,
+                  ),
+                  const Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text("jay"),
+                    ],
+                  )
+                ],
+              ),
+            ),
+          );
+          // return Login(
+          //   token: loginToken,
+          //   setToken: setToken,
+          // );
+        } else {
+          return const Home();
+        }
+      },
     );
   }
 }
