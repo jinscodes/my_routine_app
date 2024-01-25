@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:workout_app/common/nav_button.dart';
 import 'package:workout_app/home/home.dart';
 
 class Auth extends StatefulWidget {
@@ -17,6 +19,14 @@ class _AuthState extends State<Auth> {
     });
   }
 
+  loginClick() {
+    print("login button clicked!");
+  }
+
+  signupClick() {
+    print("signup button clicked!");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,20 +34,37 @@ class _AuthState extends State<Auth> {
         child: Builder(
           builder: (context) {
             if (loginToken == "") {
-              return const Scaffold(
+              return Scaffold(
                 body: Center(
                   child: Column(
                     children: [
-                      SizedBox(
-                        height: 180,
+                      const SizedBox(
+                        height: 200,
                       ),
-                      Text(
+                      SvgPicture.asset(
+                        'assets/svg/dumbell.svg',
+                      ),
+                      const Text(
                         "workout",
                         style: TextStyle(
                           fontFamily: "JejuHallasan",
                           fontSize: 30,
                         ),
-                      )
+                      ),
+                      const SizedBox(
+                        height: 60,
+                      ),
+                      NavButton(
+                        title: "Login",
+                        handleClick: loginClick,
+                      ),
+                      const SizedBox(
+                        height: 22,
+                      ),
+                      NavButton(
+                        title: "Signup",
+                        handleClick: signupClick,
+                      ),
                     ],
                   ),
                 ),
