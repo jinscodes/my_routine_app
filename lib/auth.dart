@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:workout_app/common/nav_button.dart';
 import 'package:workout_app/home/home.dart';
+import 'package:workout_app/widgets/login/login.dart';
+import 'package:workout_app/widgets/signup/signup.dart';
+
+import 'common/nav_button.dart';
 
 class Auth extends StatefulWidget {
   const Auth({super.key});
@@ -20,11 +23,16 @@ class _AuthState extends State<Auth> {
   }
 
   loginClick() {
-    print("login button clicked!");
+    return Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) =>
+                Login(token: loginToken, setToken: setToken)));
   }
 
   signupClick() {
-    print("signup button clicked!");
+    return Navigator.push(
+        context, MaterialPageRoute(builder: (context) => const Signup()));
   }
 
   @override
@@ -35,63 +43,69 @@ class _AuthState extends State<Auth> {
           return Scaffold(
             body: Center(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Column(
-                    children: [
-                      const SizedBox(
-                        height: 200,
-                      ),
-                      SvgPicture.asset(
-                        'assets/svg/dumbell.svg',
-                      ),
-                      const Text(
-                        "workout",
-                        style: TextStyle(
-                          fontFamily: "JejuHallasan",
-                          fontSize: 30,
+                  Flexible(
+                    flex: 1,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset(
+                          'assets/svg/dumbell.svg',
                         ),
-                      ),
-                      const SizedBox(
-                        height: 60,
-                      ),
-                      NavButton(
-                        title: "Login",
-                        handleClick: loginClick,
-                      ),
-                      const SizedBox(
-                        height: 22,
-                      ),
-                      NavButton(
-                        title: "Signup",
-                        handleClick: signupClick,
-                      ),
-                    ],
+                        const Text(
+                          "workout",
+                          style: TextStyle(
+                            fontFamily: "JejuHallasan",
+                            fontSize: 30.0,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 60.0,
+                        ),
+                        NavButton(
+                          title: "Login",
+                          handleClick: loginClick,
+                        ),
+                        const SizedBox(
+                          height: 22.0,
+                        ),
+                        NavButton(
+                          title: "Signup",
+                          handleClick: signupClick,
+                        ),
+                      ],
+                    ),
                   ),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
+                  const Stack(
                     children: [
-                      Text(
-                        "©jay",
-                        style: TextStyle(
-                          fontFamily: "JejuHallasan",
-                          fontSize: 16,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 40,
-                        height: 80,
+                      Text("1"),
+                      Positioned(
+                        top: 0.0,
+                        left: 5.0,
+                        child: Text("2"),
                       ),
                     ],
                   )
+                  // const Row(
+                  //   mainAxisAlignment: MainAxisAlignment.end,
+                  //   children: [
+                  //     Text(
+                  //       "©jay",
+                  //       style: TextStyle(
+                  //         fontFamily: "JejuHallasan",
+                  //         fontSize: 16,
+                  //       ),
+                  //     ),
+                  //     SizedBox(
+                  //       width: 40,
+                  //       height: 80,
+                  //     ),
+                  //   ],
+                  // ),
                 ],
               ),
             ),
           );
-          // return Login(
-          //   token: loginToken,
-          //   setToken: setToken,
-          // );
         } else {
           return const Home();
         }
