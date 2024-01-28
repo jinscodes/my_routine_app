@@ -60,7 +60,7 @@ class _AuthState extends State<Auth> {
                           ),
                         ),
                         const SizedBox(
-                          height: 60.0,
+                          height: 80.0,
                         ),
                         NavButton(
                           title: "Login",
@@ -76,39 +76,31 @@ class _AuthState extends State<Auth> {
                       ],
                     ),
                   ),
-                  Stack(
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Positioned(
-                        top: 0.0,
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 30.0,
+                          vertical: 15.0,
+                        ),
                         child: Container(
                           decoration: BoxDecoration(
                             border: Border.all(
-                              width: 2,
+                              width: 1.0,
+                              color: Colors.blue,
+                            ),
+                          ),
+                          child: const Text(
+                            "©jay",
+                            style: TextStyle(
+                              fontFamily: "JejuHallasan",
                             ),
                           ),
                         ),
                       ),
-                      const Text("1"),
-                      const Text("2"),
-                      const Text("3"),
                     ],
-                  )
-                  // const Row(
-                  //   mainAxisAlignment: MainAxisAlignment.end,
-                  //   children: [
-                  //     Text(
-                  //       "©jay",
-                  //       style: TextStyle(
-                  //         fontFamily: "JejuHallasan",
-                  //         fontSize: 16,
-                  //       ),
-                  //     ),
-                  //     SizedBox(
-                  //       width: 40,
-                  //       height: 80,
-                  //     ),
-                  //   ],
-                  // ),
+                  ),
                 ],
               ),
             ),
