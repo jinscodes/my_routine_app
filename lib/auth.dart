@@ -76,14 +76,21 @@ class _AuthState extends State<Auth> {
                       ],
                     ),
                   ),
-                  const Stack(
+                  Stack(
                     children: [
-                      Text("1"),
                       Positioned(
                         top: 0.0,
-                        left: 5.0,
-                        child: Text("2"),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              width: 2,
+                            ),
+                          ),
+                        ),
                       ),
+                      const Text("1"),
+                      const Text("2"),
+                      const Text("3"),
                     ],
                   )
                   // const Row(
