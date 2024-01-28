@@ -5,6 +5,7 @@ import 'package:workout_app/widgets/login/login.dart';
 import 'package:workout_app/widgets/signup/signup.dart';
 
 import 'common/nav_button.dart';
+import 'common/title_text.dart';
 
 class Auth extends StatefulWidget {
   const Auth({super.key});
@@ -52,13 +53,7 @@ class _AuthState extends State<Auth> {
                         SvgPicture.asset(
                           'assets/svg/dumbell.svg',
                         ),
-                        const Text(
-                          "workout",
-                          style: TextStyle(
-                            fontFamily: "JejuHallasan",
-                            fontSize: 30.0,
-                          ),
-                        ),
+                        const TitleText(content: "WORKOUT"),
                         const SizedBox(
                           height: 80.0,
                         ),
@@ -76,26 +71,18 @@ class _AuthState extends State<Auth> {
                       ],
                     ),
                   ),
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.symmetric(
+                        padding: EdgeInsets.symmetric(
                           horizontal: 30.0,
                           vertical: 15.0,
                         ),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              width: 1.0,
-                              color: Colors.blue,
-                            ),
-                          ),
-                          child: const Text(
-                            "©jay",
-                            style: TextStyle(
-                              fontFamily: "JejuHallasan",
-                            ),
+                        child: Text(
+                          "©jay",
+                          style: TextStyle(
+                            fontFamily: "JejuHallasan",
                           ),
                         ),
                       ),
