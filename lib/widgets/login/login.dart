@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:workout_app/common/input_string.dart';
+import 'package:workout_app/common/title_text.dart';
 
 class Login extends StatefulWidget {
   String token;
@@ -19,8 +21,27 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Center(
-        child: Text("login"),
+      body: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: 57,
+          vertical: 40,
+        ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TitleText(content: "LOGIN"),
+              SizedBox(
+                height: 42,
+              ),
+              InputString(),
+              SizedBox(
+                height: 15,
+              ),
+              InputString(),
+            ],
+          ),
+        ),
       ),
     );
   }
