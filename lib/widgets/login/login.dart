@@ -9,36 +9,60 @@ class Login extends StatefulWidget {
   Login({super.key, required this.token, required this.setToken});
 
   @override
-  State<Login> createState() => _LoginState(token: token, setToken: setToken);
+  State<Login> createState() => _LoginState();
 }
 
 class _LoginState extends State<Login> {
-  String token;
-  Function setToken;
-
-  _LoginState({required this.token, required this.setToken});
-
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    String token = widget.token;
+    Function setToken = widget.setToken;
+
+    return Scaffold(
       body: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: 57,
+        padding: const EdgeInsets.symmetric(
+          horizontal: 60,
           vertical: 40,
         ),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              TitleText(content: "LOGIN"),
-              SizedBox(
+              const TitleText(content: "LOGIN"),
+              const SizedBox(
                 height: 42,
               ),
-              InputString(),
-              SizedBox(
+              const InputString(
+                content: "id",
+              ),
+              const SizedBox(
                 height: 15,
               ),
-              InputString(),
+              const InputString(
+                content: "pw",
+              ),
+              const SizedBox(
+                height: 58,
+              ),
+              ButtonTheme(
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      minimumSize: const Size.fromHeight(60),
+                      backgroundColor: const Color(0xFFD9D9D9),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12.0),
+                      )),
+                  onPressed: () {},
+                  child: const Text(
+                    "Next",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontFamily: "JejuHallasan",
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
