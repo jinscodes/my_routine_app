@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:workout_app/common/input_string.dart';
+import 'package:workout_app/common/submit_button.dart';
 import 'package:workout_app/common/title_text.dart';
 
 class Login extends StatefulWidget {
@@ -17,6 +18,12 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     String token = widget.token;
     Function setToken = widget.setToken;
+    TextEditingController id = TextEditingController();
+    TextEditingController pw = TextEditingController();
+
+    login() {
+      print("${id.text} & ${pw.text}");
+    }
 
     return Scaffold(
       body: Padding(
@@ -32,36 +39,23 @@ class _LoginState extends State<Login> {
               const SizedBox(
                 height: 42,
               ),
-              const InputString(
+              InputString(
                 content: "id",
+                controller: id,
               ),
               const SizedBox(
                 height: 15,
               ),
-              const InputString(
+              InputString(
                 content: "pw",
+                controller: pw,
               ),
               const SizedBox(
                 height: 58,
               ),
-              ButtonTheme(
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      minimumSize: const Size.fromHeight(60),
-                      backgroundColor: const Color(0xFFD9D9D9),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12.0),
-                      )),
-                  onPressed: () {},
-                  child: const Text(
-                    "Next",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontFamily: "JejuHallasan",
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
+              SubmitButton(
+                content: "Login",
+                handleClick: login,
               ),
             ],
           ),

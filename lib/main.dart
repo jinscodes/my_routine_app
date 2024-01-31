@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:workout_app/auth.dart';
+import 'package:workout_app/widgets/signup/signup.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +17,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.black)
             .copyWith(background: const Color(0xFFC5C5C5)),
       ),
-      home: const Auth(),
+      // home: const Auth(),
+      home: const Signup(),
     );
   }
 }

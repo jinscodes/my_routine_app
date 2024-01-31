@@ -1,63 +1,27 @@
-// import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
-// class Test extends StatelessWidget {
-//   const Test({super.key});
+class Login extends StatefulWidget {
+  final String token;
+  final Function setToken;
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Center(
-//               child: Column(
-//                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                 children: [
-//                   Column(
-//                     children: [
-//                       const SizedBox(
-//                         height: 220,
-//                       ),
-//                       SvgPicture.asset(
-//                         'assets/svg/dumbell.svg',
-//                       ),
-//                       const Text(
-//                         "workout",
-//                         style: TextStyle(
-//                           fontFamily: "JejuHallasan",
-//                           fontSize: 30,
-//                         ),
-//                       ),
-//                       const SizedBox(
-//                         height: 60,
-//                       ),
-//                       NavButton(
-//                         title: "Login",
-//                         handleClick: loginClick,
-//                       ),
-//                       const SizedBox(
-//                         height: 22,
-//                       ),
-//                       NavButton(
-//                         title: "Signup",
-//                         handleClick: signupClick,
-//                       ),
-//                     ],
-//                   ),
-//                   const Row(
-//                     mainAxisAlignment: MainAxisAlignment.end,
-//                     children: [
-//                       Text(
-//                         "©jay",
-//                         style: TextStyle(
-//                           fontFamily: "JejuHallasan",
-//                           fontSize: 16,
-//                         ),
-//                       ),
-//                       SizedBox(
-//                         width: 40,
-//                         height: 80,
-//                       ),
-//                     ],
-//                   )
-//                 ],
-//               ),
-//             ),
-//   }
-// }
+  const Login({super.key, required this.token, required this.setToken});
+
+  @override
+  State<Login> createState() => _LoginState(token: token, setToken: setToken);
+}
+
+class _LoginState extends State<Login> {
+  final String token;
+  final Function setToken;
+
+  _LoginState({required this.token, required this.setToken});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      body: Center(
+        child: Text("Test"),
+      ),
+    );
+  }
+}
