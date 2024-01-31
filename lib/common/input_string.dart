@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 
 class InputString extends StatefulWidget {
   final String content;
+  final TextEditingController controller;
 
-  const InputString({super.key, required this.content});
+  const InputString(
+      {super.key, required this.content, required this.controller});
 
   @override
   State<InputString> createState() => _InputStringState();
@@ -16,6 +18,7 @@ class _InputStringState extends State<InputString> {
   Widget build(BuildContext context) {
     String content = widget.content;
     String contentUppercase = widget.content.toUpperCase();
+    TextEditingController controller = widget.controller;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -42,6 +45,7 @@ class _InputStringState extends State<InputString> {
           ),
           child: Form(
             child: TextField(
+              controller: controller,
               decoration: InputDecoration(
                 hintText: "Enter $contentUppercase",
                 hintStyle: const TextStyle(

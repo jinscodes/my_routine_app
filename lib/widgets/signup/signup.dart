@@ -1,13 +1,89 @@
 import 'package:flutter/material.dart';
+import 'package:workout_app/common/submit_button.dart';
+import 'package:workout_app/common/title_text.dart';
+import 'package:workout_app/widgets/signup/idAndPw.dart';
 
-class Signup extends StatelessWidget {
+class Signup extends StatefulWidget {
+  final int step = 0;
+
   const Signup({super.key});
 
   @override
+  State<Signup> createState() => _SignupState();
+}
+
+class _SignupState extends State<Signup> {
+  @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text("Signup"),
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 60,
+          vertical: 40,
+        ),
+        child: Center(
+          child: Container(
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: Colors.red,
+                width: 3,
+              ),
+            ),
+            child: Stack(
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const TitleText(content: "SIGNUP"),
+                    const SizedBox(
+                      height: 42,
+                    ),
+                    Builder(
+                      builder: (context) {
+                        if (widget.step == 0) {
+                          return const IdAndPw();
+                        } else {
+                          return const Text("username");
+                        }
+                      },
+                    ),
+                  ],
+                ),
+                const Positioned(
+                  bottom: 0,
+                  child: Text(
+                    "button",
+                  ),
+                ),
+                Positioned(
+                    child: SubmitButton(
+                  content: "Next",
+                  handleClick: () {},
+                ))
+              ],
+            ),
+            // child: Column(
+            //   mainAxisAlignment: MainAxisAlignment.center,
+            //   children: [
+            //     const TitleText(content: "SIGNUP"),
+            //     const SizedBox(
+            //       height: 42,
+            //     ),
+            //     Builder(builder: (context) {
+            //       if (widget.step == 0) {
+            //         return const IdAndPw();
+            //       } else {
+            //         return const Text("username");
+            //       }
+            //     }),
+            //     SubmitButton(
+            //       content: "Next",
+            //       handleClick: () {},
+            //     )
+            //   ],
+            // ),
+          ),
+        ),
       ),
     );
   }
