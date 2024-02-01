@@ -20,12 +20,13 @@ class _SubmitButtonState extends State<SubmitButton> {
     return ButtonTheme(
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-            minimumSize: const Size.fromHeight(60),
-            backgroundColor: const Color(0xFFD9D9D9),
-            foregroundColor: const Color(0xFFBABABA),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12.0),
-            )),
+          // minimumSize: const Size.fromHeight(60),
+          backgroundColor: const Color(0xFFD9D9D9),
+          foregroundColor: const Color(0xFFBABABA),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12.0),
+          ),
+        ),
         onPressed: () {
           handleClick();
         },
