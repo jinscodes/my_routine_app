@@ -8,30 +8,28 @@ class NavButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ButtonTheme(
+    return SizedBox(
+      width: 250,
       height: 60,
-      minWidth: 250,
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
+      child: ButtonTheme(
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+            foregroundColor: const Color(0x00cbcbcb),
+            backgroundColor: const Color(0xFFD9D9D9),
           ),
-          padding: const EdgeInsets.symmetric(
-            horizontal: 100,
-            vertical: 16,
-          ),
-          foregroundColor: const Color(0x00cbcbcb),
-          backgroundColor: const Color(0xFFD9D9D9),
-        ),
-        onPressed: () {
-          handleClick();
-        },
-        child: Text(
-          title,
-          style: const TextStyle(
-            fontSize: 20,
-            color: Colors.black,
-            fontFamily: "JejuHallasan",
+          onPressed: () {
+            handleClick();
+          },
+          child: Text(
+            title,
+            style: const TextStyle(
+              fontSize: 20,
+              color: Colors.black,
+              fontFamily: "JejuHallasan",
+            ),
           ),
         ),
       ),

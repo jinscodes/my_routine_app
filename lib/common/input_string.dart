@@ -43,19 +43,23 @@ class _InputStringState extends State<InputString> {
             borderRadius: BorderRadius.circular(12),
             color: const Color(0xFFD9D9D9),
           ),
-          child: Form(
-            child: TextField(
-              controller: controller,
-              decoration: InputDecoration(
-                hintText: "Enter $contentUppercase",
-                hintStyle: const TextStyle(
-                  fontSize: 14,
+          child: SizedBox(
+            height: 60,
+            width: 300,
+            child: Form(
+              child: TextField(
+                controller: controller,
+                decoration: InputDecoration(
+                  hintText: "Enter $contentUppercase",
+                  hintStyle: const TextStyle(
+                    fontSize: 14,
+                  ),
+                  contentPadding: const EdgeInsets.symmetric(
+                    horizontal: 15,
+                    vertical: 20,
+                  ),
+                  border: InputBorder.none,
                 ),
-                contentPadding: const EdgeInsets.symmetric(
-                  horizontal: 15,
-                  vertical: 20,
-                ),
-                border: InputBorder.none,
               ),
             ),
           ),

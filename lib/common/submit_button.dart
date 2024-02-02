@@ -17,25 +17,28 @@ class _SubmitButtonState extends State<SubmitButton> {
     String content = widget.content;
     Function handleClick = widget.handleClick;
 
-    return ButtonTheme(
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          // minimumSize: const Size.fromHeight(60),
-          backgroundColor: const Color(0xFFD9D9D9),
-          foregroundColor: const Color(0xFFBABABA),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12.0),
+    return SizedBox(
+      width: 300,
+      height: 60,
+      child: ButtonTheme(
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color(0xFFD9D9D9),
+            foregroundColor: const Color(0xFFBABABA),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12.0),
+            ),
           ),
-        ),
-        onPressed: () {
-          handleClick();
-        },
-        child: Text(
-          content,
-          style: const TextStyle(
-            fontSize: 18,
-            fontFamily: "JejuHallasan",
-            color: Colors.black,
+          onPressed: () {
+            handleClick();
+          },
+          child: Text(
+            content,
+            style: const TextStyle(
+              fontSize: 18,
+              fontFamily: "JejuHallasan",
+              color: Colors.black,
+            ),
           ),
         ),
       ),
