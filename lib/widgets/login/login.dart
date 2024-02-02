@@ -32,31 +32,38 @@ class _LoginState extends State<Login> {
           vertical: 40,
         ),
         child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+          child: Stack(
             children: [
-              const TitleText(content: "LOGIN"),
-              const SizedBox(
-                height: 42,
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const TitleText(content: "LOGIN"),
+                  const SizedBox(
+                    height: 42,
+                  ),
+                  InputString(
+                    content: "id",
+                    controller: id,
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  InputString(
+                    content: "pw",
+                    controller: pw,
+                  ),
+                  const SizedBox(
+                    height: 58,
+                  ),
+                ],
               ),
-              InputString(
-                content: "id",
-                controller: id,
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              InputString(
-                content: "pw",
-                controller: pw,
-              ),
-              const SizedBox(
-                height: 58,
-              ),
-              SubmitButton(
-                content: "Login",
-                handleClick: login,
-              ),
+              Positioned(
+                bottom: 0,
+                child: SubmitButton(
+                  content: "Login",
+                  handleClick: login,
+                ),
+              )
             ],
           ),
         ),

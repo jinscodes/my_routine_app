@@ -10,6 +10,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController test = TextEditingController();
+
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
