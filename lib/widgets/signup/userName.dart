@@ -14,13 +14,13 @@ class _UserNameState extends State<UserName> {
   Widget build(BuildContext context) {
     TextEditingController username = widget.username;
 
-    return Column(
-      children: [
-        InputString(content: "username", controller: username),
-        const SizedBox(
-          height: 98,
-        )
-      ],
+    return SizedBox(
+      height: 200,
+      child: Column(
+        children: [
+          InputString(content: "username", controller: username),
+        ],
+      ),
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:workout_app/common/submit_button.dart';
 import 'package:workout_app/common/title_text.dart';
+import 'package:workout_app/widgets/signup/checkInfo.dart';
 import 'package:workout_app/widgets/signup/idAndPw.dart';
 import 'package:workout_app/widgets/signup/userName.dart';
 
@@ -52,45 +53,36 @@ class _SignupState extends State<Signup> {
         ),
         child: Center(
           child: Stack(
+            alignment: Alignment.bottomCenter,
             children: [
-              Container(
-                decoration: BoxDecoration(
-                    border: Border.all(
-                  color: Colors.blue,
-                  width: 2,
-                )),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const TitleText(content: "SIGNUP"),
-                    const SizedBox(
-                      height: 43,
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                        color: Colors.red,
-                        width: 2,
-                      )),
-                      child: Builder(
-                        builder: (context) {
-                          if (step == 0) {
-                            return IdAndPw(
-                              id: id,
-                              pw: pw,
-                            );
-                          } else if (step == 1) {
-                            return UserName(
-                              username: userName,
-                            );
-                          } else {
-                            return const Text("username");
-                          }
-                        },
-                      ),
-                    ),
-                  ],
-                ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const TitleText(content: "SIGNUP"),
+                  const SizedBox(
+                    height: 43,
+                  ),
+                  Builder(
+                    builder: (context) {
+                      if (step == 0) {
+                        return IdAndPw(
+                          id: id,
+                          pw: pw,
+                        );
+                      } else if (step == 1) {
+                        return UserName(
+                          username: userName,
+                        );
+                      } else {
+                        return CheckInfo(
+                          id: id,
+                          pw: pw,
+                          userName: userName,
+                        );
+                      }
+                    },
+                  ),
+                ],
               ),
               Positioned(
                 bottom: 0,

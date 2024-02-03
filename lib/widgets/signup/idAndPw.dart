@@ -17,14 +17,17 @@ class _IdAndPwState extends State<IdAndPw> {
     TextEditingController id = widget.id;
     TextEditingController pw = widget.pw;
 
-    return Column(
-      children: [
-        InputString(content: "id", controller: id),
-        const SizedBox(
-          height: 15,
-        ),
-        InputString(content: "pw", controller: pw),
-      ],
+    return SizedBox(
+      height: 200,
+      child: Column(
+        children: [
+          InputString(content: "id", controller: id),
+          const SizedBox(
+            height: 15,
+          ),
+          InputString(content: "pw", controller: pw),
+        ],
+      ),
     );
   }
 }
