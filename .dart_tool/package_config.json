@@ -44,6 +44,12 @@
       "languageVersion": "2.19"
     },
     {
+      "name": "dio",
+      "rootUri": "file:///Users/hanjinsung/.pub-cache/hosted/pub.dev/dio-5.4.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.15"
+    },
+    {
       "name": "fake_async",
       "rootUri": "file:///Users/hanjinsung/.pub-cache/hosted/pub.dev/fake_async-1.3.1",
       "packageUri": "lib/",
@@ -72,6 +78,12 @@
       "rootUri": "file:///usr/local/Caskroom/flutter/3.3.2/flutter/packages/flutter_test",
       "packageUri": "lib/",
       "languageVersion": "3.2"
+    },
+    {
+      "name": "http_parser",
+      "rootUri": "file:///Users/hanjinsung/.pub-cache/hosted/pub.dev/http_parser-4.0.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
     },
     {
       "name": "lints",
@@ -158,6 +170,12 @@
       "languageVersion": "3.0"
     },
     {
+      "name": "typed_data",
+      "rootUri": "file:///Users/hanjinsung/.pub-cache/hosted/pub.dev/typed_data-1.3.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
       "name": "vector_graphics",
       "rootUri": "file:///Users/hanjinsung/.pub-cache/hosted/pub.dev/vector_graphics-1.1.9+2",
       "packageUri": "lib/",
@@ -200,7 +218,7 @@
       "languageVersion": "3.2"
     }
   ],
-  "generated": "2024-01-25T08:32:34.531881Z",
+  "generated": "2024-02-03T10:54:33.889248Z",
   "generator": "pub",
   "generatorVersion": "3.2.5"
 }

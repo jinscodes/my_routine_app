@@ -21,25 +21,23 @@ class _SignupState extends State<Signup> {
   nextStep() {
     if (step == 0) {
       if (id.text != "" && pw.text != "") {
-        print("1");
         // Needed to validate id later
         setState(() {
           step += 1;
         });
       } else {
-        showSnackBar(context);
+        showSnackBar(context, "Enter id or pw!");
       }
     } else if (step == 1) {
       if (userName.text != "") {
-        print("2");
         setState(() {
           step += 1;
         });
       } else {
-        showSnackBar(context);
+        showSnackBar(context, "Enter usename!");
       }
     } else {
-      print("3");
+      print("Submit");
     }
   }
 
@@ -101,17 +99,19 @@ class _SignupState extends State<Signup> {
   }
 }
 
-void showSnackBar(BuildContext context) {
+void showSnackBar(BuildContext context, String content) {
   ScaffoldMessenger.of(context).showSnackBar(
-    const SnackBar(
+    SnackBar(
       content: Text(
-        "Enter id or pw!",
+        content,
         textAlign: TextAlign.center,
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: 16,
         ),
       ),
-      duration: Duration(seconds: 2),
+      duration: const Duration(
+        seconds: 2,
+      ),
     ),
   );
 }
