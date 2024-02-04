@@ -22,7 +22,11 @@ class _LoginState extends State<Login> {
     TextEditingController pw = TextEditingController();
 
     login() {
-      print("${id.text} & ${pw.text}");
+      if (id.text != "" && pw.text != "") {
+        print("${id.text} & ${pw.text}");
+      } else {
+        showSnackBar(context, "Enter id or pw!");
+      }
     }
 
     return Scaffold(
@@ -70,4 +74,21 @@ class _LoginState extends State<Login> {
       ),
     );
   }
+}
+
+void showSnackBar(BuildContext context, String content) {
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: Text(
+        content,
+        textAlign: TextAlign.center,
+        style: const TextStyle(
+          fontSize: 16,
+        ),
+      ),
+      duration: const Duration(
+        seconds: 2,
+      ),
+    ),
+  );
 }
