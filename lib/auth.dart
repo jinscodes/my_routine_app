@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:workout_app/home/home.dart';
+import 'package:workout_app/widgets/login/home/home.dart';
 import 'package:workout_app/widgets/login/login.dart';
 import 'package:workout_app/widgets/signup/signup.dart';
 
@@ -25,15 +25,20 @@ class _AuthState extends State<Auth> {
 
   loginClick() {
     return Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) =>
-                Login(token: loginToken, setToken: setToken)));
+      context,
+      MaterialPageRoute(
+        builder: (context) => Login(token: loginToken, setToken: setToken),
+      ),
+    );
   }
 
   signupClick() {
     return Navigator.push(
-        context, MaterialPageRoute(builder: (context) => const Signup()));
+      context,
+      MaterialPageRoute(
+        builder: (context) => const Signup(),
+      ),
+    );
   }
 
   @override
