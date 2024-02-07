@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
+import 'package:workout_app/styles/font_jejuHallasan.dart';
 
 class InputString extends StatefulWidget {
   final String content;
@@ -27,12 +28,9 @@ class _InputStringState extends State<InputString> {
           padding: const EdgeInsets.only(
             left: 10,
           ),
-          child: Text(
-            content,
-            style: const TextStyle(
-              fontSize: 18,
-              fontFamily: "JejuHallasan",
-            ),
+          child: FontJejuHallasan(
+            content: content,
+            fontSize: 18,
           ),
         ),
         const SizedBox(

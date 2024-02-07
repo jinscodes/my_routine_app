@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:workout_app/styles/font_jejuHallasan.dart';
 
 class NavButton extends StatelessWidget {
   final String title;
@@ -13,25 +14,21 @@ class NavButton extends StatelessWidget {
       height: 60,
       child: ButtonTheme(
         child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
+            style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
+              foregroundColor: const Color(0x00cbcbcb),
+              backgroundColor: const Color(0xFFD9D9D9),
             ),
-            foregroundColor: const Color(0x00cbcbcb),
-            backgroundColor: const Color(0xFFD9D9D9),
-          ),
-          onPressed: () {
-            handleClick();
-          },
-          child: Text(
-            title,
-            style: const TextStyle(
+            onPressed: () {
+              handleClick();
+            },
+            child: FontJejuHallasan(
+              content: title,
               fontSize: 20,
-              color: Colors.black,
-              fontFamily: "JejuHallasan",
-            ),
-          ),
-        ),
+              isColor: Colors.black,
+            )),
       ),
     );
   }

@@ -80,6 +80,10 @@ flutter:
     - family: JejuHallasan
       fonts:
         - asset: fonts/JejuHallasan-Regular.ttf
+    - family: Inika
+      fonts:
+        - asset: fonts/Inika-Regular.ttf
+        - asset: fonts/Inika-Bold.ttf
   #   - family: Schyler
   #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf
