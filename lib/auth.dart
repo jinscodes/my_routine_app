@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:workout_app/styles/font_jejuHallasan.dart';
 import 'package:workout_app/widgets/login/home/home.dart';
 import 'package:workout_app/widgets/login/login.dart';
 import 'package:workout_app/widgets/signup/signup.dart';
@@ -84,11 +85,8 @@ class _AuthState extends State<Auth> {
                           horizontal: 30.0,
                           vertical: 15.0,
                         ),
-                        child: Text(
-                          "©jay",
-                          style: TextStyle(
-                            fontFamily: "JejuHallasan",
-                          ),
+                        child: FontJejuHallasan(
+                          content: "©jay",
                         ),
                       ),
                     ],
