@@ -17,9 +17,8 @@ class _HomeState extends State<Home> {
     Response res = await Dio().get("http://localhost:8080/testRoutine");
     try {
       if (res.statusCode == 200) {
-        // print("RES DATA: ${res.data}");
+        print("RES DATA: ${res.data}");
         setState(() {
-          // routines = List<String>.from(res.data["routines"]);
           routines = res.data;
         });
       }
