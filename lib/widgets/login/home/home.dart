@@ -11,31 +11,30 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  Future<List>? routines;
+  Future setRoutines() async {
+    List routines = await getRoutines();
+    return routines;
+  }
 
-  Future<void> getRoutine() async {
+  Future getRoutines() async {
     Response res = await Dio().get("http://localhost:8080/testRoutine");
     try {
-      if (res.statusCode == 200) {
-        print("RES DATA: ${res.data}");
-        setState(() {
-          routines = res.data;
-        });
-      }
+      print("RES.DATA: ${res.data["routines"]}");
+      return res.data["routines"];
     } catch (e) {
-      print("Error fetching routines: $e");
+      print("!!ERROR: $e");
     }
   }
 
   @override
   void initState() {
-    getRoutine();
     super.initState();
+    setRoutines();
   }
 
   @override
   Widget build(BuildContext context) {
-    print("ROUTINES: $routines");
+    print("Order Widget Build");
     return GestureDetector(
       child: Scaffold(
         appBar: AppBar(
