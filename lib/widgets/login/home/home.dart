@@ -14,31 +14,22 @@ class _HomeState extends State<Home> {
   List routinesFuture = [];
 
   Future getRoutines() async {
-    print("Order: getRoutines");
     Response res = await Dio().get("http://localhost:8080/testRoutine");
-    print("RES.DATA: ${res.data["routines"]}");
 
     setState(() {
       routinesFuture = res.data["routines"];
     });
   }
 
-  Future test() async {
-    print("Order: initState with await");
-  }
-
   @override
   void initState() {
     super.initState();
     getRoutines();
-    test();
-    print("Order: initState without await");
   }
 
   @override
   Widget build(BuildContext context) {
-    print("Order: build");
-    print("Order: build after get data $routinesFuture");
+    print("Routines $routinesFuture");
     return GestureDetector(
       child: Scaffold(
         appBar: AppBar(
