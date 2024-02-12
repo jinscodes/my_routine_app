@@ -11,25 +11,24 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  List routinesFuture = [];
+  late Future<List<dynamic>> _routines;
 
-  Future getRoutines() async {
+  Future<List<dynamic>> getRoutines() async {
     Response res = await Dio().get("http://localhost:8080/testRoutine");
 
-    setState(() {
-      routinesFuture = res.data["routines"];
-    });
+    return res.data["routines"];
   }
 
   @override
   void initState() {
     super.initState();
-    getRoutines();
+    // getRoutines();
+    _routines = getRoutines();
   }
 
   @override
   Widget build(BuildContext context) {
-    print("Routines $routinesFuture");
+    // print("Routines $routines");
     return GestureDetector(
       child: Scaffold(
         appBar: AppBar(
@@ -73,20 +72,38 @@ class _HomeState extends State<Home> {
                       isBold: true,
                     ),
                   ),
-                  // FutureBuilder(
-                  //   future: routines,
-                  //   builder: (context, snapshot) {
-                  //     if (snapshot.hasData) {
-                  //       return ListView.builder(
-                  //         itemBuilder: (context, index) {
-                  //           return const Text("ListView");
-                  //         },
-                  //       );
-                  //     } else {
-                  //       return const Text("error!!");
-                  //     }
-                  //   },
-                  // ),
+                  FutureBuilder<List<dynamic>>(
+                    future: _routines,
+                    builder: (context, snapshot) {
+                      final List<dynamic>? routines = snapshot.data;
+
+                      if (snapshot.connectionState != ConnectionState.done) {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+
+                      if (snapshot.hasError) {
+                        return Center(
+                          child: Text(snapshot.error.toString()),
+                        );
+                      }
+
+                      if (routines != null) {
+                        // return const Text("snapshot has datas");
+                        return ListView.builder(
+                          itemCount: routines.length,
+                          itemBuilder: (context, idx) {
+                            // final routine = routines[idx];
+                            // print("ROUTINE: $routine");
+                            return const Text("ROUTINE:");
+                          },
+                        );
+                      } else {
+                        return const Text("error!!");
+                      }
+                    },
+                  ),
                   const Routine(content: "Mon Routine"),
                 ],
               ),
