@@ -22,98 +22,94 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
-    // getRoutines();
     _routines = getRoutines();
   }
 
   @override
   Widget build(BuildContext context) {
-    // print("Routines $routines");
-    return GestureDetector(
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: const Color(0xFFB4B4B4),
-          elevation: 2.0,
-          title: const FontInika(
-            content: "username",
-            isBold: true,
-          ),
+    // _routines.then((value) => print(value));
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color(0xFFB4B4B4),
+        elevation: 2.0,
+        title: const FontInika(
+          content: "username",
+          isBold: true,
         ),
-        body: Center(
-          child: Stack(
-            fit: StackFit.expand,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Container(
-                    height: 360,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.red,
-                        width: 2,
-                      ),
-                    ),
-                    child: const Text(
-                      "chart",
+      ),
+      body: Center(
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Container(
+                  height: 360,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.red,
+                      width: 2,
                     ),
                   ),
-                  Container(
-                    alignment: Alignment.centerLeft,
-                    height: 58,
-                    padding: const EdgeInsets.only(
-                      left: 20,
-                    ),
-                    decoration: const BoxDecoration(
-                      color: Color(0xFFB4B4B4),
-                    ),
-                    child: const FontInika(
-                      content: "routine",
-                      isBold: true,
-                    ),
+                  child: const Text(
+                    "chart",
                   ),
-                  FutureBuilder<List<dynamic>>(
-                    future: _routines,
-                    builder: (context, snapshot) {
-                      final List<dynamic>? routines = snapshot.data;
-
-                      if (snapshot.connectionState != ConnectionState.done) {
-                        return const Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      }
-
-                      if (snapshot.hasError) {
-                        return Center(
-                          child: Text(snapshot.error.toString()),
-                        );
-                      }
-
-                      if (routines != null) {
-                        // return const Text("snapshot has datas");
-                        return ListView.builder(
-                          itemCount: routines.length,
-                          itemBuilder: (context, idx) {
-                            // final routine = routines[idx];
-                            // print("ROUTINE: $routine");
-                            return const Text("ROUTINE:");
-                          },
-                        );
-                      } else {
-                        return const Text("error!!");
-                      }
-                    },
+                ),
+                Container(
+                  alignment: Alignment.centerLeft,
+                  height: 58,
+                  padding: const EdgeInsets.only(
+                    left: 20,
                   ),
-                  const Routine(content: "Mon Routine"),
-                ],
-              ),
-              const Positioned(
-                bottom: 30,
-                right: 30,
-                child: Text("menu"),
-              )
-            ],
-          ),
+                  decoration: const BoxDecoration(
+                    color: Color(0xFFB4B4B4),
+                  ),
+                  child: const FontInika(
+                    content: "routine",
+                    isBold: true,
+                  ),
+                ),
+                FutureBuilder<List<dynamic>>(
+                  future: _routines,
+                  builder: (context, snapshot) {
+                    final List<dynamic>? routines = snapshot.data;
+
+                    if (snapshot.connectionState != ConnectionState.done) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+
+                    if (snapshot.hasError) {
+                      return Center(
+                        child: Text(snapshot.error.toString()),
+                      );
+                    }
+
+                    if (routines != null) {
+                      return ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: routines.length,
+                        itemBuilder: (context, idx) {
+                          print(snapshot.data![idx]);
+                          return Text("ROUTINE2: ${snapshot.data![idx]}");
+                        },
+                      );
+                    } else {
+                      return const Text("error!!");
+                    }
+                  },
+                ),
+                const Routine(content: "Mon Routine"),
+              ],
+            ),
+            const Positioned(
+              bottom: 30,
+              right: 30,
+              child: Text("menu"),
+            )
+          ],
         ),
       ),
     );
