@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:workout_app/widgets/login/home/home.dart';
+import 'package:workout_app/test.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,7 +20,8 @@ class MyApp extends StatelessWidget {
             .copyWith(background: const Color(0xFFC5C5C5)),
       ),
       // home: const Auth(),
-      home: const Home(),
+      // home: const Home(),
+      home: const Test(),
     );
   }
 }
