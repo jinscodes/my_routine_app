@@ -41,28 +41,29 @@ class _TestState extends State<Test> {
           children: [
             const Text("data"),
             FutureBuilder(
-                future: _datas,
-                builder: (context, snapshot) {
-                  String? id;
-                  String? title;
-                  String? routines;
+              future: _datas,
+              builder: (context, snapshot) {
+                String? id;
+                String? title;
+                String? routines;
 
-                  _datas.then(
-                    (value) => {
-                      id = value["id"],
-                      title = value["title"],
-                      routines = value["routines"],
-                    },
-                  );
+                _datas.then(
+                  (value) => {
+                    id = value["id"],
+                    title = value["title"],
+                    routines = value["routines"],
+                  },
+                );
 
-                  if (id != null && title != null && routines != null) {
-                    print(id);
-                    print(title);
-                    print(routines);
-                  }
+                if (id != null && title != null && routines != null) {
+                  print(id);
+                  print(title);
+                  print(routines);
+                }
 
-                  return const Text("data");
-                })
+                return const Text("data");
+              },
+            )
           ],
         ),
       ),
