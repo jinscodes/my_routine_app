@@ -18,6 +18,7 @@ class FontInter extends StatelessWidget {
     return Text(
       content,
       style: TextStyle(
+        height: 1,
         fontFamily: "Inter",
         fontWeight: isBold == null ? FontWeight.normal : FontWeight.bold,
         fontSize: fontSize ?? 16,
