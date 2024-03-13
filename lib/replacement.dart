@@ -18,6 +18,13 @@ class _AuthState extends State<Auth> {
           child: Stack(
             alignment: Alignment.center,
             children: [
+              Positioned(
+                top: 340,
+                left: 30,
+                child: SvgPicture.asset(
+                  'assets/svg/dumbell.svg',
+                ),
+              ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -63,15 +70,8 @@ class _AuthState extends State<Auth> {
                             height: 60,
                           ),
                         ),
-                      )
+                      ),
                     ],
-                  ),
-                  Positioned(
-                    top: 0,
-                    left: 0,
-                    child: SvgPicture.asset(
-                      'assets/svg/dumbell.svg',
-                    ),
                   ),
                 ],
               ),

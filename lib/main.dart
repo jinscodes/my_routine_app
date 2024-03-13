@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:workout_app/replacement.dart';
+import 'package:workout_app/widgets/screens/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,16 +14,14 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.white).copyWith(
-          // background: const Color(0xFFC5C5C5),
-          background: Colors.white,
+        colorScheme: ColorScheme.fromSwatch(
+          backgroundColor: const Color(0xFFF5F8FF),
         ),
       ),
-      home: const Auth(),
-      // home: const Home(),
-      // home: const Test(),
+      home: const SplashScreen(),
     );
   }
 }
