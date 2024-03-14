@@ -23,6 +23,8 @@ class LoginScreen extends StatelessWidget {
                 child: CarouselSlider(
                   options: CarouselOptions(
                     // enlargeCenterPage: true,
+                    enableInfiniteScroll: true,
+                    autoPlay: true,
                     viewportFraction: 1,
                     height: MediaQuery.of(context).size.height,
                   ),
