@@ -1,6 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:workout_app/common/color.dart';
+import 'package:workout_app/widgets/login/bgDecoration.dart';
+import 'package:workout_app/widgets/login/loginButton.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -32,178 +34,31 @@ class LoginScreen extends StatelessWidget {
                     return Builder(
                       builder: (BuildContext context) {
                         if (i == 1) {
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 30,
-                            ),
-                            child: Column(
-                              children: [
-                                Flexible(
-                                  flex: 2,
-                                  child: Container(
-                                    alignment: Alignment.bottomCenter,
-                                    child: Image.asset(
-                                      "assets/images/bgDecoration.png",
-                                    ),
-                                  ),
-                                ),
-                                Flexible(
-                                  flex: 1,
-                                  child: Container(
-                                    alignment: Alignment.centerLeft,
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        const Text(
-                                          "Create\nGood Habits",
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 40,
-                                            fontWeight: FontWeight.w700,
-                                            height: 1.2,
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          height: 15,
-                                        ),
-                                        const Text(
-                                          "Change your life by slowly adding new healty habits\nand sticking to them.",
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          height: 20,
-                                        ),
-                                        Image.asset(
-                                          "assets/images/firstPage.png",
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
+                          return const BgDecoration(
+                            imgRoute: "assets/images/bgDecoration.png",
+                            content: [
+                              "Create\nGood Habits",
+                              "Change your life by slowly adding new healty habits\nand sticking to them."
+                            ],
+                            stepImgRoute: "assets/images/firstPage.png",
                           );
                         } else if (i == 2) {
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 30,
-                            ),
-                            child: Column(
-                              children: [
-                                Flexible(
-                                  flex: 2,
-                                  child: Container(
-                                    alignment: Alignment.bottomCenter,
-                                    child: Image.asset(
-                                      "assets/images/bgDecoration3.png",
-                                    ),
-                                  ),
-                                ),
-                                Flexible(
-                                  flex: 1,
-                                  child: Container(
-                                    alignment: Alignment.centerLeft,
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        const Text(
-                                          "Track\nYour Progress",
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 40,
-                                            fontWeight: FontWeight.w700,
-                                            height: 1.2,
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          height: 15,
-                                        ),
-                                        const Text(
-                                          "Everyday you become one step closer to your goal. Don't give up!",
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          height: 20,
-                                        ),
-                                        Image.asset(
-                                          "assets/images/secondPage.png",
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
+                          return const BgDecoration(
+                            imgRoute: "assets/images/bgDecoration3.png",
+                            content: [
+                              "Track\nYour Progress",
+                              "Everyday you become one step closer to your goal. Don't give up!"
+                            ],
+                            stepImgRoute: "assets/images/secondPage.png",
                           );
                         } else {
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 30,
-                            ),
-                            child: Column(
-                              children: [
-                                Flexible(
-                                  flex: 2,
-                                  child: Container(
-                                    alignment: Alignment.bottomCenter,
-                                    child: Image.asset(
-                                      "assets/images/bgDecoration2.png",
-                                    ),
-                                  ),
-                                ),
-                                Flexible(
-                                  flex: 1,
-                                  child: Container(
-                                    alignment: Alignment.centerLeft,
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        const Text(
-                                          "Stay Together\nand Strong",
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 40,
-                                            fontWeight: FontWeight.w700,
-                                            height: 1.2,
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          height: 15,
-                                        ),
-                                        const Text(
-                                          "Find friends to discuss common topics. Complete\nchallenges together.",
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          height: 20,
-                                        ),
-                                        Image.asset(
-                                          "assets/images/thirdPage.png",
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
+                          return const BgDecoration(
+                            imgRoute: "assets/images/bgDecoration2.png",
+                            content: [
+                              "Stay Together\nand Strong",
+                              "Find friends to discuss common topics. Complete\nchallenges together."
+                            ],
+                            stepImgRoute: "assets/images/thirdPage.png",
                           );
                         }
                       },
@@ -221,108 +76,85 @@ class LoginScreen extends StatelessWidget {
                     ),
                     child: Column(
                       children: [
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            minimumSize: Size(
-                              MediaQuery.of(context).size.width,
-                              60.0,
-                            ),
+                        LoginButton(
+                          isSocialLogin: false,
+                          content: "Continue with ID&PW",
+                          isIcon: true,
+                          icon: const Icon(
+                            Icons.login_rounded,
+                            color: Colors.black,
                           ),
                           onPressed: () {
-                            print("Continue with ID&PW");
+                            print("ID&PW");
                           },
-                          child: const Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.login_rounded,
-                                color: Colors.black,
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Text(
-                                "Continue with ID&PW",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                            ],
-                          ),
                         ),
+                        // ElevatedButton(
+                        //   style: ElevatedButton.styleFrom(
+                        //     minimumSize: Size(
+                        //       MediaQuery.of(context).size.width,
+                        //       60.0,
+                        //     ),
+                        //   ),
+                        //   onPressed: () {
+                        //     print("Continue with ID&PW");
+                        //   },
+                        //   child: const Row(
+                        //     mainAxisAlignment: MainAxisAlignment.center,
+                        //     children: [
+                        //       Icon(
+                        //         Icons.login_rounded,
+                        //         color: Colors.black,
+                        //       ),
+                        //       SizedBox(
+                        //         width: 10,
+                        //       ),
+                        //       Text(
+                        //         "Continue with ID&PW",
+                        //         style: TextStyle(
+                        //           color: Colors.black,
+                        //           fontSize: 14,
+                        //           fontWeight: FontWeight.w700,
+                        //         ),
+                        //       ),
+                        //     ],
+                        //   ),
+                        // ),
+
                         const SizedBox(
                           height: 14,
                         ),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            ElevatedButton(
-                              onPressed: () {
-                                print("Apple");
-                              },
-                              child: const Row(
-                                children: [
-                                  Icon(
-                                    Icons.apple_rounded,
-                                    color: Colors.black,
-                                  ),
-                                  SizedBox(
-                                    width: 6,
-                                  ),
-                                  Text(
-                                    "Apple",
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ],
+                            LoginButton(
+                              isSocialLogin: true,
+                              content: "Apple",
+                              isIcon: true,
+                              icon: const Icon(
+                                Icons.apple_rounded,
+                                color: Colors.black,
                               ),
+                              onPressed: () {
+                                print("apple");
+                              },
                             ),
-                            ElevatedButton(
+                            LoginButton(
+                              isSocialLogin: true,
+                              content: "Google",
+                              isIcon: false,
+                              imgPath: "assets/images/google.png",
                               onPressed: () {
-                                print("Google");
+                                print("google");
                               },
-                              child: Row(
-                                children: [
-                                  Image.asset("assets/images/google.png"),
-                                  const SizedBox(
-                                    width: 6,
-                                  ),
-                                  const Text(
-                                    "Google",
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ],
-                              ),
                             ),
-                            ElevatedButton(
+                            LoginButton(
+                              isSocialLogin: true,
+                              content: "Kakao",
+                              isIcon: false,
+                              imgPath: "assets/images/kakao.png",
                               onPressed: () {
-                                print("Kakao");
+                                print("kakao");
                               },
-                              child: Row(
-                                children: [
-                                  Image.asset("assets/images/kakao.png"),
-                                  const SizedBox(
-                                    width: 6,
-                                  ),
-                                  const Text(
-                                    "Kakao",
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ],
-                              ),
                             ),
                           ],
                         ),
