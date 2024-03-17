@@ -22,8 +22,11 @@ class LoginButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
+        maximumSize: isSocialLogin
+            ? const Size(100, 45)
+            : Size(MediaQuery.of(context).size.width, 60.0),
         minimumSize: isSocialLogin
-            ? const Size(30, 40)
+            ? const Size(100, 45)
             : Size(MediaQuery.of(context).size.width, 60.0),
       ),
       onPressed: () {

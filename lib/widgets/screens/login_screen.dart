@@ -88,73 +88,36 @@ class LoginScreen extends StatelessWidget {
                             print("ID&PW");
                           },
                         ),
-                        // ElevatedButton(
-                        //   style: ElevatedButton.styleFrom(
-                        //     minimumSize: Size(
-                        //       MediaQuery.of(context).size.width,
-                        //       60.0,
-                        //     ),
-                        //   ),
-                        //   onPressed: () {
-                        //     print("Continue with ID&PW");
-                        //   },
-                        //   child: const Row(
-                        //     mainAxisAlignment: MainAxisAlignment.center,
-                        //     children: [
-                        //       Icon(
-                        //         Icons.login_rounded,
-                        //         color: Colors.black,
-                        //       ),
-                        //       SizedBox(
-                        //         width: 10,
-                        //       ),
-                        //       Text(
-                        //         "Continue with ID&PW",
-                        //         style: TextStyle(
-                        //           color: Colors.black,
-                        //           fontSize: 14,
-                        //           fontWeight: FontWeight.w700,
-                        //         ),
-                        //       ),
-                        //     ],
-                        //   ),
-                        // ),
-
                         const SizedBox(
                           height: 14,
                         ),
                         Row(
-                          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            LoginButton(
-                              isSocialLogin: true,
-                              content: "Apple",
-                              isIcon: true,
-                              icon: const Icon(
-                                Icons.apple_rounded,
-                                color: Colors.black,
+                            Expanded(
+                              child: LoginButton(
+                                isSocialLogin: true,
+                                content: "Google",
+                                isIcon: false,
+                                imgPath: "assets/images/google.png",
+                                onPressed: () {
+                                  print("google");
+                                },
                               ),
-                              onPressed: () {
-                                print("apple");
-                              },
                             ),
-                            LoginButton(
-                              isSocialLogin: true,
-                              content: "Google",
-                              isIcon: false,
-                              imgPath: "assets/images/google.png",
-                              onPressed: () {
-                                print("google");
-                              },
+                            const SizedBox(
+                              width: 15,
                             ),
-                            LoginButton(
-                              isSocialLogin: true,
-                              content: "Kakao",
-                              isIcon: false,
-                              imgPath: "assets/images/kakao.png",
-                              onPressed: () {
-                                print("kakao");
-                              },
+                            Expanded(
+                              child: LoginButton(
+                                isSocialLogin: true,
+                                content: "Kakao",
+                                isIcon: false,
+                                imgPath: "assets/images/kakao.png",
+                                onPressed: () {
+                                  print("kakao");
+                                },
+                              ),
                             ),
                           ],
                         ),
