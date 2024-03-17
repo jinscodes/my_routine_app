@@ -38,7 +38,7 @@ class LoginScreen extends StatelessWidget {
                             imgRoute: "assets/images/bgDecoration.png",
                             content: [
                               "Create\nGood Habits",
-                              "Change your life by slowly adding new healty habits\nand sticking to them."
+                              "Change your life by slowly adding new healty\nhabits and sticking to them."
                             ],
                             stepImgRoute: "assets/images/firstPage.png",
                           );
@@ -56,7 +56,7 @@ class LoginScreen extends StatelessWidget {
                             imgRoute: "assets/images/bgDecoration2.png",
                             content: [
                               "Stay Together\nand Strong",
-                              "Find friends to discuss common topics. Complete\nchallenges together."
+                              "Find friends to discuss common topics.\nComplete challenges together."
                             ],
                             stepImgRoute: "assets/images/thirdPage.png",
                           );
