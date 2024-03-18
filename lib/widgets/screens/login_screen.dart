@@ -1,8 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:workout_app/common/color.dart';
-import 'package:workout_app/widgets/login/bgDecoration.dart';
-import 'package:workout_app/widgets/login/loginButton.dart';
+import 'package:workout_app/widgets/login/bg_decoration.dart';
+import 'package:workout_app/widgets/login/login_button.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
