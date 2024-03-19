@@ -20,34 +20,35 @@ class LoginButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        maximumSize: isSocialLogin
-            ? const Size(100, 45)
-            : Size(MediaQuery.of(context).size.width, 60.0),
-        minimumSize: isSocialLogin
-            ? const Size(100, 45)
-            : Size(MediaQuery.of(context).size.width, 60.0),
-      ),
-      onPressed: () {
-        onPressed();
-      },
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          isIcon ? icon! : Image.asset(imgPath!),
-          SizedBox(
-            width: isSocialLogin ? 6 : 10,
+    return SizedBox(
+      width: isSocialLogin ? 80 : MediaQuery.of(context).size.width,
+      height: isSocialLogin ? 45 : 60,
+      child: ElevatedButton(
+        onPressed: () {
+          onPressed();
+        },
+        style: ElevatedButton.styleFrom(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 16,
           ),
-          Text(
-            content,
-            style: const TextStyle(
-              color: Colors.black,
-              fontSize: 14,
-              fontWeight: FontWeight.w700,
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            isIcon ? icon! : Image.asset(imgPath!),
+            SizedBox(
+              width: isSocialLogin ? 6 : 10,
             ),
-          ),
-        ],
+            Text(
+              content,
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: isSocialLogin ? 12 : 14,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
