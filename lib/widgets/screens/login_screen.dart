@@ -1,7 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:workout_app/common/api.dart';
 import 'package:workout_app/common/color.dart';
 import 'package:workout_app/widgets/login/bg_decoration.dart';
 import 'package:workout_app/widgets/login/login_button.dart';
@@ -10,53 +9,34 @@ class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
   // Future<void> postApi() async {
-  //   await dotenv.load(fileName: ".env");
+  //   try {
+  //     await dotenv.load(fileName: ".env");
 
-  //   String url = "${dotenv.env["BASE_URL"]}/login";
+  //     String? baseUrl = dotenv.env['BASE_URL'];
 
-  //   print("${dotenv.env["BASE_URL"]}/login");
+  //     if (baseUrl == null) {
+  //       throw Exception("BASE_URL is not set in .env file");
+  //     } else {
+  //       String url = "$baseUrl/login";
 
-  //   Dio dio = Dio();
-  //   Response res = await dio.post(
-  //     url,
-  //     data: {
-  //       'userId': "testId1",
-  //       'password': 'textPwd1',
-  //     },
-  //   );
+  //       print("Constructed URL: $url");
 
-  //   print("RES: $res");
+  //       Dio dio = Dio();
+
+  //       Response res = await dio.post(
+  //         url,
+  //         data: {
+  //           'userId': "testId1",
+  //           'password': 'testpwd1',
+  //         },
+  //       );
+
+  //       print("Response: $res");
+  //     }
+  //   } catch (e) {
+  //     print("Error: $e");
+  //   }
   // }
-
-  Future<void> postApi() async {
-    try {
-      await dotenv.load(fileName: ".env");
-
-      String? baseUrl = dotenv.env['BASE_URL'];
-
-      if (baseUrl == null) {
-        throw Exception("BASE_URL is not set in .env file");
-      } else {
-        String url = "$baseUrl/login";
-
-        print("Constructed URL: $url");
-
-        Dio dio = Dio();
-
-        Response res = await dio.post(
-          url,
-          data: {
-            'userId': "testId1",
-            'password': 'testpwd1',
-          },
-        );
-
-        print("Response: $res");
-      }
-    } catch (e) {
-      print("Error: $e");
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -137,7 +117,13 @@ class LoginScreen extends StatelessWidget {
                           ),
                           onPressed: () {
                             print("id&pw");
-                            postApi();
+                            PostApi(
+                              apiUrl: "/login",
+                              body: {
+                                'userId': "testId1",
+                                'password': 'testpwd1',
+                              },
+                            ).postData();
                           },
                         ),
                         const SizedBox(
