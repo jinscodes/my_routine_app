@@ -1,8 +1,10 @@
+import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-class Global {
-  String? baseUrl = dotenv.env["BASE_URL"];
-}
+// class Global {
+
+//   String? baseUrl = dotenv.env["BASE_URL"];
+// }
 
 // class GetApi {
 //   String apiUrl;
@@ -18,32 +20,40 @@ class Global {
 //   getData() async {}
 // }
 
-// class PostApi extends Global {
-//   String apiUrl;
-//   dynamic body;
-//   Bool? isRequiredHeader;
+class PostApi {
+  String apiUrl;
+  dynamic body;
+  bool? isRequiredHeader;
 
-//   PostApi({
-//     required this.apiUrl,
-//     required this.body,
-//     this.isRequiredHeader,
-//   });
+  PostApi({
+    required this.apiUrl,
+    required this.body,
+    this.isRequiredHeader,
+  });
 
-//   postData() async {
-//     String url = "$baseUrl/$apiUrl";
-//     print(url);
+  Future<void> postData() async {
+    try {
+      print("post");
+      await dotenv.load(fileName: ".env");
 
-//     Dio dio = Dio();
+      String? baseUrl = dotenv.env["BASE_URL"];
 
-//     if (isRequiredHeader != null) {
-//       // set header
-//     }
+      if (baseUrl == null) {
+        throw Exception("BASE_URL is not set in .env file");
+      }
 
-//     Response res = await dio.post(
-//       url,
-//       data: body,
-//     );
+      String url = "$baseUrl$apiUrl";
 
-//     return res;
-//   }
-// }
+      Dio dio = Dio();
+
+      Response res = await dio.post(
+        url,
+        data: body,
+      );
+
+      print("Response: $res");
+    } catch (e) {
+      print("Error: $e");
+    }
+  }
+}
