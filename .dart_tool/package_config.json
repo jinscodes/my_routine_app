@@ -68,6 +68,12 @@
       "languageVersion": "3.2"
     },
     {
+      "name": "flutter_dotenv",
+      "rootUri": "file:///Users/hanjinsung/.pub-cache/hosted/pub.dev/flutter_dotenv-5.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "flutter_lints",
       "rootUri": "file:///Users/hanjinsung/.pub-cache/hosted/pub.dev/flutter_lints-2.0.3",
       "packageUri": "lib/",
@@ -254,7 +260,7 @@
       "languageVersion": "3.2"
     }
   ],
-  "generated": "2024-03-14T05:47:44.582141Z",
+  "generated": "2024-03-19T05:18:29.855949Z",
   "generator": "pub",
   "generatorVersion": "3.3.1"
 }
