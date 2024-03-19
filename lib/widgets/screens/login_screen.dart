@@ -97,6 +97,23 @@ class LoginScreen extends StatelessWidget {
                             Expanded(
                               child: LoginButton(
                                 isSocialLogin: true,
+                                content: "Apple",
+                                isIcon: true,
+                                icon: const Icon(
+                                  Icons.apple_outlined,
+                                  color: Colors.black,
+                                ),
+                                onPressed: () {
+                                  print("apple");
+                                },
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Expanded(
+                              child: LoginButton(
+                                isSocialLogin: true,
                                 content: "Google",
                                 isIcon: false,
                                 imgPath: "assets/images/google.png",
@@ -106,7 +123,7 @@ class LoginScreen extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(
-                              width: 15,
+                              width: 10,
                             ),
                             Expanded(
                               child: LoginButton(
