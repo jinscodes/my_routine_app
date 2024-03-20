@@ -1,0 +1,8 @@
+version: "Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)"
+options: "abd360a7161c8b5c7851ce9e74d78055c8f158aa3b3fc5df8363f14bd899d958"
+build_start_time: [1710910624, 675524950]
+build_end_time: [1710910624, 720208168]
+inputs:
+  "/Users/hanjinsung/Desktop/Repository/workout_routine_app/macos/Flutter/GeneratedPluginRegistrant.swift": !private [1710910601, 3320693]
+  "/Users/hanjinsung/Desktop/Repository/workout_routine_app/macos/Runner/AppDelegate.swift": !private [1663167258, 0]
+  "/Users/hanjinsung/Desktop/Repository/workout_routine_app/macos/Runner/MainFlutterWindow.swift": !private [1701826308, 963419437]

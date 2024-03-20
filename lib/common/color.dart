@@ -11,4 +11,6 @@ class ColorTheme {
   static const Color purple40 = Color(0xFFD9D9FF);
   static const Color pink = Color(0xFFFF7272);
   static const Color teal = Color(0xFF289459);
+  static const Color loginBg = Color(0xFFF5F8FF);
+  static const Color gray = Color(0xFFC6C6CA);
 }
