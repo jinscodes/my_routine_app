@@ -1,18 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:workout_app/common/color.dart';
 
-class LoginWithId extends StatelessWidget {
+class LoginWithId extends StatefulWidget {
   const LoginWithId({super.key});
 
+  @override
+  State<LoginWithId> createState() => _LoginWithIdState();
+}
+
+class _LoginWithIdState extends State<LoginWithId> {
   @override
   Widget build(BuildContext context) {
     TextEditingController idController = TextEditingController();
     TextEditingController pwController = TextEditingController();
-    String id = idController.text;
-    String pw = pwController.text;
+    bool isText = false;
 
-    print("id0: $id");
-    print("pw0: $pw");
+    print("idC0: ${idController.text}");
+    print("isEmpty: ${idController.text.isEmpty}");
+
+    @override
+    void dispose() {
+      idController.dispose();
+      pwController.dispose();
+      super.dispose();
+    }
+
+    void handleChange(word) {
+      print(word);
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -63,20 +78,23 @@ class LoginWithId extends StatelessWidget {
                         ),
                         TextField(
                           controller: idController,
+                          // onChanged: (value) {
+                          //   handleChange(value);
+                          // },
                           style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.w600,
                           ),
                           decoration: InputDecoration(
-                            suffixIcon: id == ""
-                                ? IconButton(
+                            suffixIcon: idController.text.isEmpty
+                                ? null
+                                : IconButton(
                                     onPressed: () {},
                                     icon: const Icon(
                                       Icons.cancel_rounded,
                                       color: ColorTheme.gray,
                                     ),
-                                  )
-                                : null,
+                                  ),
                             hintText: "Enter your id",
                             hintStyle: const TextStyle(
                               color: ColorTheme.gray,
@@ -109,27 +127,6 @@ class LoginWithId extends StatelessWidget {
                         ),
                         const SizedBox(
                           height: 10,
-                        ),
-                        TextField(
-                          decoration: InputDecoration(
-                            hintText: "Enter your id",
-                            hintStyle: const TextStyle(
-                              color: ColorTheme.gray,
-                              fontSize: 20,
-                            ),
-                            enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                color: ColorTheme.gray.withOpacity(0.6),
-                                width: 3,
-                              ),
-                            ),
-                            focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                color: ColorTheme.green.withOpacity(0.5),
-                                width: 5,
-                              ),
-                            ),
-                          ),
                         ),
                       ],
                     ),
@@ -164,8 +161,7 @@ class LoginWithId extends StatelessWidget {
                             backgroundColor: ColorTheme.mainBlue,
                           ),
                           onPressed: () {
-                            print("id: $id");
-                            print("pw: $pw");
+                            print("idC: ${idController.text}");
                           },
                           child: const Text(
                             "Next",
