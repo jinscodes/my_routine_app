@@ -1,18 +1,49 @@
 import 'package:flutter/material.dart';
 import 'package:workout_app/common/color.dart';
 
-class LoginWithId extends StatelessWidget {
+class LoginWithId extends StatefulWidget {
   const LoginWithId({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    TextEditingController idController = TextEditingController();
-    TextEditingController pwController = TextEditingController();
-    String id = idController.text;
-    String pw = pwController.text;
+  State<LoginWithId> createState() => _LoginWithIdState();
+}
 
-    print("id0: $id");
-    print("pw0: $pw");
+class _LoginWithIdState extends State<LoginWithId> {
+  TextEditingController idController = TextEditingController();
+  TextEditingController pwController = TextEditingController();
+  bool isText = false;
+
+  void handleChange(String word) {
+    if (word.isNotEmpty) {
+      setState(() {
+        isText = true;
+      });
+    } else {
+      setState(() {
+        isText = false;
+      });
+    }
+  }
+
+  void resetText(TextEditingController controller) {
+    controller.clear();
+    setState(() {
+      isText = false;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    print("idC0: ${idController.text}");
+    print("pwC0: ${pwController.text}");
+    print("isEmpty: $isText");
+
+    @override
+    void dispose() {
+      idController.dispose();
+      pwController.dispose();
+      super.dispose();
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -63,20 +94,25 @@ class LoginWithId extends StatelessWidget {
                         ),
                         TextField(
                           controller: idController,
+                          onChanged: (value) {
+                            handleChange(value);
+                          },
                           style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.w600,
                           ),
                           decoration: InputDecoration(
-                            suffixIcon: id == ""
-                                ? IconButton(
-                                    onPressed: () {},
+                            suffixIcon: idController.text.isEmpty
+                                ? null
+                                : IconButton(
+                                    onPressed: () {
+                                      resetText(idController);
+                                    },
                                     icon: const Icon(
                                       Icons.cancel_rounded,
                                       color: ColorTheme.gray,
                                     ),
-                                  )
-                                : null,
+                                  ),
                             hintText: "Enter your id",
                             hintStyle: const TextStyle(
                               color: ColorTheme.gray,
@@ -111,8 +147,27 @@ class LoginWithId extends StatelessWidget {
                           height: 10,
                         ),
                         TextField(
+                          controller: pwController,
+                          onChanged: (value) {
+                            handleChange(value);
+                          },
+                          style: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                          ),
                           decoration: InputDecoration(
-                            hintText: "Enter your id",
+                            suffixIcon: pwController.text.isEmpty
+                                ? null
+                                : IconButton(
+                                    onPressed: () {
+                                      resetText(pwController);
+                                    },
+                                    icon: const Icon(
+                                      Icons.cancel_rounded,
+                                      color: ColorTheme.gray,
+                                    ),
+                                  ),
+                            hintText: "Enter your pw",
                             hintStyle: const TextStyle(
                               color: ColorTheme.gray,
                               fontSize: 20,
@@ -164,8 +219,8 @@ class LoginWithId extends StatelessWidget {
                             backgroundColor: ColorTheme.mainBlue,
                           ),
                           onPressed: () {
-                            print("id: $id");
-                            print("pw: $pw");
+                            print("idC: ${idController.text}");
+                            print("pwC: ${pwController.text}");
                           },
                           child: const Text(
                             "Next",
