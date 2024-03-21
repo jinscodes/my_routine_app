@@ -9,24 +9,40 @@ class LoginWithId extends StatefulWidget {
 }
 
 class _LoginWithIdState extends State<LoginWithId> {
+  TextEditingController idController = TextEditingController();
+  TextEditingController pwController = TextEditingController();
+  bool isText = false;
+
+  void handleChange(String word) {
+    if (word.isNotEmpty) {
+      setState(() {
+        isText = true;
+      });
+    } else {
+      setState(() {
+        isText = false;
+      });
+    }
+  }
+
+  void resetText(TextEditingController controller) {
+    controller.clear();
+    setState(() {
+      isText = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    TextEditingController idController = TextEditingController();
-    TextEditingController pwController = TextEditingController();
-    bool isText = false;
-
     print("idC0: ${idController.text}");
-    print("isEmpty: ${idController.text.isEmpty}");
+    print("pwC0: ${pwController.text}");
+    print("isEmpty: $isText");
 
     @override
     void dispose() {
       idController.dispose();
       pwController.dispose();
       super.dispose();
-    }
-
-    void handleChange(word) {
-      print(word);
     }
 
     return Scaffold(
@@ -78,9 +94,9 @@ class _LoginWithIdState extends State<LoginWithId> {
                         ),
                         TextField(
                           controller: idController,
-                          // onChanged: (value) {
-                          //   handleChange(value);
-                          // },
+                          onChanged: (value) {
+                            handleChange(value);
+                          },
                           style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.w600,
@@ -89,7 +105,9 @@ class _LoginWithIdState extends State<LoginWithId> {
                             suffixIcon: idController.text.isEmpty
                                 ? null
                                 : IconButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      resetText(idController);
+                                    },
                                     icon: const Icon(
                                       Icons.cancel_rounded,
                                       color: ColorTheme.gray,
@@ -128,6 +146,46 @@ class _LoginWithIdState extends State<LoginWithId> {
                         const SizedBox(
                           height: 10,
                         ),
+                        TextField(
+                          controller: pwController,
+                          onChanged: (value) {
+                            handleChange(value);
+                          },
+                          style: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                          ),
+                          decoration: InputDecoration(
+                            suffixIcon: pwController.text.isEmpty
+                                ? null
+                                : IconButton(
+                                    onPressed: () {
+                                      resetText(pwController);
+                                    },
+                                    icon: const Icon(
+                                      Icons.cancel_rounded,
+                                      color: ColorTheme.gray,
+                                    ),
+                                  ),
+                            hintText: "Enter your pw",
+                            hintStyle: const TextStyle(
+                              color: ColorTheme.gray,
+                              fontSize: 20,
+                            ),
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: ColorTheme.gray.withOpacity(0.6),
+                                width: 3,
+                              ),
+                            ),
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: ColorTheme.green.withOpacity(0.5),
+                                width: 5,
+                              ),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -162,6 +220,7 @@ class _LoginWithIdState extends State<LoginWithId> {
                           ),
                           onPressed: () {
                             print("idC: ${idController.text}");
+                            print("pwC: ${pwController.text}");
                           },
                           child: const Text(
                             "Next",
