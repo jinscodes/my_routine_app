@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:workout_app/common/api.dart';
 import 'package:workout_app/common/color.dart';
 import 'package:workout_app/common/login_text_field.dart';
 import 'package:workout_app/common/next_button.dart';
@@ -14,6 +15,7 @@ class _LoginWithIdState extends State<LoginWithId> {
   TextEditingController idController = TextEditingController();
   TextEditingController pwController = TextEditingController();
   bool isText = false;
+  bool isError = false;
 
   void handleChange(String word) {
     if (word.isNotEmpty) {
@@ -32,6 +34,18 @@ class _LoginWithIdState extends State<LoginWithId> {
     setState(() {
       isText = false;
     });
+  }
+
+  void loginValidation() {
+    Future res = PostApi(
+      apiUrl: "/login",
+      body: {
+        "userId": idController.text,
+        "password": pwController.text,
+      },
+    ).postData();
+
+    res.then((value) => print(value));
   }
 
   @override
@@ -119,8 +133,7 @@ class _LoginWithIdState extends State<LoginWithId> {
                         NextButton(
                           content: "Next",
                           handlePressed: () {
-                            print("idC: ${idController.text}");
-                            print("pwC: ${pwController.text}");
+                            loginValidation();
                           },
                         ),
                       ],
