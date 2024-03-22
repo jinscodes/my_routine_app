@@ -31,9 +31,8 @@ class PostApi {
     this.isRequiredHeader,
   });
 
-  Future<void> postData() async {
+  Future postData() async {
     try {
-      print("post");
       await dotenv.load(fileName: ".env");
 
       String? baseUrl = dotenv.env["BASE_URL"];
@@ -51,7 +50,7 @@ class PostApi {
         data: body,
       );
 
-      print("Response: $res");
+      return res;
     } catch (e) {
       print("Error: $e");
     }

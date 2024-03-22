@@ -4,9 +4,14 @@ import 'package:workout_app/common/color.dart';
 class LoginTextField extends StatefulWidget {
   final String title;
   final TextEditingController controller;
+  final bool? isError;
 
-  const LoginTextField(
-      {super.key, required this.controller, required this.title});
+  const LoginTextField({
+    super.key,
+    required this.controller,
+    required this.title,
+    this.isError,
+  });
 
   @override
   State<LoginTextField> createState() => _LoginTextFieldState();
@@ -15,6 +20,7 @@ class LoginTextField extends StatefulWidget {
 class _LoginTextFieldState extends State<LoginTextField> {
   late TextEditingController controller;
   late String title;
+  late bool isError;
   bool isText = false;
 
   void handleChange(String word) {
@@ -40,6 +46,7 @@ class _LoginTextFieldState extends State<LoginTextField> {
   void initState() {
     controller = widget.controller;
     title = widget.title;
+    isError = widget.isError!;
     super.initState();
   }
 
