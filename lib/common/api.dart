@@ -52,7 +52,7 @@ class PostApi {
 
       return res;
     } catch (e) {
-      print("Error: $e");
+      print("Error!");
     }
   }
 }

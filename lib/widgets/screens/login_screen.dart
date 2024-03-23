@@ -18,7 +18,6 @@ class _LoginScreenState extends State<LoginScreen> {
         context, MaterialPageRoute(builder: (context) => const LoginWithId()));
   }
 
-  // Future<void> postApi() async {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +35,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 flex: 3,
                 child: CarouselSlider(
                   options: CarouselOptions(
-                    // enlargeCenterPage: true,
                     enableInfiniteScroll: true,
                     autoPlay: true,
                     viewportFraction: 1,
@@ -97,15 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             color: Colors.black,
                           ),
                           onPressed: () {
-                            print("id&pw");
                             navigateToLoginWithId();
-                            // PostApi(
-                            //   apiUrl: "/login",
-                            //   body: {
-                            //     'userId': "testId1",
-                            //     'password': 'testpwd1',
-                            //   },
-                            // ).postData();
                           },
                         ),
                         const SizedBox(
