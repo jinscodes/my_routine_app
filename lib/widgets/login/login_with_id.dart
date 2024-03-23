@@ -14,6 +14,7 @@ class LoginWithId extends StatefulWidget {
 class _LoginWithIdState extends State<LoginWithId> {
   TextEditingController idController = TextEditingController();
   TextEditingController pwController = TextEditingController();
+  String token = "";
   bool isText = false;
   bool isError = false;
 
@@ -45,7 +46,7 @@ class _LoginWithIdState extends State<LoginWithId> {
       },
     ).postData();
 
-    res.then((value) => print(value));
+    res.then((value) => print("value"));
   }
 
   @override
@@ -96,11 +97,13 @@ class _LoginWithIdState extends State<LoginWithId> {
                         LoginTextField(
                           controller: idController,
                           title: "ID",
+                          isError: isError,
                         ),
                         const SizedBox(
                           height: 20,
                         ),
                         LoginTextField(
+                          isError: isError,
                           controller: pwController,
                           title: "PW",
                         ),
