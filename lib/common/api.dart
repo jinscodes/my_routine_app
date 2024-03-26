@@ -32,29 +32,23 @@ class PostApi {
   });
 
   Future postData() async {
-    try {
-      await dotenv.load(fileName: ".env");
+    await dotenv.load(fileName: ".env");
 
-      String? baseUrl = dotenv.env["BASE_URL"];
+    String? baseUrl = dotenv.env["BASE_URL"];
 
-      if (baseUrl == null) {
-        throw Exception("BASE_URL is not set in .env file");
-      }
-
-      String url = "$baseUrl$apiUrl";
-
-      Dio dio = Dio();
-
-      Response res = await dio.post(
-        url,
-        data: body,
-      );
-
-      print("API.dart: ${res.data}");
-
-      return res.data;
-    } catch (e) {
-      print("Error!");
+    if (baseUrl == null) {
+      throw Exception("BASE_URL is not set in .env file");
     }
+
+    String url = "$baseUrl$apiUrl";
+
+    Dio dio = Dio();
+
+    Response res = await dio.post(
+      url,
+      data: body,
+    );
+
+    return res.data;
   }
 }

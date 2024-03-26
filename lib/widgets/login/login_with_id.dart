@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:workout_app/common/api.dart';
 import 'package:workout_app/common/color.dart';
 import 'package:workout_app/common/login_text_field.dart';
@@ -37,17 +38,28 @@ class _LoginWithIdState extends State<LoginWithId> {
     });
   }
 
-  Future<String> loginValidation() async {
-    String token = await PostApi(
-      apiUrl: "/login",
-      body: {
-        "userId": idController.text,
-        "password": pwController.text,
-      },
-    ).postData();
+  Future<void> loginValidation() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    print("res: $token");
-    return token;
+    try {
+      String token = await PostApi(
+        apiUrl: "/login",
+        body: {
+          "userId": idController.text,
+          "password": pwController.text,
+        },
+      ).postData();
+
+      await prefs.setString("login_token", token);
+
+      print("loginToken: ${prefs.getString("login_token")}");
+
+      return;
+    } catch (e) {
+      print("Err: $e");
+
+      return showSnackBar(context, "Login failed 🥲");
+    }
   }
 
   @override
@@ -151,4 +163,23 @@ class _LoginWithIdState extends State<LoginWithId> {
       ),
     );
   }
+}
+
+void showSnackBar(BuildContext context, String content) {
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      backgroundColor: ColorTheme.errorRed,
+      content: Text(
+        content,
+        textAlign: TextAlign.center,
+        style: const TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+      duration: const Duration(
+        seconds: 2,
+      ),
+    ),
+  );
 }
