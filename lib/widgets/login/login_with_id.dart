@@ -37,8 +37,8 @@ class _LoginWithIdState extends State<LoginWithId> {
     });
   }
 
-  void loginValidation() {
-    Future res = PostApi(
+  Future<String> loginValidation() async {
+    String token = await PostApi(
       apiUrl: "/login",
       body: {
         "userId": idController.text,
@@ -46,7 +46,8 @@ class _LoginWithIdState extends State<LoginWithId> {
       },
     ).postData();
 
-    res.then((value) => print("value"));
+    print("res: $token");
+    return token;
   }
 
   @override
