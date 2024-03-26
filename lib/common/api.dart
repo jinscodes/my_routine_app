@@ -50,7 +50,9 @@ class PostApi {
         data: body,
       );
 
-      return res;
+      print("API.dart: ${res.data}");
+
+      return res.data;
     } catch (e) {
       print("Error!");
     }
