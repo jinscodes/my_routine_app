@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:workout_app/common/color.dart';
 import 'package:workout_app/common/login_text_field.dart';
 import 'package:workout_app/common/next_button.dart';
-import 'package:workout_app/models/api.dart';
-import 'package:workout_app/models/manageLoginToken.dart';
+import 'package:workout_app/utilities/api.dart';
+import 'package:workout_app/utilities/manageLoginToken.dart';
 import 'package:workout_app/widgets/screens/home_screen.dart';
 
 class LoginWithId extends StatefulWidget {

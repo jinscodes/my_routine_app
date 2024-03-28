@@ -1,8 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:workout_app/models/manageLoginToken.dart';
+import 'package:workout_app/utilities/manageLoginToken.dart';
+import 'package:workout_app/widgets/screens/login_screen.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  logout() {
+    removeLoginToken("loginToken");
+
+    return Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const LoginScreen(),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +30,7 @@ class HomeScreen extends StatelessWidget {
           children: [
             ElevatedButton(
               onPressed: () {
-                removeLoginToken("loginToken");
+                logout();
               },
               child: const Text("LOGOUT"),
             ),
