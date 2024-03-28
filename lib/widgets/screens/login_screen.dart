@@ -15,7 +15,11 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   navigateToLoginWithId() {
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => const LoginWithId()));
+      context,
+      MaterialPageRoute(
+        builder: (context) => const LoginWithId(),
+      ),
+    );
   }
 
   @override

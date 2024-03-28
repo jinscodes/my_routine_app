@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:workout_app/common/api.dart';
 import 'package:workout_app/common/color.dart';
 import 'package:workout_app/common/login_text_field.dart';
 import 'package:workout_app/common/next_button.dart';
+import 'package:workout_app/models/api.dart';
+import 'package:workout_app/models/manageLoginToken.dart';
+import 'package:workout_app/widgets/screens/home_screen.dart';
 
 class LoginWithId extends StatefulWidget {
   const LoginWithId({super.key});
@@ -38,9 +39,7 @@ class _LoginWithIdState extends State<LoginWithId> {
     });
   }
 
-  Future<void> loginValidation() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-
+  loginValidation() async {
     try {
       String token = await PostApi(
         apiUrl: "/login",
@@ -50,11 +49,14 @@ class _LoginWithIdState extends State<LoginWithId> {
         },
       ).postData();
 
-      await prefs.setString("login_token", token);
+      await setLoginToken(token);
 
-      print("loginToken: ${prefs.getString("login_token")}");
-
-      return;
+      return Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const HomeScreen(),
+        ),
+      );
     } catch (e) {
       print("Err: $e");
 
