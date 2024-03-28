@@ -13,4 +13,5 @@ class ColorTheme {
   static const Color teal = Color(0xFF289459);
   static const Color loginBg = Color(0xFFF5F8FF);
   static const Color gray = Color(0xFFC6C6CA);
+  static const Color loginBgGray = Color.fromARGB(255, 230, 232, 237);
 }

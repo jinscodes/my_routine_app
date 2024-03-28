@@ -17,28 +17,8 @@ class LoginWithId extends StatefulWidget {
 class _LoginWithIdState extends State<LoginWithId> {
   TextEditingController idController = TextEditingController();
   TextEditingController pwController = TextEditingController();
-  String token = "";
   bool isText = false;
   bool isError = false;
-
-  void handleChange(String word) {
-    if (word.isNotEmpty) {
-      setState(() {
-        isText = true;
-      });
-    } else {
-      setState(() {
-        isText = false;
-      });
-    }
-  }
-
-  void resetText(TextEditingController controller) {
-    controller.clear();
-    setState(() {
-      isText = false;
-    });
-  }
 
   loginValidation() async {
     try {
@@ -89,7 +69,6 @@ class _LoginWithIdState extends State<LoginWithId> {
         backgroundColor: Colors.white,
         leading: IconButton(
           onPressed: () {},
-          style: IconButton.styleFrom(),
           icon: const Icon(Icons.arrow_back_ios_new_rounded),
         ),
         title: const Text(
@@ -102,7 +81,7 @@ class _LoginWithIdState extends State<LoginWithId> {
       ),
       body: Container(
         decoration: const BoxDecoration(
-          color: Color.fromARGB(255, 230, 232, 237),
+          color: ColorTheme.loginBgGray,
         ),
         child: Padding(
           padding: const EdgeInsets.fromLTRB(30, 0, 30, 30),
