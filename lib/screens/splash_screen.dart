@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:workout_app/screens/home_screen.dart';
+import 'package:workout_app/screens/login_screen.dart';
 import 'package:workout_app/utilities/manageLoginToken.dart';
-import 'package:workout_app/widgets/screens/home_screen.dart';
-import 'package:workout_app/widgets/screens/login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

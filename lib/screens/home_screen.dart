@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:workout_app/screens/login_screen.dart';
 import 'package:workout_app/utilities/manageLoginToken.dart';
-import 'package:workout_app/widgets/screens/login_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
