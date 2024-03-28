@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:workout_app/common/api.dart';
 import 'package:workout_app/common/color.dart';
 import 'package:workout_app/common/login_text_field.dart';
 import 'package:workout_app/common/next_button.dart';
+import 'package:workout_app/models/api.dart';
+import 'package:workout_app/models/manageLoginToken.dart';
+import 'package:workout_app/widgets/screens/home_screen.dart';
 
 class LoginWithId extends StatefulWidget {
   const LoginWithId({super.key});
@@ -37,17 +39,29 @@ class _LoginWithIdState extends State<LoginWithId> {
     });
   }
 
-  Future<String> loginValidation() async {
-    String token = await PostApi(
-      apiUrl: "/login",
-      body: {
-        "userId": idController.text,
-        "password": pwController.text,
-      },
-    ).postData();
+  loginValidation() async {
+    try {
+      String token = await PostApi(
+        apiUrl: "/login",
+        body: {
+          "userId": idController.text,
+          "password": pwController.text,
+        },
+      ).postData();
 
-    print("res: $token");
-    return token;
+      await setLoginToken(token);
+
+      return Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const HomeScreen(),
+        ),
+      );
+    } catch (e) {
+      print("Err: $e");
+
+      return showSnackBar(context, "Login failed 🥲");
+    }
   }
 
   @override
@@ -151,4 +165,23 @@ class _LoginWithIdState extends State<LoginWithId> {
       ),
     );
   }
+}
+
+void showSnackBar(BuildContext context, String content) {
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      backgroundColor: ColorTheme.errorRed,
+      content: Text(
+        content,
+        textAlign: TextAlign.center,
+        style: const TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+      duration: const Duration(
+        seconds: 2,
+      ),
+    ),
+  );
 }

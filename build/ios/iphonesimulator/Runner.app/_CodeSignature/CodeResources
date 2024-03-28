@@ -46,7 +46,7 @@
 		</data>
 		<key>Frameworks/App.framework/App</key>
 		<data>
-		NiMyrNQ6EUkjWhZaKXQ2Md9zToU=
+		zwbd1OV+FOlsBlA1M7sJQC++fNQ=
 		</data>
 		<key>Frameworks/App.framework/Info.plist</key>
 		<data>
@@ -54,7 +54,7 @@
 		</data>
 		<key>Frameworks/App.framework/_CodeSignature/CodeResources</key>
 		<data>
-		fivYccnmrHv+lTyqkFSGwwMP+84=
+		KqOlLsV6cV139wyJKMGZZSWfdZ8=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/.env</key>
 		<data>
@@ -74,7 +74,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/NOTICES.Z</key>
 		<data>
-		OP73DqKyx4uETx3SmLgnVy9EZKg=
+		CNSbcNmQGfSNGC+yxTT3hgW3UWA=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/assets/images/background.png</key>
 		<data>
@@ -150,7 +150,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/kernel_blob.bin</key>
 		<data>
-		sHmIDM22FzX7/Qhy9Hg6h1lHHNk=
+		Okz7IR+EjsQqNJiKDNxo9FRSkAw=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -252,6 +252,26 @@
 		<data>
 		Ubat0LvE4LUgCwHeyl0Anx2vnzk=
 		</data>
+		<key>Frameworks/shared_preferences_foundation.framework/Info.plist</key>
+		<data>
+		nytyooS+CRAlqhDVWo6Nok7+y0Q=
+		</data>
+		<key>Frameworks/shared_preferences_foundation.framework/_CodeSignature/CodeResources</key>
+		<data>
+		zikLREmOVSunt1kbiaGyRAN9gdo=
+		</data>
+		<key>Frameworks/shared_preferences_foundation.framework/shared_preferences_foundation</key>
+		<data>
+		e3x1Cpl3ok0fK6YKNo+9DRTcxnQ=
+		</data>
+		<key>Frameworks/shared_preferences_foundation.framework/shared_preferences_foundation_privacy.bundle/Info.plist</key>
+		<data>
+		FtMuLWEnYWRSgThcwcqEEUFYLXk=
+		</data>
+		<key>Frameworks/shared_preferences_foundation.framework/shared_preferences_foundation_privacy.bundle/PrivacyInfo.xcprivacy</key>
+		<data>
+		6uLTlq7fgHHWA8emYDf4ImHC+AY=
+		</data>
 		<key>Info.plist</key>
 		<data>
 		Ui86PTbDzsU/28G+NO3jrhmv/Ok=
@@ -337,7 +357,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			CWeinALEfQxMODHbRW6EFcYwYxrksXGNFP+Sym66whI=
+			IfolVN0Zh1amA0jzK9tVX/2rACx9O0KXiXz4q/9A2Ls=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/Info.plist</key>
@@ -351,7 +371,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			I0h3LVBKpq/bsVNR+vWgskaNoaEeEPfRXdDWlUYclVc=
+			22x7N6YFNykBHf3W5eURtmMFKNGnSnNgiGlurW9+ip8=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/.env</key>
@@ -386,7 +406,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			+JoRAIndTpPw5mABNBcMR/5TdxMu/bp8wzH7a+Xgrq4=
+			qEyNRbiYb3QyZByNLE/QWAMz86SNg0/FN2ZrAGgaG50=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/assets/images/background.png</key>
@@ -519,7 +539,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			RycHmIV+VOU3poQoS/uKoob+ZNofULzI1gKhOkESpb0=
+			QZLKnJh74oF09FgeG4dQLPKI/ZpkIs0xnDIPgP/npxE=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
@@ -695,6 +715,41 @@
 			<key>hash2</key>
 			<data>
 			ZepykIMSjfzhwAcmupMrkaqvXkhza1ZE3TdHjl8odaw=
+			</data>
+		</dict>
+		<key>Frameworks/shared_preferences_foundation.framework/Info.plist</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			X4zw9/OK9JdgJ+XGU+FE5qVkfSEqG8wPg5S92lQLbW8=
+			</data>
+		</dict>
+		<key>Frameworks/shared_preferences_foundation.framework/_CodeSignature/CodeResources</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			VYxd+zSla0rKnCz4bFiZSHZWYNLSU25z1Pq3x34Hp9A=
+			</data>
+		</dict>
+		<key>Frameworks/shared_preferences_foundation.framework/shared_preferences_foundation</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			Qaw9R5kuQdF+LLY3ky6xnTJ4spxhRe4nLPGlS8Tcbcc=
+			</data>
+		</dict>
+		<key>Frameworks/shared_preferences_foundation.framework/shared_preferences_foundation_privacy.bundle/Info.plist</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			4jHLT7+KmzrySFzIkw740lGy/uxoCTlEN30ziblmf4k=
+			</data>
+		</dict>
+		<key>Frameworks/shared_preferences_foundation.framework/shared_preferences_foundation_privacy.bundle/PrivacyInfo.xcprivacy</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			BWQouTi9VwGKYAGdFcPB7i+nJ/I2h1mLu9k0hIsYCxo=
 			</data>
 		</dict>
 	</dict>
