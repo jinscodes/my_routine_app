@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:workout_app/common/color.dart';
 import 'package:workout_app/common/login_text_field.dart';
 import 'package:workout_app/common/next_button.dart';
+import 'package:workout_app/screens/home_screen.dart';
+import 'package:workout_app/screens/signup_screen.dart';
 import 'package:workout_app/utilities/api.dart';
 import 'package:workout_app/utilities/manageLoginToken.dart';
-import 'package:workout_app/widgets/screens/home_screen.dart';
 
 class LoginWithId extends StatefulWidget {
   const LoginWithId({super.key});
@@ -62,6 +63,15 @@ class _LoginWithIdState extends State<LoginWithId> {
 
       return showSnackBar(context, "Login failed 🥲");
     }
+  }
+
+  _navigateToSignup() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const SignupScreen(),
+      ),
+    );
   }
 
   @override
@@ -134,7 +144,7 @@ class _LoginWithIdState extends State<LoginWithId> {
                       children: [
                         TextButton(
                           onPressed: () {
-                            print("Navigate to SIGN UP page");
+                            _navigateToSignup();
                           },
                           child: const Text(
                             "Don't have account? Let's create!",
