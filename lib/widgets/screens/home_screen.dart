@@ -11,7 +11,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   logout() {
-    removeLoginToken("loginToken");
+    removeLoginToken("login_token");
 
     return Navigator.pushReplacement(
       context,

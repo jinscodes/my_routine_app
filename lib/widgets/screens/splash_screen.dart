@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:workout_app/utilities/manageLoginToken.dart';
+import 'package:workout_app/widgets/screens/home_screen.dart';
 import 'package:workout_app/widgets/screens/login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -11,17 +13,49 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  @override
-  void initState() {
-    super.initState();
-    _navigateToHome();
+  _checkLoginToken() async {
+    String? loginToken = await getLoginToken();
+
+    if (loginToken == null || loginToken.isEmpty) {
+      return _navigateToLogin();
+    } else {
+      return _navigateToHome();
+    }
   }
 
   _navigateToHome() {
-    Timer(const Duration(seconds: 3), () {
-      Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (context) => const LoginScreen()));
-    });
+    Timer(
+      const Duration(seconds: 3),
+      () {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const HomeScreen(),
+          ),
+        );
+      },
+    );
+  }
+
+  _navigateToLogin() {
+    Timer(
+      const Duration(seconds: 3),
+      () {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const LoginScreen(),
+          ),
+        );
+      },
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _checkLoginToken();
+    _navigateToLogin();
   }
 
   @override
