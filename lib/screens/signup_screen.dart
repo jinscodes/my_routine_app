@@ -29,7 +29,14 @@ class _SignupScreenState extends State<SignupScreen> {
         },
       ).postData();
 
-      print(res);
+      print("res: $res");
+      print("res type: ${res['userId']}");
+
+      if (res["userId"] != null) {
+        print("success");
+      } else {
+        print("fail");
+      }
     } catch (e) {
       // ignore: avoid_print
       print("Err: $e");
