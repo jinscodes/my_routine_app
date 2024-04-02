@@ -39,6 +39,7 @@ class _LoginWithIdState extends State<LoginWithId> {
         ),
       );
     } catch (e) {
+      // ignore: avoid_print
       print("Err: $e");
 
       return showSnackBar(context, "Login failed 🥲");
@@ -120,6 +121,7 @@ class _LoginWithIdState extends State<LoginWithId> {
                   child: Container(
                     alignment: Alignment.center,
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         TextButton(
                           onPressed: () {
