@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:workout_app/common/color.dart';
 import 'package:workout_app/common/login_text_field.dart';
 import 'package:workout_app/common/next_button.dart';
+import 'package:workout_app/utilities/api.dart';
 import 'package:workout_app/widgets/signup/complete_signup.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -21,21 +22,22 @@ class _SignupScreenState extends State<SignupScreen> {
 
   _signupValidation() async {
     try {
-      _navigateToCompleteSignup(); // for dev
-      // Map<String, dynamic> res = await PostApi(
-      //   apiUrl: "/signup",
-      //   body: {
-      //     "userId": idController.text,
-      //     "password": pwController.text,
-      //     "nickname": nameController.text,
-      //   },
-      // ).postData();
+      Map<String, dynamic> res = await PostApi(
+        apiUrl: "/signup",
+        body: {
+          "userId": idController.text,
+          "password": pwController.text,
+          "nickname": nameController.text,
+        },
+      ).postData();
 
-      // if (res["userId"] != null) {
-      //   _navigateToCompleteSignup();
-      // } else {
-      //   print("fail");
-      // }
+      if (res["userId"] != null) {
+        _navigateToCompleteSignup();
+      } else {
+        // will do
+        // ignore: avoid_print
+        print("fail");
+      }
     } catch (e) {
       // ignore: avoid_print
       print("Err: $e");
