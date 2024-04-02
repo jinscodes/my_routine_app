@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:workout_app/common/color.dart';
 import 'package:workout_app/common/login_text_field.dart';
 import 'package:workout_app/common/next_button.dart';
-import 'package:workout_app/utilities/api.dart';
+import 'package:workout_app/widgets/signup/complete_signup.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -17,30 +17,38 @@ class _SignupScreenState extends State<SignupScreen> {
   TextEditingController pwController = TextEditingController();
   bool isText = false;
   bool isError = false;
+  bool isLoad = false;
 
   _signupValidation() async {
     try {
-      Map<String, dynamic> res = await PostApi(
-        apiUrl: "/signup",
-        body: {
-          "userId": idController.text,
-          "password": pwController.text,
-          "nickname": nameController.text,
-        },
-      ).postData();
+      _navigateToCompleteSignup(); // for dev
+      // Map<String, dynamic> res = await PostApi(
+      //   apiUrl: "/signup",
+      //   body: {
+      //     "userId": idController.text,
+      //     "password": pwController.text,
+      //     "nickname": nameController.text,
+      //   },
+      // ).postData();
 
-      print("res: $res");
-      print("res type: ${res['userId']}");
-
-      if (res["userId"] != null) {
-        print("success");
-      } else {
-        print("fail");
-      }
+      // if (res["userId"] != null) {
+      //   _navigateToCompleteSignup();
+      // } else {
+      //   print("fail");
+      // }
     } catch (e) {
       // ignore: avoid_print
       print("Err: $e");
     }
+  }
+
+  void _navigateToCompleteSignup() {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const CompleteSignup(),
+      ),
+    );
   }
 
   @override
@@ -114,34 +122,19 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
                 Flexible(
                   flex: 1,
-                  child: Container(
-                    alignment: Alignment.center,
-                    child: Column(
-                      children: [
-                        TextButton(
-                          onPressed: () {
-                            // _navigateToSignup();
-                          },
-                          child: const Text(
-                            "Don't have account? Let's create!",
-                            style: TextStyle(
-                              color: ColorTheme.mainBlue,
-                              fontWeight: FontWeight.w700,
-                              fontSize: 15,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 15,
-                        ),
-                        NextButton(
-                          content: "Next",
-                          handlePressed: () {
-                            _signupValidation();
-                          },
-                        ),
-                      ],
-                    ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      NextButton(
+                        content: "Next",
+                        handlePressed: () {
+                          _signupValidation();
+                        },
+                      ),
+                    ],
                   ),
                 ),
               ],
