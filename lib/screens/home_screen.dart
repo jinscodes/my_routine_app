@@ -40,7 +40,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     width: 50,
                     height: 50,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        print("Calendar");
+                      },
                       style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.zero,
                         backgroundColor: Colors.transparent,
@@ -64,14 +66,29 @@ class _HomeScreenState extends State<HomeScreen> {
               Flexible(
                 child: Container(
                   alignment: Alignment.centerRight,
-                  child: Container(
+                  child: SizedBox(
                     width: 50,
                     height: 50,
-                    decoration: const BoxDecoration(
-                      color: Colors.yellow,
-                    ),
-                    child: const Icon(
-                      Icons.logout_outlined,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        print("Logout");
+                      },
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.zero,
+                        backgroundColor: Colors.transparent,
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                          side: BorderSide(
+                            color: ColorTheme.gray.withOpacity(0.4),
+                            width: 2,
+                          ),
+                        ),
+                      ),
+                      child: const Icon(
+                        Icons.logout_outlined,
+                        color: Colors.black,
+                      ),
                     ),
                   ),
                 ),
