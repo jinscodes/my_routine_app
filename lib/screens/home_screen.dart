@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:workout_app/common/color.dart';
 import 'package:workout_app/screens/login_screen.dart';
 import 'package:workout_app/utilities/manageLoginToken.dart';
 
@@ -26,27 +27,57 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         leadingWidth: MediaQuery.of(context).size.width,
-        leading: Row(
-          children: [
-            Flexible(
-              child: Container(
-                alignment: Alignment.centerLeft,
-                decoration: const BoxDecoration(
-                  color: Colors.green,
+        leading: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 25,
+          ),
+          child: Row(
+            children: [
+              Flexible(
+                child: Container(
+                  alignment: Alignment.centerLeft,
+                  child: SizedBox(
+                    width: 50,
+                    height: 50,
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.zero,
+                        backgroundColor: Colors.transparent,
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                          side: BorderSide(
+                            color: ColorTheme.gray.withOpacity(0.4),
+                            width: 2,
+                          ),
+                        ),
+                      ),
+                      child: const Icon(
+                        Icons.calendar_month_outlined,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
                 ),
-                child: const Text("Calendar"),
               ),
-            ),
-            Flexible(
-              child: Container(
-                alignment: Alignment.centerRight,
-                decoration: const BoxDecoration(
-                  color: Colors.yellow,
+              Flexible(
+                child: Container(
+                  alignment: Alignment.centerRight,
+                  child: Container(
+                    width: 50,
+                    height: 50,
+                    decoration: const BoxDecoration(
+                      color: Colors.yellow,
+                    ),
+                    child: const Icon(
+                      Icons.logout_outlined,
+                    ),
+                  ),
                 ),
-                child: const Text("Logout"),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
       body: Center(
