@@ -3,6 +3,7 @@ import 'package:workout_app/common/color.dart';
 import 'package:workout_app/common/login_text_field.dart';
 import 'package:workout_app/common/next_button.dart';
 import 'package:workout_app/screens/home_screen.dart';
+import 'package:workout_app/screens/login_screen.dart';
 import 'package:workout_app/screens/signup_screen.dart';
 import 'package:workout_app/utilities/api.dart';
 import 'package:workout_app/utilities/manageLoginToken.dart';
@@ -55,6 +56,15 @@ class _LoginWithIdState extends State<LoginWithId> {
     );
   }
 
+  _navigateToLogin() {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const LoginScreen(),
+      ),
+    );
+  }
+
   @override
   void dispose() {
     idController.dispose();
@@ -69,7 +79,7 @@ class _LoginWithIdState extends State<LoginWithId> {
         elevation: 2.0,
         backgroundColor: Colors.white,
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () => _navigateToLogin(),
           icon: const Icon(Icons.arrow_back_ios_new_rounded),
         ),
         title: const Text(

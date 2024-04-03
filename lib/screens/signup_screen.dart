@@ -3,6 +3,7 @@ import 'package:workout_app/common/color.dart';
 import 'package:workout_app/common/login_text_field.dart';
 import 'package:workout_app/common/next_button.dart';
 import 'package:workout_app/utilities/api.dart';
+import 'package:workout_app/widgets/login/login_with_id.dart';
 import 'package:workout_app/widgets/signup/complete_signup.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -53,6 +54,15 @@ class _SignupScreenState extends State<SignupScreen> {
     );
   }
 
+  void _navigateToLoginWithId() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const LoginWithId(),
+      ),
+    );
+  }
+
   @override
   void dispose() {
     idController.dispose();
@@ -67,7 +77,7 @@ class _SignupScreenState extends State<SignupScreen> {
         elevation: 2.0,
         backgroundColor: Colors.white,
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () => _navigateToLoginWithId(),
           icon: const Icon(Icons.arrow_back_ios_new_rounded),
         ),
         title: const Text(
