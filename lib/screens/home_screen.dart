@@ -24,6 +24,31 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leadingWidth: MediaQuery.of(context).size.width,
+        leading: Row(
+          children: [
+            Flexible(
+              child: Container(
+                alignment: Alignment.centerLeft,
+                decoration: const BoxDecoration(
+                  color: Colors.green,
+                ),
+                child: const Text("Calendar"),
+              ),
+            ),
+            Flexible(
+              child: Container(
+                alignment: Alignment.centerRight,
+                decoration: const BoxDecoration(
+                  color: Colors.yellow,
+                ),
+                child: const Text("Logout"),
+              ),
+            ),
+          ],
+        ),
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
