@@ -102,10 +102,70 @@ class _HomeScreenState extends State<HomeScreen> {
             Flexible(
               flex: 5,
               child: Container(
-                  // decoration: const BoxDecoration(
-                  //   color: Colors.yellow,
-                  // ),
+                // decoration: const BoxDecoration(
+                //   color: Colors.yellow,
+                // ),
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(25, 20, 25, 20),
+                  child: Column(
+                    children: [
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 78,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(18),
+                          gradient: const LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [
+                              Color(0xFF4A53FF),
+                              Color(0xFF2029FF),
+                            ],
+                          ),
+                        ),
+                        child: Row(
+                          children: [
+                            const SizedBox(
+                              width: 18,
+                            ),
+                            Container(
+                              width: 50,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(100),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 12,
+                            ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Text(
+                                  "Your daily goals almost done! 🔥",
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                Text(
+                                  "1 of 4 completed",
+                                  style: TextStyle(
+                                    color: Colors.white.withOpacity(0.8),
+                                  ),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                      )
+                    ],
                   ),
+                ),
+              ),
             ),
           ],
         ),
