@@ -135,6 +135,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(100),
                               ),
+                              child: const Center(
+                                child: Text("%25"),
+                              ),
                             ),
                             const SizedBox(
                               width: 12,
@@ -161,7 +164,52 @@ class _HomeScreenState extends State<HomeScreen> {
                             )
                           ],
                         ),
-                      )
+                      ),
+                      const SizedBox(
+                        height: 25,
+                      ),
+                      SizedBox(
+                        height: 500,
+                        child: SingleChildScrollView(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Container(
+                                width: MediaQuery.of(context).size.width,
+                                height: 150,
+                                decoration: const BoxDecoration(
+                                  color: Colors.green,
+                                ),
+                                child: const Text("data"),
+                              ),
+                              Container(
+                                width: MediaQuery.of(context).size.width,
+                                height: 150,
+                                decoration: const BoxDecoration(
+                                  color: Colors.yellow,
+                                ),
+                                child: const Text("data"),
+                              ),
+                              Container(
+                                width: MediaQuery.of(context).size.width,
+                                height: 150,
+                                decoration: const BoxDecoration(
+                                  color: Colors.blue,
+                                ),
+                                child: const Text("data"),
+                              ),
+                              Container(
+                                width: MediaQuery.of(context).size.width,
+                                height: 150,
+                                decoration: const BoxDecoration(
+                                  color: Colors.red,
+                                ),
+                                child: const Text("data"),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
