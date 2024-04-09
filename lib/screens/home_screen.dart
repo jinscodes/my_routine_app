@@ -304,8 +304,35 @@ class _HomeScreenState extends State<HomeScreen> {
                     const SizedBox(
                       height: 25,
                     ),
+                    Container(
+                      child: ElevatedButton(
+                        onPressed: () {
+                          print("Add Routine");
+                        },
+                        style: ElevatedButton.styleFrom(
+                          elevation: 0,
+                          minimumSize:
+                              Size(MediaQuery.of(context).size.width, 78),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(18),
+                          ),
+                          shadowColor: Colors.transparent,
+                          backgroundColor: ColorTheme.infoBlue.withOpacity(0.1),
+                        ),
+                        child: Center(
+                          child: Icon(
+                            Icons.add_circle_outline_rounded,
+                            size: 50,
+                            color: ColorTheme.infoBlue.withOpacity(0.3),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 25,
+                    ),
                     SizedBox(
-                      height: 500,
+                      height: 400,
                       child: SingleChildScrollView(
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
