@@ -1,8 +1,10 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:workout_app/common/color.dart';
 import 'package:workout_app/screens/login_screen.dart';
 import 'package:workout_app/utilities/api.dart';
 import 'package:workout_app/utilities/manageLoginToken.dart';
+import 'package:workout_app/widgets/home/add_container.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -12,13 +14,19 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  late List workoutList;
+
   @override
   void initState() {
-    GetApi(apiUrl: "/workout");
+    getWorkoutKinds();
     super.initState();
   }
 
-  late List workoutList;
+  Future<dynamic> getWorkoutKinds() async {
+    Response res = await GetApi(apiUrl: "/workout").getData();
+
+    print(res);
+  }
 
   logout() {
     removeLoginToken("login_token");
@@ -36,6 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
+        foregroundColor: Colors.white,
         leadingWidth: MediaQuery.of(context).size.width,
         leading: Padding(
           padding: const EdgeInsets.symmetric(
@@ -98,136 +107,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      // body: Consumer<WorkoutProvider>(
-      //   builder: (context, provider, child) {
-      //     workoutList = provider.getWorkoutList();
-      //     return Center(
-      //       child: Column(
-      //         children: [
-      //           Flexible(
-      //             child: Container(
-      //               decoration: const BoxDecoration(
-      //                 color: Colors.green,
-      //               ),
-      //               child: const User(),
-      //             ),
-      //           ),
-      //           Flexible(
-      //             flex: 5,
-      //             child: Padding(
-      //               padding: const EdgeInsets.fromLTRB(25, 20, 25, 20),
-      //               child: Column(
-      //                 children: [
-      //                   Container(
-      //                     width: MediaQuery.of(context).size.width,
-      //                     height: 78,
-      //                     decoration: BoxDecoration(
-      //                       borderRadius: BorderRadius.circular(18),
-      //                       gradient: const LinearGradient(
-      //                         begin: Alignment.topCenter,
-      //                         end: Alignment.bottomCenter,
-      //                         colors: [
-      //                           Color(0xFF4A53FF),
-      //                           Color(0xFF2029FF),
-      //                         ],
-      //                       ),
-      //                     ),
-      //                     child: Row(
-      //                       children: [
-      //                         const SizedBox(
-      //                           width: 18,
-      //                         ),
-      //                         Container(
-      //                           width: 50,
-      //                           height: 50,
-      //                           decoration: BoxDecoration(
-      //                             color: Colors.white,
-      //                             borderRadius: BorderRadius.circular(100),
-      //                           ),
-      //                           child: const Center(
-      //                             child: Text("%25"),
-      //                           ),
-      //                         ),
-      //                         const SizedBox(
-      //                           width: 12,
-      //                         ),
-      //                         Column(
-      //                           mainAxisAlignment: MainAxisAlignment.center,
-      //                           crossAxisAlignment: CrossAxisAlignment.start,
-      //                           children: [
-      //                             const Text(
-      //                               "Your daily goals almost done! 🔥",
-      //                               style: TextStyle(
-      //                                 fontSize: 15,
-      //                                 fontWeight: FontWeight.w600,
-      //                                 color: Colors.white,
-      //                               ),
-      //                             ),
-      //                             Text(
-      //                               "1 of 4 completed",
-      //                               style: TextStyle(
-      //                                 color: Colors.white.withOpacity(0.8),
-      //                               ),
-      //                             ),
-      //                           ],
-      //                         )
-      //                       ],
-      //                     ),
-      //                   ),
-      //                   const SizedBox(
-      //                     height: 25,
-      //                   ),
-      //                   SizedBox(
-      //                     height: 500,
-      //                     child: SingleChildScrollView(
-      //                       child: Column(
-      //                         mainAxisSize: MainAxisSize.min,
-      //                         children: [
-      //                           Container(
-      //                             width: MediaQuery.of(context).size.width,
-      //                             height: 150,
-      //                             decoration: const BoxDecoration(
-      //                               color: Colors.green,
-      //                             ),
-      //                             child: const Text("data"),
-      //                           ),
-      //                           Container(
-      //                             width: MediaQuery.of(context).size.width,
-      //                             height: 150,
-      //                             decoration: const BoxDecoration(
-      //                               color: Colors.yellow,
-      //                             ),
-      //                             child: const Text("data"),
-      //                           ),
-      //                           Container(
-      //                             width: MediaQuery.of(context).size.width,
-      //                             height: 150,
-      //                             decoration: const BoxDecoration(
-      //                               color: Colors.blue,
-      //                             ),
-      //                             child: const Text("data"),
-      //                           ),
-      //                           Container(
-      //                             width: MediaQuery.of(context).size.width,
-      //                             height: 150,
-      //                             decoration: const BoxDecoration(
-      //                               color: Colors.red,
-      //                             ),
-      //                             child: const Text("data"),
-      //                           ),
-      //                         ],
-      //                       ),
-      //                     ),
-      //                   ),
-      //                 ],
-      //               ),
-      //             ),
-      //           ),
-      //         ],
-      //       ),
-      //     );
-      //   },
-      // ),
       body: Center(
         child: Column(
           children: [
@@ -304,30 +183,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     const SizedBox(
                       height: 25,
                     ),
-                    Container(
-                      child: ElevatedButton(
-                        onPressed: () {
-                          print("Add Routine");
-                        },
-                        style: ElevatedButton.styleFrom(
-                          elevation: 0,
-                          minimumSize:
-                              Size(MediaQuery.of(context).size.width, 78),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18),
-                          ),
-                          shadowColor: Colors.transparent,
-                          backgroundColor: ColorTheme.infoBlue.withOpacity(0.1),
-                        ),
-                        child: Center(
-                          child: Icon(
-                            Icons.add_circle_outline_rounded,
-                            size: 50,
-                            color: ColorTheme.infoBlue.withOpacity(0.3),
-                          ),
-                        ),
-                      ),
-                    ),
+                    const AddContainer(),
                     const SizedBox(
                       height: 25,
                     ),
