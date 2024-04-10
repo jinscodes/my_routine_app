@@ -5,8 +5,13 @@ class AddWorkScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+      ),
+      body: const Center(
+        child: Text("ADD WORK SCREEN"),
+      ),
     );
   }
 }
