@@ -1,8 +1,6 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:workout_app/common/color.dart';
 import 'package:workout_app/screens/login_screen.dart';
-import 'package:workout_app/utilities/api.dart';
 import 'package:workout_app/utilities/manageLoginToken.dart';
 import 'package:workout_app/widgets/home/add_container.dart';
 
@@ -18,14 +16,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
-    getWorkoutKinds();
+    // WorkoutProvider().getWorkoutList();
     super.initState();
-  }
-
-  Future<dynamic> getWorkoutKinds() async {
-    Response res = await GetApi(apiUrl: "/workout").getData();
-
-    print(res);
   }
 
   logout() {
@@ -188,7 +180,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 25,
                     ),
                     SizedBox(
-                      height: 400,
+                      height: MediaQuery.of(context).size.height / 2.4,
                       child: SingleChildScrollView(
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
