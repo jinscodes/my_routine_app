@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:workout_app/common/color.dart';
+import 'package:workout_app/widgets/addExercise/addExercise.dart';
 
 class AddExerciseOutlineScreen extends StatefulWidget {
   const AddExerciseOutlineScreen({super.key});
@@ -10,7 +11,18 @@ class AddExerciseOutlineScreen extends StatefulWidget {
 }
 
 class _AddExerciseOutlineScreenState extends State<AddExerciseOutlineScreen> {
-  _navigateToAddExerciseScreen() {}
+  _navigateToAddExerciseScreen() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const AddExercise(),
+      ),
+    );
+  }
+
+  _navigateToPreviousScreen() {
+    Navigator.of(context).pop();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +40,7 @@ class _AddExerciseOutlineScreenState extends State<AddExerciseOutlineScreen> {
             children: [
               Flexible(
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () => _navigateToPreviousScreen(),
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size(50, 50),
                     padding: EdgeInsets.zero,
@@ -121,7 +133,7 @@ class _AddExerciseOutlineScreenState extends State<AddExerciseOutlineScreen> {
                         width: MediaQuery.of(context).size.width,
                         height: 60,
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () => _navigateToAddExerciseScreen(),
                           style: ElevatedButton.styleFrom(),
                           child: const Text(
                             "+ Add Exercise",

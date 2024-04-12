@@ -5,7 +5,7 @@ import 'package:workout_app/utilities/api.dart';
 class ExerciseProvider with ChangeNotifier {
   final List list = [];
 
-  List getWorkoutList() {
+  List getExerciseList() {
     _fetchWorkouts();
     return list;
   }

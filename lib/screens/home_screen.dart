@@ -12,7 +12,12 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  late List workoutList;
+  late List list;
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   logout() {
     removeLoginToken("login_token");
@@ -25,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  // print("list: ${context.watch<ExerciseProvider>().getWorkoutList()}");
+  // print("list: ${context.watch<ExerciseProvider>().getExercise()}");
 
   @override
   Widget build(BuildContext context) {
