@@ -1,36 +1,21 @@
-// import 'package:dio/dio.dart';
-// import 'package:flutter/material.dart';
-// import 'package:workout_app/utilities/api.dart';
-
-// class WorkoutProvider with ChangeNotifier {
-//   final List _workoutList = List.empty(growable: true);
-
-//   List getWorkoutList() {
-//     _fetchWorkouts();
-//     return _workoutList;
-//   }
-
-//   void _fetchWorkouts() async {
-//     Response res = await GetApi(apiUrl: "/workout").getData();
-//     final result = res.data;
-//     print("Provider: $res");
-//     print("Provider data: ${res.data}");
-
-//     _workoutList.clear();
-//     _workoutList.addAll(result);
-// notifyListeners();
-//   }
-// }
-
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:workout_app/utilities/api.dart';
 
-class Counter extends ChangeNotifier {
-  int _count = 0;
+class ExerciseProvider with ChangeNotifier {
+  final List list = [];
 
-  int get count => _count;
+  List getWorkoutList() {
+    _fetchWorkouts();
+    return list;
+  }
 
-  void increment() {
-    _count++;
+  void _fetchWorkouts() async {
+    Response res = await GetApi(apiUrl: "/workout").getData();
+    final result = res.data;
+
+    list.clear();
+    list.addAll(result);
     notifyListeners();
   }
 }

@@ -16,10 +16,10 @@ class _TestScreenState extends State<TestScreen> {
       body: Center(
         child: ElevatedButton(
           onPressed: () {
-            context.read<Counter>().increment();
+            // print(context.watch<ExerciseProvider>().getWorkoutList());
           },
           child: Text(
-            "현재 숫자: ${context.watch<Counter>().count}",
+            "${context.watch<ExerciseProvider>().getWorkoutList()}",
           ),
         ),
       ),

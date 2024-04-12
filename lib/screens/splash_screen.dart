@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:workout_app/provider/work_provider.dart';
 import 'package:workout_app/screens/home_screen.dart';
 import 'package:workout_app/screens/login_screen.dart';
 import 'package:workout_app/utilities/manageLoginToken.dart';
@@ -30,7 +32,10 @@ class _SplashScreenState extends State<SplashScreen> {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => const HomeScreen(),
+            builder: (context) => ChangeNotifierProvider<ExerciseProvider>(
+              create: (_) => ExerciseProvider(),
+              child: const HomeScreen(),
+            ),
           ),
         );
       },

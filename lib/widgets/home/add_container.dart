@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:workout_app/common/color.dart';
-import 'package:workout_app/widgets/home/add_work_screen.dart';
+import 'package:workout_app/screens/add_exercise_outline_screen.dart';
 
 class AddContainer extends StatefulWidget {
   const AddContainer({super.key});
@@ -14,7 +14,7 @@ class _AddContainerState extends State<AddContainer> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => const AddWorkScreen(),
+        builder: (context) => const AddExerciseOutlineScreen(),
       ),
     );
   }

@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:workout_app/common/color.dart';
 
-class AddWorkScreen extends StatelessWidget {
-  const AddWorkScreen({super.key});
+class AddExerciseOutlineScreen extends StatefulWidget {
+  const AddExerciseOutlineScreen({super.key});
+
+  @override
+  State<AddExerciseOutlineScreen> createState() =>
+      _AddExerciseOutlineScreenState();
+}
+
+class _AddExerciseOutlineScreenState extends State<AddExerciseOutlineScreen> {
+  _navigateToAddExerciseScreen() {}
 
   @override
   Widget build(BuildContext context) {
@@ -99,14 +107,14 @@ class AddWorkScreen extends StatelessWidget {
                       Text(
                         "Today's date",
                         style: TextStyle(
-                          color: Colors.white.withOpacity(0.7),
+                          color: Colors.white.withOpacity(0.9),
                         ),
                       ),
                       Text(
-                        "Once you are exercising regularly, the hardest thing is to stop it.\nYour body can stand almost anything. It's your mind that you have to convince.\n He who is not courageous enough to take risks will accomplish nothing in flie.",
+                        "Once you are exercising regularly, the hardest thing is to stop it. Your body can stand almost anything. It's your mind that you have to convince. He who is not courageous enough to take risks will accomplish nothing in flie.",
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          color: Colors.white.withOpacity(0.8),
+                          color: Colors.white.withOpacity(1),
                         ),
                       ),
                       SizedBox(
@@ -131,51 +139,90 @@ class AddWorkScreen extends StatelessWidget {
               ),
               Flexible(
                 child: Container(
-                  decoration: const BoxDecoration(
-                    color: Colors.red,
-                  ),
                   child: SizedBox(
                     height: MediaQuery.of(context).size.height / 2.5,
                     width: 500,
                     child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          Container(
-                            width: 100,
-                            height: 100,
-                            decoration: const BoxDecoration(
-                              color: Colors.green,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 25,
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Tasks",
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.white.withOpacity(0.8),
+                              ),
                             ),
-                          ),
-                          Container(
-                            width: 100,
-                            height: 100,
-                            decoration: const BoxDecoration(
-                              color: Colors.green,
+                            const SizedBox(
+                              height: 15,
                             ),
-                          ),
-                          Container(
-                            width: 100,
-                            height: 100,
-                            decoration: const BoxDecoration(
-                              color: Colors.green,
+                            Container(
+                              width: MediaQuery.of(context).size.width,
+                              height: 75,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: const Center(child: Text("Exercise1")),
                             ),
-                          ),
-                          Container(
-                            width: 100,
-                            height: 100,
-                            decoration: const BoxDecoration(
-                              color: Colors.green,
+                            const SizedBox(
+                              height: 15,
                             ),
-                          ),
-                          Container(
-                            width: 100,
-                            height: 100,
-                            decoration: const BoxDecoration(
-                              color: Colors.green,
+                            Container(
+                              width: MediaQuery.of(context).size.width,
+                              height: 75,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: const Center(child: Text("Exercise2")),
                             ),
-                          ),
-                        ],
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            Container(
+                              width: MediaQuery.of(context).size.width,
+                              height: 75,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: const Center(child: Text("Exercise3")),
+                            ),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            Container(
+                              width: MediaQuery.of(context).size.width,
+                              height: 75,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: const Center(child: Text("Exercise4")),
+                            ),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            Container(
+                              width: MediaQuery.of(context).size.width,
+                              height: 75,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: const Center(child: Text("Exercise5")),
+                            ),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
