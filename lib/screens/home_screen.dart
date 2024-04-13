@@ -30,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   //   WidgetsBinding.instance.addPostFrameCallback(
   //     (timeStamp) {
-  //       Provider.of<ExerciseProvider>(context, listen: false).getExerciseList();
+  //       Provider.of<RoutineProvider>(context, listen: false).getRoutineList();
   //     },
   //   );
   // }

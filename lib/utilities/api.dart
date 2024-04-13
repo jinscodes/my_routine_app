@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:workout_app/utilities/manageLoginToken.dart';
 
 class GetApi {
   String apiUrl;
@@ -46,6 +47,7 @@ class PostApi {
 
   Future postData() async {
     await dotenv.load(fileName: ".env");
+    String token = await getLoginToken();
 
     String? baseUrl = dotenv.env["BASE_URL"];
 
@@ -59,8 +61,15 @@ class PostApi {
 
     Response res = await dio.post(
       url,
+      options: Options(
+        headers: {
+          "authorization": "Bearer $token",
+        },
+      ),
       data: body,
     );
+
+    print(res);
 
     return res.data;
   }

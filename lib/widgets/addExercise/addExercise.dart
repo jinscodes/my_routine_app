@@ -20,7 +20,7 @@ class _AddExerciseState extends State<AddExercise> {
 
   postExerciseValidation() async {
     try {
-      Future<dynamic> res = PostApi(
+      PostApi(
         apiUrl: "/workout",
         body: {
           "name": nameController.text,
@@ -28,8 +28,6 @@ class _AddExerciseState extends State<AddExercise> {
           "description": descriptionController.text,
         },
       ).postData();
-
-      print(res);
     } catch (e) {
       // ignore: avoid_print
       print("ERR: $e");

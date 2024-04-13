@@ -2,18 +2,18 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:workout_app/utilities/api.dart';
 
-class ExerciseProvider with ChangeNotifier {
+class RoutineProvider with ChangeNotifier {
   final List list = [];
 
-  List getExerciseList() {
-    _fetchWorkouts();
+  List getRoutineList() {
+    _fetchRoutines();
 
     return list;
   }
 
-  void _fetchWorkouts() async {
+  void _fetchRoutines() async {
     Response res = await GetApi(
-      apiUrl: "/workout",
+      apiUrl: "apiUrl",
     ).getData();
 
     final result = res.data;
