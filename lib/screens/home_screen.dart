@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:workout_app/common/color.dart';
+import 'package:workout_app/provider/work_provider.dart';
 import 'package:workout_app/screens/login_screen.dart';
 import 'package:workout_app/utilities/manageLoginToken.dart';
 import 'package:workout_app/widgets/home/add_container.dart';
@@ -12,14 +14,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  late List list;
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  logout() {
+  Future<dynamic> logout() {
     removeLoginToken("login_token");
 
     return Navigator.pushReplacement(
@@ -30,7 +25,16 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  // print("list: ${context.watch<ExerciseProvider>().getExercise()}");
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback(
+      (timeStamp) {
+        Provider.of<ExerciseProvider>(context, listen: false).getExerciseList();
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {

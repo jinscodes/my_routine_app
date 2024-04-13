@@ -7,12 +7,15 @@ class ExerciseProvider with ChangeNotifier {
 
   List getExerciseList() {
     _fetchWorkouts();
+
     return list;
   }
 
   void _fetchWorkouts() async {
     Response res = await GetApi(apiUrl: "/workout").getData();
     final result = res.data;
+
+    print(result);
 
     list.clear();
     list.addAll(result);

@@ -10,6 +10,8 @@ class AddContainer extends StatefulWidget {
 }
 
 class _AddContainerState extends State<AddContainer> {
+  late List list;
+
   void _navigateToAddWorkScreen() {
     Navigator.push(
       context,
@@ -25,7 +27,9 @@ class _AddContainerState extends State<AddContainer> {
       children: [
         Flexible(
           child: ElevatedButton(
-            onPressed: () => _navigateToAddWorkScreen(),
+            onPressed: () {
+              _navigateToAddWorkScreen();
+            },
             style: ElevatedButton.styleFrom(
               elevation: 0,
               minimumSize: Size(MediaQuery.of(context).size.width, 78),
