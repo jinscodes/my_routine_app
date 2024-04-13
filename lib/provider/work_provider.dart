@@ -15,8 +15,6 @@ class ExerciseProvider with ChangeNotifier {
     Response res = await GetApi(apiUrl: "/workout").getData();
     final result = res.data;
 
-    print(result);
-
     list.clear();
     list.addAll(result);
     notifyListeners();

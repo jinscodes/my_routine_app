@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:workout_app/common/color.dart';
-import 'package:workout_app/provider/work_provider.dart';
 import 'package:workout_app/screens/login_screen.dart';
 import 'package:workout_app/utilities/manageLoginToken.dart';
 import 'package:workout_app/widgets/home/add_container.dart';
@@ -25,16 +23,17 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  @override
-  void initState() {
-    super.initState();
+  // will be Routine
+  // @override
+  // void initState() {
+  //   super.initState();
 
-    WidgetsBinding.instance.addPostFrameCallback(
-      (timeStamp) {
-        Provider.of<ExerciseProvider>(context, listen: false).getExerciseList();
-      },
-    );
-  }
+  //   WidgetsBinding.instance.addPostFrameCallback(
+  //     (timeStamp) {
+  //       Provider.of<ExerciseProvider>(context, listen: false).getExerciseList();
+  //     },
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {

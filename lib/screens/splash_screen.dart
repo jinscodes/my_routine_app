@@ -32,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => ChangeNotifierProvider<ExerciseProvider>(
+            builder: (context) => ChangeNotifierProvider(
               create: (_) => ExerciseProvider(),
               child: const HomeScreen(),
             ),

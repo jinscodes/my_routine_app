@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:workout_app/common/color.dart';
 import 'package:workout_app/common/login_text_field.dart';
 import 'package:workout_app/common/next_button.dart';
+import 'package:workout_app/provider/work_provider.dart';
 import 'package:workout_app/screens/home_screen.dart';
 import 'package:workout_app/screens/login_screen.dart';
 import 'package:workout_app/screens/signup_screen.dart';
@@ -36,7 +38,10 @@ class _LoginWithIdState extends State<LoginWithId> {
       return Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => const HomeScreen(),
+          builder: (context) => ChangeNotifierProvider(
+            create: (_) => ExerciseProvider(),
+            child: const HomeScreen(),
+          ),
         ),
       );
     } catch (e) {

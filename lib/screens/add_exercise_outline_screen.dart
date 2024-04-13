@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:workout_app/common/color.dart';
+import 'package:workout_app/provider/work_provider.dart';
 import 'package:workout_app/widgets/addExercise/addExercise.dart';
 
 class AddExerciseOutlineScreen extends StatefulWidget {
@@ -11,6 +13,17 @@ class AddExerciseOutlineScreen extends StatefulWidget {
 }
 
 class _AddExerciseOutlineScreenState extends State<AddExerciseOutlineScreen> {
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback(
+      (timeStamp) {
+        Provider.of<ExerciseProvider>(context, listen: false).getExerciseList();
+      },
+    );
+  }
+
   _navigateToAddExerciseScreen() {
     Navigator.push(
       context,
@@ -90,67 +103,67 @@ class _AddExerciseOutlineScreenState extends State<AddExerciseOutlineScreen> {
           ),
         ),
       ),
-      body: Center(
-        child: Center(
-          child: Column(
-            children: [
-              Flexible(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 25,
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      const Text(
-                        "🏃🏻‍♂️",
-                        style: TextStyle(
-                          fontSize: 50,
+      body: Consumer<ExerciseProvider>(
+        builder: (context, value, child) {
+          return Center(
+            child: Column(
+              children: [
+                Flexible(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 25,
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        const Text(
+                          "🏃🏻‍♂️",
+                          style: TextStyle(
+                            fontSize: 50,
+                          ),
                         ),
-                      ),
-                      const Text(
-                        "Best Runners!",
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.white,
+                        const Text(
+                          "Best Runners!",
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.white,
+                          ),
                         ),
-                      ),
-                      Text(
-                        "Today's date",
-                        style: TextStyle(
-                          color: Colors.white.withOpacity(0.9),
+                        Text(
+                          "Today's date",
+                          style: TextStyle(
+                            color: Colors.white.withOpacity(0.9),
+                          ),
                         ),
-                      ),
-                      Text(
-                        "Once you are exercising regularly, the hardest thing is to stop it. Your body can stand almost anything. It's your mind that you have to convince. He who is not courageous enough to take risks will accomplish nothing in flie.",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.white.withOpacity(1),
+                        Text(
+                          "Once you are exercising regularly, the hardest thing is to stop it. Your body can stand almost anything. It's your mind that you have to convince. He who is not courageous enough to take risks will accomplish nothing in flie.",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.white.withOpacity(1),
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width,
-                        height: 60,
-                        child: ElevatedButton(
-                          onPressed: () => _navigateToAddExerciseScreen(),
-                          style: ElevatedButton.styleFrom(),
-                          child: const Text(
-                            "+ Add Exercise",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600,
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width,
+                          height: 60,
+                          child: ElevatedButton(
+                            onPressed: () => _navigateToAddExerciseScreen(),
+                            style: ElevatedButton.styleFrom(),
+                            child: const Text(
+                              "+ Add Exercise",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 15,
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              Flexible(
-                child: Container(
+                Flexible(
                   child: SizedBox(
                     height: MediaQuery.of(context).size.height / 2.5,
                     width: 500,
@@ -173,65 +186,30 @@ class _AddExerciseOutlineScreenState extends State<AddExerciseOutlineScreen> {
                             const SizedBox(
                               height: 15,
                             ),
-                            Container(
-                              width: MediaQuery.of(context).size.width,
-                              height: 75,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: const Center(child: Text("Exercise1")),
-                            ),
-                            const SizedBox(
-                              height: 15,
-                            ),
-                            Container(
-                              width: MediaQuery.of(context).size.width,
-                              height: 75,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: const Center(child: Text("Exercise2")),
-                            ),
-                            const SizedBox(
-                              height: 15,
-                            ),
-                            Container(
-                              width: MediaQuery.of(context).size.width,
-                              height: 75,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: const Center(child: Text("Exercise3")),
-                            ),
-                            const SizedBox(
-                              height: 15,
-                            ),
-                            Container(
-                              width: MediaQuery.of(context).size.width,
-                              height: 75,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: const Center(child: Text("Exercise4")),
-                            ),
-                            const SizedBox(
-                              height: 15,
-                            ),
-                            Container(
-                              width: MediaQuery.of(context).size.width,
-                              height: 75,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: const Center(child: Text("Exercise5")),
-                            ),
-                            const SizedBox(
-                              height: 15,
+                            ListView.builder(
+                              shrinkWrap: true,
+                              primary: false,
+                              itemCount: value.list.length,
+                              itemBuilder: (context, index) {
+                                return Column(
+                                  children: [
+                                    Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      height: 75,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
+                                      child: const Center(
+                                        child: Text("Exercise1"),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: 15,
+                                    )
+                                  ],
+                                );
+                              },
                             ),
                           ],
                         ),
@@ -239,10 +217,165 @@ class _AddExerciseOutlineScreenState extends State<AddExerciseOutlineScreen> {
                     ),
                   ),
                 ),
-              ),
-            ],
-          ),
-        ),
+              ],
+            ),
+          );
+        },
+        // child: Center(
+        //   child: Column(
+        //     children: [
+        //       Flexible(
+        //         child: Padding(
+        //           padding: const EdgeInsets.symmetric(
+        //             horizontal: 25,
+        //           ),
+        //           child: Column(
+        //             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        //             children: [
+        //               const Text(
+        //                 "🏃🏻‍♂️",
+        //                 style: TextStyle(
+        //                   fontSize: 50,
+        //                 ),
+        //               ),
+        //               const Text(
+        //                 "Best Runners!",
+        //                 style: TextStyle(
+        //                   fontSize: 24,
+        //                   fontWeight: FontWeight.w700,
+        //                   color: Colors.white,
+        //                 ),
+        //               ),
+        //               Text(
+        //                 "Today's date",
+        //                 style: TextStyle(
+        //                   color: Colors.white.withOpacity(0.9),
+        //                 ),
+        //               ),
+        //               Text(
+        //                 "Once you are exercising regularly, the hardest thing is to stop it. Your body can stand almost anything. It's your mind that you have to convince. He who is not courageous enough to take risks will accomplish nothing in flie.",
+        //                 textAlign: TextAlign.center,
+        //                 style: TextStyle(
+        //                   color: Colors.white.withOpacity(1),
+        //                 ),
+        //               ),
+        //               SizedBox(
+        //                 width: MediaQuery.of(context).size.width,
+        //                 height: 60,
+        //                 child: ElevatedButton(
+        //                   onPressed: () => _navigateToAddExerciseScreen(),
+        //                   style: ElevatedButton.styleFrom(),
+        //                   child: const Text(
+        //                     "+ Add Exercise",
+        //                     style: TextStyle(
+        //                       color: Colors.black,
+        //                       fontSize: 15,
+        //                       fontWeight: FontWeight.w600,
+        //                     ),
+        //                   ),
+        //                 ),
+        //               ),
+        //             ],
+        //           ),
+        //         ),
+        //       ),
+        //       Flexible(
+        //         child: SizedBox(
+        //           height: MediaQuery.of(context).size.height / 2.5,
+        //           width: 500,
+        //           child: SingleChildScrollView(
+        //             child: Padding(
+        //               padding: const EdgeInsets.symmetric(
+        //                 horizontal: 25,
+        //               ),
+        //               child: Column(
+        //                 crossAxisAlignment: CrossAxisAlignment.start,
+        //                 children: [
+        //                   Text(
+        //                     "Tasks",
+        //                     style: TextStyle(
+        //                       fontSize: 18,
+        //                       fontWeight: FontWeight.w700,
+        //                       color: Colors.white.withOpacity(0.8),
+        //                     ),
+        //                   ),
+        //                   const SizedBox(
+        //                     height: 15,
+        //                   ),
+        //                   // ListView.builder(
+        //                   //   shrinkWrap: true,
+        //                   //   primary: false,
+        //                   //   itemBuilder: ,
+        //                   // ),
+        //                   Container(
+        //                     width: MediaQuery.of(context).size.width,
+        //                     height: 75,
+        //                     decoration: BoxDecoration(
+        //                       color: Colors.white,
+        //                       borderRadius: BorderRadius.circular(20),
+        //                     ),
+        //                     child: const Center(child: Text("Exercise1")),
+        //                   ),
+        //                   const SizedBox(
+        //                     height: 15,
+        //                   ),
+        //                   Container(
+        //                     width: MediaQuery.of(context).size.width,
+        //                     height: 75,
+        //                     decoration: BoxDecoration(
+        //                       color: Colors.white,
+        //                       borderRadius: BorderRadius.circular(20),
+        //                     ),
+        //                     child: const Center(child: Text("Exercise2")),
+        //                   ),
+        //                   const SizedBox(
+        //                     height: 15,
+        //                   ),
+        //                   Container(
+        //                     width: MediaQuery.of(context).size.width,
+        //                     height: 75,
+        //                     decoration: BoxDecoration(
+        //                       color: Colors.white,
+        //                       borderRadius: BorderRadius.circular(20),
+        //                     ),
+        //                     child: const Center(child: Text("Exercise3")),
+        //                   ),
+        //                   const SizedBox(
+        //                     height: 15,
+        //                   ),
+        //                   Container(
+        //                     width: MediaQuery.of(context).size.width,
+        //                     height: 75,
+        //                     decoration: BoxDecoration(
+        //                       color: Colors.white,
+        //                       borderRadius: BorderRadius.circular(20),
+        //                     ),
+        //                     child: const Center(child: Text("Exercise4")),
+        //                   ),
+        //                   const SizedBox(
+        //                     height: 15,
+        //                   ),
+        //                   Container(
+        //                     width: MediaQuery.of(context).size.width,
+        //                     height: 75,
+        //                     decoration: BoxDecoration(
+        //                       color: Colors.white,
+        //                       borderRadius: BorderRadius.circular(20),
+        //                     ),
+        //                     child: const Center(child: Text("Exercise5")),
+        //                   ),
+        //                   const SizedBox(
+        //                     height: 15,
+        //                   ),
+        //                 ],
+        //               ),
+        //             ),
+        //           ),
+        //         ),
+        //       ),
+        //     ],
+        //   ),
+        // ),
       ),
     );
   }
