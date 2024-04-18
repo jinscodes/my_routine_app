@@ -89,11 +89,6 @@ class _AddExerciseState extends State<AddExercise> {
                         const SizedBox(
                           height: 20,
                         ),
-                        // LoginTextField(
-                        //   isError: isError,
-                        //   controller: typeController,
-                        //   title: "TYPE",
-                        // ),
                         const Text(
                           "TYPE",
                           style: TextStyle(
@@ -114,20 +109,24 @@ class _AddExerciseState extends State<AddExercise> {
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(12),
                                 border: Border.all(
-                                  color: ColorTheme.gray,
+                                  color: _type == "COUNT"
+                                      ? ColorTheme.mainBlue
+                                      : ColorTheme.gray,
                                 ),
                               ),
-                              child: ListTile(
+                              child: RadioListTile(
                                 title: const Text("COUNT"),
-                                leading: Radio<TypeCharacter>(
-                                  value: TypeCharacter.COUNT,
-                                  groupValue: _type,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      _type = value;
-                                    });
-                                  },
+                                value: TypeCharacter.COUNT,
+                                groupValue: _type,
+                                fillColor: MaterialStateColor.resolveWith(
+                                  (states) =>
+                                      ColorTheme.mainBlue.withOpacity(0.7),
                                 ),
+                                onChanged: (value) {
+                                  setState(() {
+                                    _type = value;
+                                  });
+                                },
                               ),
                             ),
                             Container(
@@ -139,17 +138,19 @@ class _AddExerciseState extends State<AddExercise> {
                                   color: ColorTheme.gray,
                                 ),
                               ),
-                              child: ListTile(
+                              child: RadioListTile(
                                 title: const Text("TIME"),
-                                leading: Radio<TypeCharacter>(
-                                  value: TypeCharacter.TIME,
-                                  groupValue: _type,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      _type = value;
-                                    });
-                                  },
+                                value: TypeCharacter.TIME,
+                                groupValue: _type,
+                                fillColor: MaterialStateColor.resolveWith(
+                                  (states) =>
+                                      ColorTheme.mainBlue.withOpacity(0.7),
                                 ),
+                                onChanged: (value) {
+                                  setState(() {
+                                    _type = value;
+                                  });
+                                },
                               ),
                             ),
                           ],
