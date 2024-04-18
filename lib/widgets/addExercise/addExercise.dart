@@ -4,6 +4,11 @@ import 'package:workout_app/common/login_text_field.dart';
 import 'package:workout_app/common/next_button.dart';
 import 'package:workout_app/utilities/api.dart';
 
+enum TypeCharacter {
+  COUNT,
+  TIME,
+}
+
 class AddExercise extends StatefulWidget {
   const AddExercise({super.key});
 
@@ -15,6 +20,7 @@ class _AddExerciseState extends State<AddExercise> {
   TextEditingController nameController = TextEditingController();
   TextEditingController typeController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
+  TypeCharacter? _type = TypeCharacter.COUNT;
   bool isText = false;
   bool isError = false;
 
@@ -34,6 +40,10 @@ class _AddExerciseState extends State<AddExercise> {
     }
   }
 
+  void _navigateToOutlineScreen() {
+    Navigator.of(context).pop();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +51,7 @@ class _AddExerciseState extends State<AddExercise> {
         elevation: 2.0,
         backgroundColor: Colors.white,
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () => _navigateToOutlineScreen(),
           icon: const Icon(Icons.arrow_back_ios_new_rounded),
         ),
         title: const Text(
@@ -79,10 +89,70 @@ class _AddExerciseState extends State<AddExercise> {
                         const SizedBox(
                           height: 20,
                         ),
-                        LoginTextField(
-                          isError: isError,
-                          controller: typeController,
-                          title: "TYPE",
+                        // LoginTextField(
+                        //   isError: isError,
+                        //   controller: typeController,
+                        //   title: "TYPE",
+                        // ),
+                        const Text(
+                          "TYPE",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              width: MediaQuery.of(context).size.width / 2.5,
+                              height: 60,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(12),
+                                border: Border.all(
+                                  color: ColorTheme.gray,
+                                ),
+                              ),
+                              child: ListTile(
+                                title: const Text("COUNT"),
+                                leading: Radio<TypeCharacter>(
+                                  value: TypeCharacter.COUNT,
+                                  groupValue: _type,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      _type = value;
+                                    });
+                                  },
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: MediaQuery.of(context).size.width / 2.5,
+                              height: 60,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(12),
+                                border: Border.all(
+                                  color: ColorTheme.gray,
+                                ),
+                              ),
+                              child: ListTile(
+                                title: const Text("TIME"),
+                                leading: Radio<TypeCharacter>(
+                                  value: TypeCharacter.TIME,
+                                  groupValue: _type,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      _type = value;
+                                    });
+                                  },
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                         const SizedBox(
                           height: 20,
