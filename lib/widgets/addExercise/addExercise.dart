@@ -5,8 +5,8 @@ import 'package:workout_app/common/next_button.dart';
 import 'package:workout_app/utilities/api.dart';
 
 enum TypeCharacter {
-  COUNT,
-  TIME,
+  count,
+  time,
 }
 
 class AddExercise extends StatefulWidget {
@@ -20,17 +20,25 @@ class _AddExerciseState extends State<AddExercise> {
   TextEditingController nameController = TextEditingController();
   TextEditingController typeController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
-  TypeCharacter? _type = TypeCharacter.COUNT;
+  TypeCharacter? _type = TypeCharacter.count;
   bool isText = false;
   bool isError = false;
 
   postExerciseValidation() async {
+    String type;
+    switch (_type!) {
+      case TypeCharacter.count:
+        type = "COUNT";
+      case TypeCharacter.time:
+        type = "TIME";
+    }
+
     try {
       PostApi(
         apiUrl: "/workout",
         body: {
           "name": nameController.text,
-          "type": typeController.text,
+          "type": type,
           "description": descriptionController.text,
         },
       ).postData();
@@ -116,7 +124,7 @@ class _AddExerciseState extends State<AddExercise> {
                               ),
                               child: RadioListTile(
                                 title: const Text("COUNT"),
-                                value: TypeCharacter.COUNT,
+                                value: TypeCharacter.count,
                                 groupValue: _type,
                                 fillColor: MaterialStateColor.resolveWith(
                                   (states) =>
@@ -140,7 +148,7 @@ class _AddExerciseState extends State<AddExercise> {
                               ),
                               child: RadioListTile(
                                 title: const Text("TIME"),
-                                value: TypeCharacter.TIME,
+                                value: TypeCharacter.time,
                                 groupValue: _type,
                                 fillColor: MaterialStateColor.resolveWith(
                                   (states) =>
@@ -190,11 +198,7 @@ class _AddExerciseState extends State<AddExercise> {
                         ),
                         NextButton(
                           content: "Next",
-                          handlePressed: () {
-                            print(
-                                "${nameController.text} ${typeController.text} ${descriptionController.text}");
-                            postExerciseValidation();
-                          },
+                          handlePressed: () => postExerciseValidation(),
                         ),
                       ],
                     ),
