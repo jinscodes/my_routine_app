@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:workout_app/common/color.dart';
 import 'package:workout_app/common/login_text_field.dart';
 import 'package:workout_app/common/next_button.dart';
+import 'package:workout_app/screens/login_screen.dart';
 import 'package:workout_app/utilities/api.dart';
 import 'package:workout_app/widgets/login/login_with_id.dart';
 import 'package:workout_app/widgets/signup/complete_signup.dart';
@@ -49,7 +50,10 @@ class _SignupScreenState extends State<SignupScreen> {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) => const CompleteSignup(),
+        builder: (context) => CompleteSignup(
+          navigator: _navigateToLogin,
+          buttonTitle: "Login",
+        ),
       ),
     );
   }
@@ -59,6 +63,15 @@ class _SignupScreenState extends State<SignupScreen> {
       context,
       MaterialPageRoute(
         builder: (context) => const LoginWithId(),
+      ),
+    );
+  }
+
+  void _navigateToLogin() {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const LoginScreen(),
       ),
     );
   }

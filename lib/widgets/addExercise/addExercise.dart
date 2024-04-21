@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:workout_app/common/color.dart';
 import 'package:workout_app/common/login_text_field.dart';
 import 'package:workout_app/common/next_button.dart';
+import 'package:workout_app/screens/home_screen.dart';
 import 'package:workout_app/utilities/api.dart';
+import 'package:workout_app/widgets/signup/complete_signup.dart';
 
 enum TypeCharacter {
   count,
@@ -34,7 +36,7 @@ class _AddExerciseState extends State<AddExercise> {
     }
 
     try {
-      PostApi(
+      String res = await PostApi(
         apiUrl: "/workout",
         body: {
           "name": nameController.text,
@@ -42,6 +44,18 @@ class _AddExerciseState extends State<AddExercise> {
           "description": descriptionController.text,
         },
       ).postData();
+
+      if (res.isNotEmpty) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => CompleteSignup(
+              navigator: _navigateToHome,
+              buttonTitle: 'Home',
+            ),
+          ),
+        );
+      }
     } catch (e) {
       // ignore: avoid_print
       print("ERR: $e");
@@ -50,6 +64,15 @@ class _AddExerciseState extends State<AddExercise> {
 
   void _navigateToOutlineScreen() {
     Navigator.of(context).pop();
+  }
+
+  void _navigateToHome() {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (_) => const HomeScreen(),
+      ),
+    );
   }
 
   @override

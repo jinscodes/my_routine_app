@@ -7,7 +7,14 @@ import 'package:workout_app/common/next_button.dart';
 import 'package:workout_app/screens/login_screen.dart';
 
 class CompleteSignup extends StatefulWidget {
-  const CompleteSignup({super.key});
+  final Function navigator;
+  final String buttonTitle;
+
+  const CompleteSignup({
+    super.key,
+    required this.navigator,
+    required this.buttonTitle,
+  });
 
   @override
   State<CompleteSignup> createState() => _CompleteSignupState();
@@ -98,8 +105,9 @@ class _CompleteSignupState extends State<CompleteSignup> {
                         child: Container(
                           alignment: Alignment.bottomCenter,
                           child: NextButton(
-                            content: "Login",
-                            handlePressed: () => _navigateToLogin(),
+                            content: widget.buttonTitle,
+                            // handlePressed: () => _navigateToLogin(),
+                            handlePressed: () => widget.navigator(),
                           ),
                         ),
                       ),
