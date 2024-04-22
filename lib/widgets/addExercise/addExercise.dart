@@ -209,20 +209,6 @@ class _AddExerciseState extends State<AddExercise> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        TextButton(
-                          onPressed: () {},
-                          child: const Text(
-                            "Don't have account? Let's create!",
-                            style: TextStyle(
-                              color: ColorTheme.mainBlue,
-                              fontWeight: FontWeight.w700,
-                              fontSize: 15,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 15,
-                        ),
                         NextButton(
                           content: "Next",
                           handlePressed: () => postExerciseValidation(),

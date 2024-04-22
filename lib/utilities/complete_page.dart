@@ -32,15 +32,6 @@ class _CompletePageState extends State<CompletePage> {
     super.initState();
   }
 
-  // void _navigateToLogin() {
-  //   Navigator.pushReplacement(
-  //     context,
-  //     MaterialPageRoute(
-  //       builder: (context) => const LoginScreen(),
-  //     ),
-  //   );
-  // }
-
   @override
   void dispose() {
     super.dispose();

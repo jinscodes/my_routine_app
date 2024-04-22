@@ -105,6 +105,7 @@ class _AddExerciseOutlineScreenState extends State<AddExerciseOutlineScreen> {
       ),
       body: Consumer<ExerciseProvider>(
         builder: (context, value, child) {
+          List list = value.list;
           return Center(
             child: Column(
               children: [
@@ -191,6 +192,9 @@ class _AddExerciseOutlineScreenState extends State<AddExerciseOutlineScreen> {
                               primary: false,
                               itemCount: value.list.length,
                               itemBuilder: (context, index) {
+                                print(list[index]);
+                                String title = list[index]["name"];
+
                                 return Column(
                                   children: [
                                     Container(
@@ -200,8 +204,10 @@ class _AddExerciseOutlineScreenState extends State<AddExerciseOutlineScreen> {
                                         color: Colors.white,
                                         borderRadius: BorderRadius.circular(20),
                                       ),
-                                      child: const Center(
-                                        child: Text("Exercise1"),
+                                      child: Center(
+                                        child: Text(
+                                          title,
+                                        ),
                                       ),
                                     ),
                                     const SizedBox(
