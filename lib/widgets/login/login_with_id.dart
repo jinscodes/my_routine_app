@@ -8,6 +8,7 @@ import 'package:workout_app/screens/home_screen.dart';
 import 'package:workout_app/screens/signup_screen.dart';
 import 'package:workout_app/utilities/api.dart';
 import 'package:workout_app/utilities/manageLoginToken.dart';
+import 'package:workout_app/utilities/snackbar.dart';
 
 class LoginWithId extends StatefulWidget {
   const LoginWithId({super.key});
@@ -47,7 +48,8 @@ class _LoginWithIdState extends State<LoginWithId> {
       // ignore: avoid_print
       print("Err: $e");
 
-      return showSnackBar(context, "Login failed 🥲");
+      return Snackbar(context: context, content: "Login failed 🥲")
+          .showSnackBar();
     }
   }
 
@@ -165,23 +167,4 @@ class _LoginWithIdState extends State<LoginWithId> {
       ),
     );
   }
-}
-
-void showSnackBar(BuildContext context, String content) {
-  ScaffoldMessenger.of(context).showSnackBar(
-    SnackBar(
-      backgroundColor: ColorTheme.errorRed,
-      content: Text(
-        content,
-        textAlign: TextAlign.center,
-        style: const TextStyle(
-          fontSize: 18,
-          fontWeight: FontWeight.w600,
-        ),
-      ),
-      duration: const Duration(
-        seconds: 2,
-      ),
-    ),
-  );
 }

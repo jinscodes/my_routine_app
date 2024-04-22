@@ -5,6 +5,7 @@ import 'package:workout_app/common/next_button.dart';
 import 'package:workout_app/screens/login_screen.dart';
 import 'package:workout_app/utilities/api.dart';
 import 'package:workout_app/utilities/complete_page.dart';
+import 'package:workout_app/utilities/snackbar.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -41,9 +42,10 @@ class _SignupScreenState extends State<SignupScreen> {
       }
     } catch (e) {
       // ignore: avoid_print
-      print("Err: $e");
+      print("Err_signup: $e");
 
-      return showSnackBar(context, "Login failed 🥲");
+      return Snackbar(context: context, content: "Signup failed 🥲")
+          .showSnackBar();
     }
   }
 
@@ -165,23 +167,4 @@ class _SignupScreenState extends State<SignupScreen> {
       ),
     );
   }
-}
-
-void showSnackBar(BuildContext context, String content) {
-  ScaffoldMessenger.of(context).showSnackBar(
-    SnackBar(
-      backgroundColor: ColorTheme.errorRed,
-      content: Text(
-        content,
-        textAlign: TextAlign.center,
-        style: const TextStyle(
-          fontSize: 18,
-          fontWeight: FontWeight.w600,
-        ),
-      ),
-      duration: const Duration(
-        seconds: 2,
-      ),
-    ),
-  );
 }

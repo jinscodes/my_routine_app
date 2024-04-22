@@ -5,6 +5,7 @@ import 'package:workout_app/common/next_button.dart';
 import 'package:workout_app/screens/home_screen.dart';
 import 'package:workout_app/utilities/api.dart';
 import 'package:workout_app/utilities/complete_page.dart';
+import 'package:workout_app/utilities/snackbar.dart';
 
 enum TypeCharacter {
   count,
@@ -59,6 +60,9 @@ class _AddExerciseState extends State<AddExercise> {
     } catch (e) {
       // ignore: avoid_print
       print("ERR: $e");
+
+      return Snackbar(context: context, content: "Adding exercise failed 🥲")
+          .showSnackBar();
     }
   }
 
