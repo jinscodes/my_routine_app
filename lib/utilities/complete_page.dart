@@ -4,23 +4,22 @@ import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:workout_app/common/color.dart';
 import 'package:workout_app/common/next_button.dart';
-import 'package:workout_app/screens/login_screen.dart';
 
-class CompleteSignup extends StatefulWidget {
+class CompletePage extends StatefulWidget {
   final Function navigator;
   final String buttonTitle;
 
-  const CompleteSignup({
+  const CompletePage({
     super.key,
     required this.navigator,
     required this.buttonTitle,
   });
 
   @override
-  State<CompleteSignup> createState() => _CompleteSignupState();
+  State<CompletePage> createState() => _CompletePageState();
 }
 
-class _CompleteSignupState extends State<CompleteSignup> {
+class _CompletePageState extends State<CompletePage> {
   bool _isLoad = true;
 
   @override
@@ -33,13 +32,18 @@ class _CompleteSignupState extends State<CompleteSignup> {
     super.initState();
   }
 
-  void _navigateToLogin() {
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const LoginScreen(),
-      ),
-    );
+  // void _navigateToLogin() {
+  //   Navigator.pushReplacement(
+  //     context,
+  //     MaterialPageRoute(
+  //       builder: (context) => const LoginScreen(),
+  //     ),
+  //   );
+  // }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   @override

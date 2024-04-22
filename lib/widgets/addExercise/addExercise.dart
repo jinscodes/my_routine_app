@@ -4,7 +4,7 @@ import 'package:workout_app/common/login_text_field.dart';
 import 'package:workout_app/common/next_button.dart';
 import 'package:workout_app/screens/home_screen.dart';
 import 'package:workout_app/utilities/api.dart';
-import 'package:workout_app/widgets/signup/complete_signup.dart';
+import 'package:workout_app/utilities/complete_page.dart';
 
 enum TypeCharacter {
   count,
@@ -49,7 +49,7 @@ class _AddExerciseState extends State<AddExercise> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (_) => CompleteSignup(
+            builder: (_) => CompletePage(
               navigator: _navigateToHome,
               buttonTitle: 'Home',
             ),

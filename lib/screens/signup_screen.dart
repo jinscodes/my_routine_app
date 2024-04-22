@@ -4,8 +4,7 @@ import 'package:workout_app/common/login_text_field.dart';
 import 'package:workout_app/common/next_button.dart';
 import 'package:workout_app/screens/login_screen.dart';
 import 'package:workout_app/utilities/api.dart';
-import 'package:workout_app/widgets/login/login_with_id.dart';
-import 'package:workout_app/widgets/signup/complete_signup.dart';
+import 'package:workout_app/utilities/complete_page.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -43,14 +42,16 @@ class _SignupScreenState extends State<SignupScreen> {
     } catch (e) {
       // ignore: avoid_print
       print("Err: $e");
+
+      return showSnackBar(context, "Login failed 🥲");
     }
   }
 
   void _navigateToCompleteSignup() {
-    Navigator.pushReplacement(
+    Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => CompleteSignup(
+        builder: (context) => CompletePage(
           navigator: _navigateToLogin,
           buttonTitle: "Login",
         ),
@@ -59,12 +60,7 @@ class _SignupScreenState extends State<SignupScreen> {
   }
 
   void _navigateToLoginWithId() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const LoginWithId(),
-      ),
-    );
+    Navigator.of(context).pop();
   }
 
   void _navigateToLogin() {
@@ -76,12 +72,12 @@ class _SignupScreenState extends State<SignupScreen> {
     );
   }
 
-  @override
-  void dispose() {
-    idController.dispose();
-    pwController.dispose();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   idController.dispose();
+  //   pwController.dispose();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -169,4 +165,23 @@ class _SignupScreenState extends State<SignupScreen> {
       ),
     );
   }
+}
+
+void showSnackBar(BuildContext context, String content) {
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      backgroundColor: ColorTheme.errorRed,
+      content: Text(
+        content,
+        textAlign: TextAlign.center,
+        style: const TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+      duration: const Duration(
+        seconds: 2,
+      ),
+    ),
+  );
 }
