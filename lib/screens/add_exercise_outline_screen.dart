@@ -93,7 +93,7 @@ class _AddExerciseOutlineScreenState extends State<AddExerciseOutlineScreen> {
                     ),
                   ),
                   child: const Icon(
-                    Icons.add,
+                    Icons.edit,
                     color: Colors.black,
                     size: 20,
                   ),
