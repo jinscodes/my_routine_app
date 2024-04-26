@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:workout_app/common/appbar_icon_button.dart';
 import 'package:workout_app/common/color.dart';
 import 'package:workout_app/screens/login_screen.dart';
 import 'package:workout_app/utilities/manageLoginToken.dart';
@@ -50,53 +51,15 @@ class _HomeScreenState extends State<HomeScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Flexible(
-                child: ElevatedButton(
-                  onPressed: () {
-                    print("Calendar");
-                  },
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(50, 50),
-                    padding: EdgeInsets.zero,
-                    backgroundColor: Colors.transparent,
-                    shadowColor: Colors.transparent,
-                    elevation: 0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                      side: BorderSide(
-                        color: ColorTheme.gray.withOpacity(0.4),
-                        width: 2,
-                      ),
-                    ),
-                  ),
-                  child: const Icon(
-                    Icons.calendar_month_outlined,
-                    color: Colors.black,
-                  ),
+                child: AppbarIconButton(
+                  handleClick: () => print("Calendar"),
+                  icon: Icons.calendar_month_outlined,
                 ),
               ),
               Flexible(
-                child: ElevatedButton(
-                  onPressed: () {
-                    logout();
-                  },
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(50, 50),
-                    padding: EdgeInsets.zero,
-                    backgroundColor: Colors.transparent,
-                    elevation: 0,
-                    shadowColor: Colors.transparent,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16.0),
-                      side: BorderSide(
-                        color: ColorTheme.gray.withOpacity(0.4),
-                        width: 2,
-                      ),
-                    ),
-                  ),
-                  child: const Icon(
-                    Icons.logout_outlined,
-                    color: Colors.black,
-                  ),
+                child: AppbarIconButton(
+                  handleClick: () => logout(),
+                  icon: Icons.logout_outlined,
                 ),
               ),
             ],

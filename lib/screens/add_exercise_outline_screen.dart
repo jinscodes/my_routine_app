@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:workout_app/common/appbar_icon_button.dart';
 import 'package:workout_app/common/color.dart';
 import 'package:workout_app/provider/work_provider.dart';
 import 'package:workout_app/widgets/addExercise/addExercise.dart';
@@ -14,6 +15,8 @@ class AddExerciseOutlineScreen extends StatefulWidget {
 }
 
 class _AddExerciseOutlineScreenState extends State<AddExerciseOutlineScreen> {
+  bool isEdit = false;
+
   @override
   void initState() {
     super.initState();
@@ -23,6 +26,12 @@ class _AddExerciseOutlineScreenState extends State<AddExerciseOutlineScreen> {
         Provider.of<ExerciseProvider>(context, listen: false).getExerciseList();
       },
     );
+  }
+
+  void isEditState() {
+    setState(() {
+      isEdit = !isEdit;
+    });
   }
 
   _navigateToAddExerciseScreen() {
@@ -53,51 +62,15 @@ class _AddExerciseOutlineScreenState extends State<AddExerciseOutlineScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Flexible(
-                child: ElevatedButton(
-                  onPressed: () => _navigateToPreviousScreen(),
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(50, 50),
-                    padding: EdgeInsets.zero,
-                    backgroundColor: Colors.white,
-                    shadowColor: Colors.transparent,
-                    elevation: 0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                      side: BorderSide(
-                        color: ColorTheme.gray.withOpacity(0.4),
-                        width: 2,
-                      ),
-                    ),
-                  ),
-                  child: const Icon(
-                    Icons.arrow_back_ios_new_rounded,
-                    color: Colors.black,
-                    size: 20,
-                  ),
+                child: AppbarIconButton(
+                  handleClick: () => _navigateToPreviousScreen(),
+                  icon: Icons.arrow_back_ios_new_rounded,
                 ),
               ),
               Flexible(
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(50, 50),
-                    padding: EdgeInsets.zero,
-                    backgroundColor: Colors.white,
-                    shadowColor: Colors.transparent,
-                    elevation: 0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                      side: BorderSide(
-                        color: ColorTheme.gray.withOpacity(0.4),
-                        width: 2,
-                      ),
-                    ),
-                  ),
-                  child: const Icon(
-                    Icons.edit,
-                    color: Colors.black,
-                    size: 20,
-                  ),
+                child: AppbarIconButton(
+                  handleClick: () => isEditState(),
+                  icon: isEdit ? Icons.cancel_outlined : Icons.edit,
                 ),
               ),
             ],
@@ -201,6 +174,7 @@ class _AddExerciseOutlineScreenState extends State<AddExerciseOutlineScreen> {
                                     Exercise(
                                       title: title,
                                       description: description,
+                                      isEdit: isEdit,
                                     ),
                                     const SizedBox(
                                       height: 15,
