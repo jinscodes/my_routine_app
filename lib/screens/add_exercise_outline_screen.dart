@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:workout_app/common/color.dart';
 import 'package:workout_app/provider/work_provider.dart';
 import 'package:workout_app/widgets/addExercise/addExercise.dart';
+import 'package:workout_app/widgets/addExercise/exercise.dart';
 
 class AddExerciseOutlineScreen extends StatefulWidget {
   const AddExerciseOutlineScreen({super.key});
@@ -194,21 +195,13 @@ class _AddExerciseOutlineScreenState extends State<AddExerciseOutlineScreen> {
                               itemBuilder: (context, index) {
                                 print(list[index]);
                                 String title = list[index]["name"];
+                                String description = list[index]["description"];
 
                                 return Column(
                                   children: [
-                                    Container(
-                                      width: MediaQuery.of(context).size.width,
-                                      height: 75,
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.circular(20),
-                                      ),
-                                      child: Center(
-                                        child: Text(
-                                          title,
-                                        ),
-                                      ),
+                                    Exercise(
+                                      title: title,
+                                      description: description,
                                     ),
                                     const SizedBox(
                                       height: 15,
