@@ -49,27 +49,35 @@ class Exercise extends StatelessWidget {
           const SizedBox(
             width: 16,
           ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                title,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w700,
+          description.isNotEmpty
+              ? Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    Text(
+                      description,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                        color: ColorTheme.darkgray,
+                      ),
+                    ),
+                  ],
+                )
+              : Text(
+                  title,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
-              ),
-              Text(
-                description,
-                style: const TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                  color: ColorTheme.darkgray,
-                ),
-              ),
-            ],
-          )
         ],
       ),
     );

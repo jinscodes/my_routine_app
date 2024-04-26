@@ -193,7 +193,6 @@ class _AddExerciseOutlineScreenState extends State<AddExerciseOutlineScreen> {
                               primary: false,
                               itemCount: value.list.length,
                               itemBuilder: (context, index) {
-                                print(list[index]);
                                 String title = list[index]["name"];
                                 String description = list[index]["description"];
 
