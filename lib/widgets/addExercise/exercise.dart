@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:workout_app/common/appbar_icon_button.dart';
 import 'package:workout_app/common/color.dart';
 
 class Exercise extends StatelessWidget {
@@ -85,14 +86,19 @@ class Exercise extends StatelessWidget {
               ],
             ),
             isEdit
-                ? const Row(
+                ? Row(
                     children: [
-                      Icon(
-                        Icons.delete,
+                      AppbarIconButton(
+                        handleClick: () {},
+                        icon: Icons.delete,
                       ),
-                      Icon(
-                        Icons.edit,
-                      )
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      AppbarIconButton(
+                        handleClick: () {},
+                        icon: Icons.edit,
+                      ),
                     ],
                   )
                 : const Text(""),
