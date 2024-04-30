@@ -74,10 +74,28 @@ class PostApi {
 
 class DeleteApi {
   String apiUrl;
-  String param;
 
   DeleteApi({
     required this.apiUrl,
-    required this.param,
   });
+
+  Future deleteData() async {
+    await dotenv.load(fileName: ".env");
+
+    String? baseUrl = dotenv.env["BASE_URL"];
+
+    if (baseUrl == null) {
+      throw Exception("BASE_URL is not set in .env file");
+    }
+
+    String url = "$baseUrl$apiUrl";
+
+    Dio dio = Dio();
+
+    Response res = await dio.delete(url);
+
+    print(res);
+
+    return res.data;
+  }
 }

@@ -168,6 +168,7 @@ class _AddExerciseOutlineScreenState extends State<AddExerciseOutlineScreen> {
                               itemBuilder: (context, index) {
                                 String title = list[index]["name"];
                                 String description = list[index]["description"];
+                                int id = list[index]["id"];
 
                                 return Column(
                                   children: [
@@ -175,6 +176,7 @@ class _AddExerciseOutlineScreenState extends State<AddExerciseOutlineScreen> {
                                       title: title,
                                       description: description,
                                       isEdit: isEdit,
+                                      id: id,
                                     ),
                                     const SizedBox(
                                       height: 15,

@@ -1,18 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:workout_app/common/appbar_icon_button.dart';
 import 'package:workout_app/common/color.dart';
+import 'package:workout_app/utilities/api.dart';
 
 class Exercise extends StatelessWidget {
   final String title;
   final String description;
   final bool isEdit;
+  final int id;
 
   const Exercise({
     super.key,
     required this.title,
     required this.description,
     required this.isEdit,
+    required this.id,
   });
+
+  void deleteExercise() {
+    DeleteApi(
+      apiUrl: "/workout/$id",
+    ).deleteData();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -91,6 +100,7 @@ class Exercise extends StatelessWidget {
                       AppbarIconButton(
                         handleClick: () {
                           print("Delete");
+                          deleteExercise();
                         },
                         icon: Icons.delete,
                       ),
