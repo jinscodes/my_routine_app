@@ -71,3 +71,13 @@ class PostApi {
     return res.data;
   }
 }
+
+class DeleteApi {
+  String apiUrl;
+  String param;
+
+  DeleteApi({
+    required this.apiUrl,
+    required this.param,
+  });
+}

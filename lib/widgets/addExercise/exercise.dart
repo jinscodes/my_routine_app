@@ -89,14 +89,18 @@ class Exercise extends StatelessWidget {
                 ? Row(
                     children: [
                       AppbarIconButton(
-                        handleClick: () {},
+                        handleClick: () {
+                          print("Delete");
+                        },
                         icon: Icons.delete,
                       ),
                       const SizedBox(
                         width: 10,
                       ),
                       AppbarIconButton(
-                        handleClick: () {},
+                        handleClick: () {
+                          print("Edit");
+                        },
                         icon: Icons.edit,
                       ),
                     ],
