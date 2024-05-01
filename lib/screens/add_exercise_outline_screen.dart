@@ -80,6 +80,7 @@ class _AddExerciseOutlineScreenState extends State<AddExerciseOutlineScreen> {
       body: Consumer<ExerciseProvider>(
         builder: (context, value, child) {
           List list = value.list;
+          print(value.list);
           return Center(
             child: Column(
               children: [
