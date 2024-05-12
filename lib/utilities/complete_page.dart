@@ -8,11 +8,13 @@ import 'package:workout_app/common/next_button.dart';
 class CompletePage extends StatefulWidget {
   final Function navigator;
   final String buttonTitle;
+  final bool? isTwoButton;
 
   const CompletePage({
     super.key,
     required this.navigator,
     required this.buttonTitle,
+    this.isTwoButton,
   });
 
   @override

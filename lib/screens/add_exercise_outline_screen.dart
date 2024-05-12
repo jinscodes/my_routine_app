@@ -47,6 +47,12 @@ class _AddExerciseOutlineScreenState extends State<AddExerciseOutlineScreen> {
     Navigator.of(context).pop();
   }
 
+  void deleteExercise(int id) {
+    // DeleteApi(
+    //   apiUrl: "/workout/$id",
+    // ).deleteData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,8 +85,6 @@ class _AddExerciseOutlineScreenState extends State<AddExerciseOutlineScreen> {
       ),
       body: Consumer<ExerciseProvider>(
         builder: (context, value, child) {
-          List list = value.list;
-          print(value.list);
           return Center(
             child: Column(
               children: [
@@ -162,27 +166,70 @@ class _AddExerciseOutlineScreenState extends State<AddExerciseOutlineScreen> {
                             const SizedBox(
                               height: 15,
                             ),
-                            ListView.builder(
+                            ListView.separated(
                               shrinkWrap: true,
                               primary: false,
                               itemCount: value.list.length,
+                              separatorBuilder: (context, index) =>
+                                  const SizedBox(
+                                height: 15,
+                              ),
                               itemBuilder: (context, index) {
+                                List list = value.list;
+
                                 String title = list[index]["name"];
                                 String description = list[index]["description"];
                                 int id = list[index]["id"];
 
-                                return Column(
-                                  children: [
-                                    Exercise(
-                                      title: title,
-                                      description: description,
-                                      isEdit: isEdit,
-                                      id: id,
+                                return Dismissible(
+                                  key: ValueKey(id),
+                                  onDismissed: (DismissDirection direction) {
+                                    deleteExercise(id);
+                                  },
+                                  confirmDismiss:
+                                      (DismissDirection direction) async {
+                                    return showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return AlertDialog(
+                                          title: const Text(
+                                            "Delete",
+                                          ),
+                                          content: const Text(
+                                            "Are you sure you want to delete this exercise?",
+                                          ),
+                                          actions: <Widget>[
+                                            ElevatedButton(
+                                              onPressed: () =>
+                                                  Navigator.of(context)
+                                                      .pop(true),
+                                              child: const Text("Yes"),
+                                            ),
+                                            ElevatedButton(
+                                              onPressed: () =>
+                                                  Navigator.of(context)
+                                                      .pop(false),
+                                              child: const Text("No"),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
+                                  },
+                                  background: Container(
+                                    height: 60,
+                                    color: Colors.red,
+                                    child: const Icon(
+                                      Icons.delete,
+                                      color: Colors.white,
                                     ),
-                                    const SizedBox(
-                                      height: 15,
-                                    )
-                                  ],
+                                  ),
+                                  child: Exercise(
+                                    title: title,
+                                    description: description,
+                                    isEdit: isEdit,
+                                    id: id,
+                                  ),
                                 );
                               },
                             ),

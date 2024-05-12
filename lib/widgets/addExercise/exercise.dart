@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:workout_app/common/appbar_icon_button.dart';
 import 'package:workout_app/common/color.dart';
-import 'package:workout_app/utilities/api.dart';
 
-class Exercise extends StatelessWidget {
+class Exercise extends StatefulWidget {
   final String title;
   final String description;
   final bool isEdit;
   final int id;
-
   const Exercise({
     super.key,
     required this.title,
@@ -17,12 +15,12 @@ class Exercise extends StatelessWidget {
     required this.id,
   });
 
-  void deleteExercise() {
-    DeleteApi(
-      apiUrl: "/workout/$id",
-    ).deleteData();
-  }
+  @override
+  State<Exercise> createState() => _ExerciseState();
+}
 
+class _ExerciseState extends State<Exercise> {
+  // void setExerciseId() {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -63,20 +61,20 @@ class Exercise extends StatelessWidget {
                 const SizedBox(
                   width: 16,
                 ),
-                description.isNotEmpty
+                widget.description.isNotEmpty
                     ? Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            title,
+                            widget.title,
                             style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w700,
                             ),
                           ),
                           Text(
-                            description,
+                            widget.description,
                             style: const TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w500,
@@ -86,7 +84,7 @@ class Exercise extends StatelessWidget {
                         ],
                       )
                     : Text(
-                        title,
+                        widget.title,
                         style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w700,
@@ -94,26 +92,12 @@ class Exercise extends StatelessWidget {
                       ),
               ],
             ),
-            isEdit
-                ? Row(
-                    children: [
-                      AppbarIconButton(
-                        handleClick: () {
-                          print("Delete");
-                          deleteExercise();
-                        },
-                        icon: Icons.delete,
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      AppbarIconButton(
-                        handleClick: () {
-                          print("Edit");
-                        },
-                        icon: Icons.edit,
-                      ),
-                    ],
+            widget.isEdit
+                ? AppbarIconButton(
+                    handleClick: () {
+                      print("Edit");
+                    },
+                    icon: Icons.edit,
                   )
                 : const Text(""),
           ],
