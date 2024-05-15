@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:workout_app/common/appbar_icon_button.dart';
 import 'package:workout_app/common/color.dart';
 import 'package:workout_app/provider/work_provider.dart';
+import 'package:workout_app/utilities/api.dart';
 import 'package:workout_app/widgets/addExercise/addExercise.dart';
-import 'package:workout_app/widgets/addExercise/exercise.dart';
 
 class AddExerciseOutlineScreen extends StatefulWidget {
   const AddExerciseOutlineScreen({super.key});
@@ -48,9 +48,9 @@ class _AddExerciseOutlineScreenState extends State<AddExerciseOutlineScreen> {
   }
 
   void deleteExercise(int id) {
-    // DeleteApi(
-    //   apiUrl: "/workout/$id",
-    // ).deleteData();
+    DeleteApi(
+      apiUrl: "/workout/$id",
+    ).deleteData();
   }
 
   @override
@@ -84,7 +84,7 @@ class _AddExerciseOutlineScreenState extends State<AddExerciseOutlineScreen> {
         ),
       ),
       body: Consumer<ExerciseProvider>(
-        builder: (context, value, child) {
+        builder: (context, provider, child) {
           return Center(
             child: Column(
               children: [
@@ -117,7 +117,7 @@ class _AddExerciseOutlineScreenState extends State<AddExerciseOutlineScreen> {
                           ),
                         ),
                         Text(
-                          "Once you are exercising regularly, the hardest thing is to stop it. Your body can stand almost anything. It's your mind that you have to convince. He who is not courageous enough to take risks will accomplish nothing in flie.",
+                          "Once you are exercising regularly, the hardest thing is to stop it. Your body can stand almost anything. He who is not courageous enough to take risks will accomplish nothing in flie.",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Colors.white.withOpacity(1),
@@ -169,68 +169,78 @@ class _AddExerciseOutlineScreenState extends State<AddExerciseOutlineScreen> {
                             ListView.separated(
                               shrinkWrap: true,
                               primary: false,
-                              itemCount: value.list.length,
+                              itemCount: provider.list.length,
                               separatorBuilder: (context, index) =>
                                   const SizedBox(
                                 height: 15,
                               ),
                               itemBuilder: (context, index) {
-                                List list = value.list;
+                                String title = provider.list[index]["name"];
+                                String description =
+                                    provider.list[index]["description"];
+                                int id = provider.list[index]["id"];
 
-                                String title = list[index]["name"];
-                                String description = list[index]["description"];
-                                int id = list[index]["id"];
-
-                                return Dismissible(
-                                  key: ValueKey(id),
-                                  onDismissed: (DismissDirection direction) {
-                                    deleteExercise(id);
-                                  },
-                                  confirmDismiss:
-                                      (DismissDirection direction) async {
-                                    return showDialog(
-                                      context: context,
-                                      builder: (BuildContext context) {
-                                        return AlertDialog(
-                                          title: const Text(
-                                            "Delete",
-                                          ),
-                                          content: const Text(
-                                            "Are you sure you want to delete this exercise?",
-                                          ),
-                                          actions: <Widget>[
-                                            ElevatedButton(
-                                              onPressed: () =>
-                                                  Navigator.of(context)
-                                                      .pop(true),
-                                              child: const Text("Yes"),
-                                            ),
-                                            ElevatedButton(
-                                              onPressed: () =>
-                                                  Navigator.of(context)
-                                                      .pop(false),
-                                              child: const Text("No"),
-                                            ),
-                                          ],
-                                        );
-                                      },
-                                    );
-                                  },
-                                  background: Container(
-                                    height: 60,
-                                    color: Colors.red,
-                                    child: const Icon(
-                                      Icons.delete,
-                                      color: Colors.white,
-                                    ),
+                                return ListTile(
+                                  title: Text(
+                                    title,
                                   ),
-                                  child: Exercise(
-                                    title: title,
-                                    description: description,
-                                    isEdit: isEdit,
-                                    id: id,
+                                  trailing: IconButton(
+                                    icon: const Icon(Icons.delete),
+                                    onPressed: () {
+                                      provider.deleteItem(index, id);
+                                    },
                                   ),
                                 );
+                                // return Dismissible(
+                                //   key: ValueKey(id),
+                                //   onDismissed: (DismissDirection direction) {
+                                //     deleteExercise(id);
+                                //   },
+                                //   confirmDismiss:
+                                //       (DismissDirection direction) async {
+                                //     return showDialog(
+                                //       context: context,
+                                //       builder: (BuildContext context) {
+                                //         return AlertDialog(
+                                //           title: const Text(
+                                //             "Delete",
+                                //           ),
+                                //           content: const Text(
+                                //             "Are you sure you want to delete this exercise?",
+                                //           ),
+                                //           actions: <Widget>[
+                                //             ElevatedButton(
+                                //               onPressed: () =>
+                                //                   Navigator.of(context)
+                                //                       .pop(true),
+                                //               child: const Text("Yes"),
+                                //             ),
+                                //             ElevatedButton(
+                                //               onPressed: () =>
+                                //                   Navigator.of(context)
+                                //                       .pop(false),
+                                //               child: const Text("No"),
+                                //             ),
+                                //           ],
+                                //         );
+                                //       },
+                                //     );
+                                //   },
+                                //   background: Container(
+                                //     height: 60,
+                                //     color: Colors.red,
+                                //     child: const Icon(
+                                //       Icons.delete,
+                                //       color: Colors.white,
+                                //     ),
+                                //   ),
+                                //   child: Exercise(
+                                //     title: title,
+                                //     description: description,
+                                //     isEdit: isEdit,
+                                //     id: id,
+                                //   ),
+                                // );
                               },
                             ),
                           ],

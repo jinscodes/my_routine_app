@@ -2,25 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:workout_app/common/appbar_icon_button.dart';
 import 'package:workout_app/common/color.dart';
 
-class Exercise extends StatefulWidget {
+class Exercise extends StatelessWidget {
   final String title;
   final String description;
   final bool isEdit;
   final int id;
+  final Function deleteItem;
+
   const Exercise({
     super.key,
     required this.title,
     required this.description,
     required this.isEdit,
     required this.id,
+    required this.deleteItem,
   });
 
-  @override
-  State<Exercise> createState() => _ExerciseState();
-}
-
-class _ExerciseState extends State<Exercise> {
-  // void setExerciseId() {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -61,20 +58,20 @@ class _ExerciseState extends State<Exercise> {
                 const SizedBox(
                   width: 16,
                 ),
-                widget.description.isNotEmpty
+                description.isNotEmpty
                     ? Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            widget.title,
+                            title,
                             style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w700,
                             ),
                           ),
                           Text(
-                            widget.description,
+                            description,
                             style: const TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w500,
@@ -84,7 +81,7 @@ class _ExerciseState extends State<Exercise> {
                         ],
                       )
                     : Text(
-                        widget.title,
+                        title,
                         style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w700,
@@ -92,10 +89,11 @@ class _ExerciseState extends State<Exercise> {
                       ),
               ],
             ),
-            widget.isEdit
+            isEdit
                 ? AppbarIconButton(
                     handleClick: () {
                       print("Edit");
+                      deleteItem();
                     },
                     icon: Icons.edit,
                   )

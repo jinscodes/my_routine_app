@@ -22,4 +22,12 @@ class ExerciseProvider with ChangeNotifier {
     list.addAll(result);
     notifyListeners();
   }
+
+  void deleteItem(int index, int id) {
+    list.removeAt(index);
+    DeleteApi(
+      apiUrl: "/workout/$id",
+    ).deleteData();
+    notifyListeners();
+  }
 }
