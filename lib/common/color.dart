@@ -14,5 +14,6 @@ class ColorTheme {
   static const Color loginBg = Color(0xFFF5F8FF);
   static const Color gray = Color(0xFFC6C6CA);
   static const Color darkgray = Color(0xFFA3A3A3);
+  static const Color softBlack = Color(0xFF666666);
   static const Color loginBgGray = Color.fromARGB(255, 230, 232, 237);
 }

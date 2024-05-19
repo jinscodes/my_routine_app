@@ -4,6 +4,7 @@ import 'package:workout_app/common/appbar_icon_button.dart';
 import 'package:workout_app/common/color.dart';
 import 'package:workout_app/provider/work_provider.dart';
 import 'package:workout_app/utilities/api.dart';
+import 'package:workout_app/utilities/stringToExerciseType.dart';
 import 'package:workout_app/widgets/addExercise/addExercise.dart';
 import 'package:workout_app/widgets/addExercise/exercise.dart';
 
@@ -176,30 +177,20 @@ class _AddExerciseOutlineScreenState extends State<AddExerciseOutlineScreen> {
                                 height: 15,
                               ),
                               itemBuilder: (context, index) {
+                                ExerciseType? exerciseType =
+                                    stringToExerciseType(provider.list[index]
+                                            ["type"]
+                                        .toString()
+                                        .toLowerCase());
+                                String type = provider.list[index]["type"];
                                 String title = provider.list[index]["name"];
                                 String description =
                                     provider.list[index]["description"];
                                 int id = provider.list[index]["id"];
 
-                                // return Container(
-                                //   height: 75,
-                                //   decoration: BoxDecoration(
-                                //     color: Colors.white,
-                                //     borderRadius: BorderRadius.circular(20),
-                                //   ),
-                                //   child: ListTile(
-                                //     title: Text(
-                                //       title,
-                                //     ),
-                                //     trailing: IconButton(
-                                //       icon: const Icon(Icons.delete),
-                                //       onPressed: () {
-                                //         provider.deleteItem(index, id);
-                                //       },
-                                //     ),
-                                //   ),
-                                // );
                                 return Exercise(
+                                  exerciseType: exerciseType,
+                                  type: type,
                                   title: title,
                                   description: description,
                                   isEdit: isEdit,
