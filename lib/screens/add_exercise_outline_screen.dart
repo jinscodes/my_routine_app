@@ -5,6 +5,7 @@ import 'package:workout_app/common/color.dart';
 import 'package:workout_app/provider/work_provider.dart';
 import 'package:workout_app/utilities/api.dart';
 import 'package:workout_app/widgets/addExercise/addExercise.dart';
+import 'package:workout_app/widgets/addExercise/exercise.dart';
 
 class AddExerciseOutlineScreen extends StatefulWidget {
   const AddExerciseOutlineScreen({super.key});
@@ -180,67 +181,30 @@ class _AddExerciseOutlineScreenState extends State<AddExerciseOutlineScreen> {
                                     provider.list[index]["description"];
                                 int id = provider.list[index]["id"];
 
-                                return ListTile(
-                                  title: Text(
-                                    title,
-                                  ),
-                                  trailing: IconButton(
-                                    icon: const Icon(Icons.delete),
-                                    onPressed: () {
-                                      provider.deleteItem(index, id);
-                                    },
-                                  ),
-                                );
-                                // return Dismissible(
-                                //   key: ValueKey(id),
-                                //   onDismissed: (DismissDirection direction) {
-                                //     deleteExercise(id);
-                                //   },
-                                //   confirmDismiss:
-                                //       (DismissDirection direction) async {
-                                //     return showDialog(
-                                //       context: context,
-                                //       builder: (BuildContext context) {
-                                //         return AlertDialog(
-                                //           title: const Text(
-                                //             "Delete",
-                                //           ),
-                                //           content: const Text(
-                                //             "Are you sure you want to delete this exercise?",
-                                //           ),
-                                //           actions: <Widget>[
-                                //             ElevatedButton(
-                                //               onPressed: () =>
-                                //                   Navigator.of(context)
-                                //                       .pop(true),
-                                //               child: const Text("Yes"),
-                                //             ),
-                                //             ElevatedButton(
-                                //               onPressed: () =>
-                                //                   Navigator.of(context)
-                                //                       .pop(false),
-                                //               child: const Text("No"),
-                                //             ),
-                                //           ],
-                                //         );
+                                // return Container(
+                                //   height: 75,
+                                //   decoration: BoxDecoration(
+                                //     color: Colors.white,
+                                //     borderRadius: BorderRadius.circular(20),
+                                //   ),
+                                //   child: ListTile(
+                                //     title: Text(
+                                //       title,
+                                //     ),
+                                //     trailing: IconButton(
+                                //       icon: const Icon(Icons.delete),
+                                //       onPressed: () {
+                                //         provider.deleteItem(index, id);
                                 //       },
-                                //     );
-                                //   },
-                                //   background: Container(
-                                //     height: 60,
-                                //     color: Colors.red,
-                                //     child: const Icon(
-                                //       Icons.delete,
-                                //       color: Colors.white,
                                 //     ),
                                 //   ),
-                                //   child: Exercise(
-                                //     title: title,
-                                //     description: description,
-                                //     isEdit: isEdit,
-                                //     id: id,
-                                //   ),
                                 // );
+                                return Exercise(
+                                  title: title,
+                                  description: description,
+                                  isEdit: isEdit,
+                                  id: id,
+                                );
                               },
                             ),
                           ],
