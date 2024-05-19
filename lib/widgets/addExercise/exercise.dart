@@ -9,6 +9,7 @@ class Exercise extends StatelessWidget {
   final String description;
   final bool isEdit;
   final int id;
+  final Function deleteItem;
 
   const Exercise({
     super.key,
@@ -18,6 +19,7 @@ class Exercise extends StatelessWidget {
     required this.description,
     required this.isEdit,
     required this.id,
+    required this.deleteItem,
   });
 
   @override
@@ -33,6 +35,18 @@ class Exercise extends StatelessWidget {
           horizontal: 16.0,
         ),
         minVerticalPadding: 0.0,
+        trailing: isEdit
+            ? const Icon(
+                Icons.edit,
+              )
+            : IconButton(
+                onPressed: () {
+                  deleteItem();
+                },
+                icon: const Icon(
+                  Icons.delete,
+                ),
+              ),
         title: Row(
           children: [
             Container(

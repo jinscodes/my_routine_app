@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:workout_app/common/appbar_icon_button.dart';
 import 'package:workout_app/common/color.dart';
 import 'package:workout_app/provider/work_provider.dart';
-import 'package:workout_app/utilities/api.dart';
 import 'package:workout_app/utilities/stringToExerciseType.dart';
 import 'package:workout_app/widgets/addExercise/addExercise.dart';
 import 'package:workout_app/widgets/addExercise/exercise.dart';
@@ -47,12 +46,6 @@ class _AddExerciseOutlineScreenState extends State<AddExerciseOutlineScreen> {
 
   _navigateToPreviousScreen() {
     Navigator.of(context).pop();
-  }
-
-  void deleteExercise(int id) {
-    DeleteApi(
-      apiUrl: "/workout/$id",
-    ).deleteData();
   }
 
   @override
@@ -187,6 +180,9 @@ class _AddExerciseOutlineScreenState extends State<AddExerciseOutlineScreen> {
                                 String description =
                                     provider.list[index]["description"];
                                 int id = provider.list[index]["id"];
+                                void deleteItemCallback(index, id) {
+                                  provider.deleteItem(index, id);
+                                }
 
                                 return Exercise(
                                   exerciseType: exerciseType,
@@ -195,6 +191,8 @@ class _AddExerciseOutlineScreenState extends State<AddExerciseOutlineScreen> {
                                   description: description,
                                   isEdit: isEdit,
                                   id: id,
+                                  deleteItem: () =>
+                                      deleteItemCallback(index, id),
                                 );
                               },
                             ),
