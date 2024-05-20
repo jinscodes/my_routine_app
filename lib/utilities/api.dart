@@ -94,8 +94,6 @@ class DeleteApi {
 
     Response res = await dio.delete(url);
 
-    print(res);
-
     return res.data;
   }
 }

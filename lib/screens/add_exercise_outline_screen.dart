@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:workout_app/common/appbar_icon_button.dart';
 import 'package:workout_app/common/color.dart';
 import 'package:workout_app/provider/work_provider.dart';
+import 'package:workout_app/utilities/snackbar.dart';
 import 'package:workout_app/utilities/stringToExerciseType.dart';
 import 'package:workout_app/widgets/addExercise/addExercise.dart';
 import 'package:workout_app/widgets/addExercise/exercise.dart';
@@ -17,6 +18,7 @@ class AddExerciseOutlineScreen extends StatefulWidget {
 
 class _AddExerciseOutlineScreenState extends State<AddExerciseOutlineScreen> {
   bool isEdit = false;
+  int length = 0;
 
   @override
   void initState() {
@@ -30,9 +32,16 @@ class _AddExerciseOutlineScreenState extends State<AddExerciseOutlineScreen> {
   }
 
   void isEditState() {
-    setState(() {
-      isEdit = !isEdit;
-    });
+    if (length == 0) {
+      Snackbar(
+        context: context,
+        content: "There is no exercise. Add Exercise.",
+      ).showSnackBar();
+    } else {
+      setState(() {
+        isEdit = !isEdit;
+      });
+    }
   }
 
   _navigateToAddExerciseScreen() {
@@ -80,6 +89,7 @@ class _AddExerciseOutlineScreenState extends State<AddExerciseOutlineScreen> {
       ),
       body: Consumer<ExerciseProvider>(
         builder: (context, provider, child) {
+          length = provider.list.length;
           return Center(
             child: Column(
               children: [
@@ -164,7 +174,7 @@ class _AddExerciseOutlineScreenState extends State<AddExerciseOutlineScreen> {
                             ListView.separated(
                               shrinkWrap: true,
                               primary: false,
-                              itemCount: provider.list.length,
+                              itemCount: length,
                               separatorBuilder: (context, index) =>
                                   const SizedBox(
                                 height: 15,
