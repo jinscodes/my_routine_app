@@ -24,7 +24,6 @@ class ExerciseProvider with ChangeNotifier {
   }
 
   void deleteItem(int index, int id) {
-    print("delete button is clicked");
     list.removeAt(index);
     DeleteApi(
       apiUrl: "/workout/$id",
