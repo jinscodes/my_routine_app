@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:workout_app/common/color.dart';
 
+enum SnackbarType { error, warning }
+
 class Snackbar {
+  SnackbarType? type;
   BuildContext context;
   String content;
 
   Snackbar({
+    this.type,
     required this.context,
     required this.content,
   });
@@ -13,7 +17,8 @@ class Snackbar {
   void showSnackBar() {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        backgroundColor: ColorTheme.errorRed,
+        backgroundColor:
+            type == SnackbarType.error ? ColorTheme.pink : ColorTheme.darkBlue,
         content: Text(
           content,
           textAlign: TextAlign.center,

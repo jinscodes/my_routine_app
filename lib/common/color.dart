@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ColorTheme {
+  static const Color darkBlue = Color(0xFF24243A);
   static const Color mainBlue = Color(0xFF313BFF);
   static const Color infoBlue = Color(0xFF1299EA);
   static const Color errorRed = Color(0xFFDF4745);

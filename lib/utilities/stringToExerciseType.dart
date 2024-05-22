@@ -1,7 +1,4 @@
-enum ExerciseType {
-  count,
-  time,
-}
+enum ExerciseType { count, time }
 
 ExerciseType? stringToExerciseType(String str) {
   try {

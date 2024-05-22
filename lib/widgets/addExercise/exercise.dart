@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:workout_app/common/color.dart';
+import 'package:workout_app/screens/edit_exercise_screen.dart';
+import 'package:workout_app/utilities/navigate.dart';
 import 'package:workout_app/utilities/stringToExerciseType.dart';
 
-class Exercise extends StatelessWidget {
+class Exercise extends StatefulWidget {
   final ExerciseType? exerciseType;
   final String type;
   final String title;
@@ -23,7 +25,21 @@ class Exercise extends StatelessWidget {
   });
 
   @override
+  State<Exercise> createState() => _ExerciseState();
+}
+
+class _ExerciseState extends State<Exercise> {
+  @override
   Widget build(BuildContext context) {
+    void NavigateToEditScreen() {
+      Navigate(
+        context: context,
+        materialPageRoute: MaterialPageRoute(
+          builder: (context) => const EditExerciseScreen(),
+        ),
+      ).navigatePushScreen();
+    }
+
     return Container(
       height: 75,
       decoration: BoxDecoration(
@@ -35,17 +51,18 @@ class Exercise extends StatelessWidget {
           horizontal: 16.0,
         ),
         minVerticalPadding: 0.0,
-        trailing: isEdit
+        trailing: widget.isEdit
             ? IconButton(
                 onPressed: () {
                   print("edit");
+                  NavigateToEditScreen();
                 },
                 icon: const Icon(
                   Icons.edit,
                 ),
               )
             : IconButton(
-                onPressed: () => deleteItem(),
+                onPressed: () => widget.deleteItem(),
                 icon: const Icon(
                   Icons.delete,
                 ),
@@ -63,7 +80,7 @@ class Exercise extends StatelessWidget {
               ),
               child: Center(
                 child: Text(
-                  exerciseType == ExerciseType.count ? "C" : "T",
+                  widget.exerciseType == ExerciseType.count ? "C" : "T",
                   style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w700,
@@ -78,20 +95,20 @@ class Exercise extends StatelessWidget {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                description.isNotEmpty
+                widget.description.isNotEmpty
                     ? Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            title,
+                            widget.title,
                             style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w700,
                             ),
                           ),
                           Text(
-                            description,
+                            widget.description,
                             style: const TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w500,
@@ -101,7 +118,7 @@ class Exercise extends StatelessWidget {
                         ],
                       )
                     : Text(
-                        title,
+                        widget.title,
                         style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w700,

@@ -48,7 +48,10 @@ class _LoginWithIdState extends State<LoginWithId> {
       // ignore: avoid_print
       print("Err: $e");
 
-      return Snackbar(context: context, content: "Login failed 🥲")
+      return Snackbar(
+              type: SnackbarType.error,
+              context: context,
+              content: "Login failed 🥲")
           .showSnackBar();
     }
   }

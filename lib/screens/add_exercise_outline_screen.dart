@@ -34,6 +34,7 @@ class _AddExerciseOutlineScreenState extends State<AddExerciseOutlineScreen> {
   void isEditState() {
     if (length == 0) {
       Snackbar(
+        type: SnackbarType.warning,
         context: context,
         content: "There is no exercise. Add Exercise.",
       ).showSnackBar();
@@ -44,7 +45,7 @@ class _AddExerciseOutlineScreenState extends State<AddExerciseOutlineScreen> {
     }
   }
 
-  _navigateToAddExerciseScreen() {
+  void _navigateToAddExerciseScreen() {
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -53,7 +54,7 @@ class _AddExerciseOutlineScreenState extends State<AddExerciseOutlineScreen> {
     );
   }
 
-  _navigateToPreviousScreen() {
+  void _navigateToPreviousScreen() {
     Navigator.of(context).pop();
   }
 

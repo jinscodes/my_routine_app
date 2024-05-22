@@ -44,7 +44,10 @@ class _SignupScreenState extends State<SignupScreen> {
       // ignore: avoid_print
       print("Err_signup: $e");
 
-      return Snackbar(context: context, content: "Signup failed 🥲")
+      return Snackbar(
+              type: SnackbarType.error,
+              context: context,
+              content: "Signup failed 🥲")
           .showSnackBar();
     }
   }
