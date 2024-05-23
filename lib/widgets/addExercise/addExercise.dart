@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:workout_app/common/color.dart';
 import 'package:workout_app/common/login_text_field.dart';
@@ -5,6 +7,7 @@ import 'package:workout_app/common/next_button.dart';
 import 'package:workout_app/screens/home_screen.dart';
 import 'package:workout_app/utilities/api.dart';
 import 'package:workout_app/utilities/complete_page.dart';
+import 'package:workout_app/utilities/navigate.dart';
 import 'package:workout_app/utilities/snackbar.dart';
 
 enum TypeCharacter {
@@ -47,15 +50,13 @@ class _AddExerciseState extends State<AddExercise> {
       ).postData();
 
       if (res.isNotEmpty) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (_) => CompletePage(
-              navigator: _navigateToHome,
-              buttonTitle: 'Home',
-            ),
+        Navigate(
+          context: context,
+          builder: (_) => CompletePage(
+            navigator: _navigateToHome,
+            buttonTitle: 'Home',
           ),
-        );
+        ).navigatePushScreen();
       }
     } catch (e) {
       // ignore: avoid_print
@@ -69,17 +70,11 @@ class _AddExerciseState extends State<AddExercise> {
     }
   }
 
-  void _navigateToOutlineScreen() {
-    Navigator.of(context).pop();
-  }
-
   void _navigateToHome() {
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (_) => const HomeScreen(),
-      ),
-    );
+    Navigate(
+      context: context,
+      builder: (_) => const HomeScreen(),
+    ).navigateReplacementScreen();
   }
 
   @override
@@ -89,7 +84,7 @@ class _AddExerciseState extends State<AddExercise> {
         elevation: 2.0,
         backgroundColor: Colors.white,
         leading: IconButton(
-          onPressed: () => _navigateToOutlineScreen(),
+          onPressed: () => Navigate(context: context).navigatePopScreen(),
           icon: const Icon(Icons.arrow_back_ios_new_rounded),
         ),
         title: const Text(

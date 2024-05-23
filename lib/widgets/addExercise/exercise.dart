@@ -31,12 +31,10 @@ class Exercise extends StatefulWidget {
 class _ExerciseState extends State<Exercise> {
   @override
   Widget build(BuildContext context) {
-    void NavigateToEditScreen() {
+    void navigateToEditScreen() {
       Navigate(
         context: context,
-        materialPageRoute: MaterialPageRoute(
-          builder: (context) => const EditExerciseScreen(),
-        ),
+        builder: (context) => const EditExerciseScreen(),
       ).navigatePushScreen();
     }
 
@@ -53,10 +51,7 @@ class _ExerciseState extends State<Exercise> {
         minVerticalPadding: 0.0,
         trailing: widget.isEdit
             ? IconButton(
-                onPressed: () {
-                  print("edit");
-                  NavigateToEditScreen();
-                },
+                onPressed: () => navigateToEditScreen(),
                 icon: const Icon(
                   Icons.edit,
                 ),

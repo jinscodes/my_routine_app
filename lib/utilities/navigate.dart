@@ -2,19 +2,33 @@ import 'package:flutter/material.dart';
 
 class Navigate {
   BuildContext context;
-  MaterialPageRoute materialPageRoute;
+  WidgetBuilder? builder;
 
   Navigate({
     required this.context,
-    required this.materialPageRoute,
+    this.builder,
   });
 
   void navigatePushScreen() {
-    Navigator.push(context, materialPageRoute);
+    if (builder != null) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: builder!),
+      );
+    } else {
+      throw Exception('Builder cannot be null');
+    }
   }
 
   void navigateReplacementScreen() {
-    Navigator.push(context, materialPageRoute);
+    if (builder != null) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: builder!),
+      );
+    } else {
+      throw Exception('Builder cannot be null');
+    }
   }
 
   void navigatePopScreen() {
