@@ -186,7 +186,6 @@ class _AddExerciseOutlineScreenState extends State<AddExerciseOutlineScreen> {
                                             ["type"]
                                         .toString()
                                         .toLowerCase());
-                                String type = provider.list[index]["type"];
                                 String title = provider.list[index]["name"];
                                 String description =
                                     provider.list[index]["description"];
@@ -197,7 +196,6 @@ class _AddExerciseOutlineScreenState extends State<AddExerciseOutlineScreen> {
 
                                 return Exercise(
                                   exerciseType: exerciseType,
-                                  type: type,
                                   title: title,
                                   description: description,
                                   isEdit: isEdit,

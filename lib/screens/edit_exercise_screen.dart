@@ -3,10 +3,22 @@ import 'package:workout_app/common/color.dart';
 import 'package:workout_app/common/login_text_field.dart';
 import 'package:workout_app/common/next_button.dart';
 import 'package:workout_app/utilities/navigate.dart';
+import 'package:workout_app/utilities/stringToExerciseType.dart';
 import 'package:workout_app/widgets/addExercise/addExercise.dart';
 
 class EditExerciseScreen extends StatefulWidget {
-  const EditExerciseScreen({super.key});
+  final ExerciseType? exerciseType;
+  final String title;
+  final String description;
+  final int id;
+
+  const EditExerciseScreen({
+    super.key,
+    this.exerciseType,
+    required this.title,
+    required this.description,
+    required this.id,
+  });
 
   @override
   State<EditExerciseScreen> createState() => _EditExerciseScreenState();

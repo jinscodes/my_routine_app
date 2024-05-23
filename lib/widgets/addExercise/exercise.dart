@@ -6,7 +6,6 @@ import 'package:workout_app/utilities/stringToExerciseType.dart';
 
 class Exercise extends StatefulWidget {
   final ExerciseType? exerciseType;
-  final String type;
   final String title;
   final String description;
   final bool isEdit;
@@ -16,7 +15,6 @@ class Exercise extends StatefulWidget {
   const Exercise({
     super.key,
     required this.exerciseType,
-    required this.type,
     required this.title,
     required this.description,
     required this.isEdit,
@@ -34,7 +32,12 @@ class _ExerciseState extends State<Exercise> {
     void navigateToEditScreen() {
       Navigate(
         context: context,
-        builder: (context) => const EditExerciseScreen(),
+        builder: (context) => EditExerciseScreen(
+          exerciseType: widget.exerciseType,
+          title: widget.title,
+          description: widget.description,
+          id: widget.id,
+        ),
       ).navigatePushScreen();
     }
 
