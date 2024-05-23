@@ -25,11 +25,28 @@ class EditExerciseScreen extends StatefulWidget {
 }
 
 class _EditExerciseScreenState extends State<EditExerciseScreen> {
-  TextEditingController nameController = TextEditingController();
-  TextEditingController typeController = TextEditingController();
-  TextEditingController descriptionController = TextEditingController();
-  TypeCharacter? _type = TypeCharacter.count;
+  late int id;
+  late TextEditingController nameController;
+  late TextEditingController typeController;
+  late TextEditingController descriptionController;
+  late TypeCharacter? _type;
   bool isError = false;
+
+  @override
+  void initState() {
+    super.initState();
+    id = widget.id;
+    if (widget.exerciseType == ExerciseType.count) {
+      print("count");
+      _type = TypeCharacter.count;
+    } else if (widget.exerciseType == ExerciseType.time) {
+      print("time");
+      _type = TypeCharacter.time;
+    }
+    nameController = TextEditingController(text: widget.title);
+    typeController = TextEditingController();
+    descriptionController = TextEditingController(text: widget.description);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -96,7 +113,7 @@ class _EditExerciseScreenState extends State<EditExerciseScreen> {
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(12),
                                 border: Border.all(
-                                  color: _type == "COUNT"
+                                  color: _type == TypeCharacter.count
                                       ? ColorTheme.mainBlue
                                       : ColorTheme.gray,
                                 ),
@@ -122,7 +139,9 @@ class _EditExerciseScreenState extends State<EditExerciseScreen> {
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(12),
                                 border: Border.all(
-                                  color: ColorTheme.gray,
+                                  color: _type == TypeCharacter.time
+                                      ? ColorTheme.mainBlue
+                                      : ColorTheme.gray,
                                 ),
                               ),
                               child: RadioListTile(
@@ -163,7 +182,10 @@ class _EditExerciseScreenState extends State<EditExerciseScreen> {
                       children: [
                         NextButton(
                           content: "Next",
-                          handlePressed: () => {},
+                          handlePressed: () => {
+                            print(
+                                "$id; ${nameController.text}; ${typeController.text}; ${descriptionController.text}; $_type;")
+                          },
                         ),
                       ],
                     ),
