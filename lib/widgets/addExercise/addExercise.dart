@@ -63,10 +63,10 @@ class _AddExerciseState extends State<AddExercise> {
       print("ERR: $e");
 
       return Snackbar(
-              type: SnackbarType.error,
-              context: context,
-              content: "Adding exercise failed 🥲")
-          .showSnackBar();
+        type: SnackbarType.error,
+        context: context,
+        content: "Adding exercise failed 🥲",
+      ).showSnackBar();
     }
   }
 

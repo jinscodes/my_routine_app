@@ -1,8 +1,14 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:workout_app/common/color.dart';
 import 'package:workout_app/common/login_text_field.dart';
 import 'package:workout_app/common/next_button.dart';
+import 'package:workout_app/screens/add_exercise_outline_screen.dart';
+import 'package:workout_app/utilities/api.dart';
+import 'package:workout_app/utilities/complete_page.dart';
 import 'package:workout_app/utilities/navigate.dart';
+import 'package:workout_app/utilities/snackbar.dart';
 import 'package:workout_app/utilities/stringToExerciseType.dart';
 import 'package:workout_app/widgets/addExercise/addExercise.dart';
 
@@ -44,6 +50,55 @@ class _EditExerciseScreenState extends State<EditExerciseScreen> {
     nameController = TextEditingController(text: widget.title);
     typeController = TextEditingController();
     descriptionController = TextEditingController(text: widget.description);
+  }
+
+  patchExerciseValidation() async {
+    String type;
+    switch (_type!) {
+      case TypeCharacter.count:
+        type = "COUNT";
+      case TypeCharacter.time:
+        type = "TIME";
+    }
+
+    print("$type; ${nameController.text}; ${descriptionController.text};");
+
+    try {
+      String res = await PatchApi(
+        apiUrl: "/workout",
+        body: {
+          "name": nameController.text,
+          "type": type,
+          "description": descriptionController.text,
+        },
+      ).patchData();
+
+      if (res.isNotEmpty) {
+        Navigate(
+          context: context,
+          builder: (_) => CompletePage(
+            navigator: _navigateToHome,
+            buttonTitle: 'Done',
+          ),
+        ).navigatePushScreen();
+      }
+    } catch (e) {
+      // ignore: avoid_print
+      print("ERR: $e");
+
+      return Snackbar(
+        type: SnackbarType.error,
+        context: context,
+        content: "Adding exercise failed 🥲",
+      ).showSnackBar();
+    }
+  }
+
+  void _navigateToHome() {
+    Navigate(
+      context: context,
+      builder: (_) => const AddExerciseOutlineScreen(),
+    ).navigateReplacementScreen();
   }
 
   @override
@@ -180,10 +235,7 @@ class _EditExerciseScreenState extends State<EditExerciseScreen> {
                       children: [
                         NextButton(
                           content: "Next",
-                          handlePressed: () => {
-                            print(
-                                "$id; ${nameController.text}; ${typeController.text}; ${descriptionController.text}; $_type;")
-                          },
+                          handlePressed: () => patchExerciseValidation(),
                         ),
                       ],
                     ),
