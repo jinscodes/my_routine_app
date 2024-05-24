@@ -72,6 +72,45 @@ class PostApi {
   }
 }
 
+class PatchApi {
+  String apiUrl;
+  dynamic body;
+  bool? isRequiredHeader;
+
+  PatchApi({
+    required this.apiUrl,
+    required this.body,
+    this.isRequiredHeader,
+  });
+
+  Future patchData() async {
+    await dotenv.load(fileName: ".env");
+    // String token = await getLoginToken();
+
+    String? baseUrl = dotenv.env["BASE_URL"];
+
+    if (baseUrl == null) {
+      throw Exception("BASE_URL is not set in .env file");
+    }
+
+    String url = "$baseUrl$apiUrl";
+
+    Dio dio = Dio();
+
+    Response res = await dio.patch(
+      url,
+      // options: Options(
+      //   headers: {
+      //     "authorization": "Bearer $token",
+      //   },
+      // ),
+      data: body,
+    );
+
+    return res.data;
+  }
+}
+
 class DeleteApi {
   String apiUrl;
 

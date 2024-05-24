@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:workout_app/common/color.dart';
@@ -8,6 +10,7 @@ import 'package:workout_app/screens/home_screen.dart';
 import 'package:workout_app/screens/signup_screen.dart';
 import 'package:workout_app/utilities/api.dart';
 import 'package:workout_app/utilities/manageLoginToken.dart';
+import 'package:workout_app/utilities/navigate.dart';
 import 'package:workout_app/utilities/snackbar.dart';
 
 class LoginWithId extends StatefulWidget {
@@ -23,7 +26,7 @@ class _LoginWithIdState extends State<LoginWithId> {
   bool isText = false;
   bool isError = false;
 
-  loginValidation() async {
+  void loginValidation() async {
     try {
       String token = await PostApi(
         apiUrl: "/login",
@@ -35,20 +38,18 @@ class _LoginWithIdState extends State<LoginWithId> {
 
       await setLoginToken(token);
 
-      return Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => ChangeNotifierProvider(
-            create: (_) => ExerciseProvider(),
-            child: const HomeScreen(),
-          ),
+      Navigate(
+        context: context,
+        builder: (context) => ChangeNotifierProvider(
+          create: (_) => ExerciseProvider(),
+          child: const HomeScreen(),
         ),
-      );
+      ).navigateReplacementScreen();
     } catch (e) {
       // ignore: avoid_print
       print("Err: $e");
 
-      return Snackbar(
+      Snackbar(
               type: SnackbarType.error,
               context: context,
               content: "Login failed 🥲")

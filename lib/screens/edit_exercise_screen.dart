@@ -37,10 +37,8 @@ class _EditExerciseScreenState extends State<EditExerciseScreen> {
     super.initState();
     id = widget.id;
     if (widget.exerciseType == ExerciseType.count) {
-      print("count");
       _type = TypeCharacter.count;
     } else if (widget.exerciseType == ExerciseType.time) {
-      print("time");
       _type = TypeCharacter.time;
     }
     nameController = TextEditingController(text: widget.title);
