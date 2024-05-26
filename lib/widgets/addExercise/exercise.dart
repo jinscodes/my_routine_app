@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:workout_app/common/color.dart';
-import 'package:workout_app/screens/edit_exercise_screen.dart';
 import 'package:workout_app/utilities/navigate.dart';
 import 'package:workout_app/utilities/stringToExerciseType.dart';
+import 'package:workout_app/widgets/addExercise/editExercise.dart';
 
 class Exercise extends StatefulWidget {
   final ExerciseType? exerciseType;
@@ -32,7 +32,7 @@ class _ExerciseState extends State<Exercise> {
     void navigateToEditScreen() {
       Navigate(
         context: context,
-        builder: (context) => EditExerciseScreen(
+        builder: (context) => EditExercise(
           exerciseType: widget.exerciseType,
           title: widget.title,
           description: widget.description,

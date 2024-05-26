@@ -103,7 +103,6 @@ class _CompletePageState extends State<CompletePage> {
                           alignment: Alignment.bottomCenter,
                           child: NextButton(
                             content: widget.buttonTitle,
-                            // handlePressed: () => _navigateToLogin(),
                             handlePressed: () => widget.navigator(),
                           ),
                         ),

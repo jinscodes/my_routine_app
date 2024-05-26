@@ -12,13 +12,13 @@ import 'package:workout_app/utilities/snackbar.dart';
 import 'package:workout_app/utilities/stringToExerciseType.dart';
 import 'package:workout_app/widgets/addExercise/addExercise.dart';
 
-class EditExerciseScreen extends StatefulWidget {
+class EditExercise extends StatefulWidget {
   final ExerciseType? exerciseType;
   final String title;
   final String description;
   final int id;
 
-  const EditExerciseScreen({
+  const EditExercise({
     super.key,
     this.exerciseType,
     required this.title,
@@ -27,10 +27,10 @@ class EditExerciseScreen extends StatefulWidget {
   });
 
   @override
-  State<EditExerciseScreen> createState() => _EditExerciseScreenState();
+  State<EditExercise> createState() => _EditExerciseState();
 }
 
-class _EditExerciseScreenState extends State<EditExerciseScreen> {
+class _EditExerciseState extends State<EditExercise> {
   late int id;
   late TextEditingController nameController;
   late TextEditingController typeController;
@@ -77,7 +77,7 @@ class _EditExerciseScreenState extends State<EditExerciseScreen> {
         Navigate(
           context: context,
           builder: (_) => CompletePage(
-            navigator: _navigateToHome,
+            navigator: _navigateToOutline,
             buttonTitle: 'Done',
           ),
         ).navigatePushScreen();
@@ -94,7 +94,7 @@ class _EditExerciseScreenState extends State<EditExerciseScreen> {
     }
   }
 
-  void _navigateToHome() {
+  void _navigateToOutline() {
     Navigate(
       context: context,
       builder: (_) => const AddExerciseOutlineScreen(),
