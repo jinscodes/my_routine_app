@@ -145,48 +145,48 @@ class _HomeScreenState extends State<HomeScreen> {
                     const SizedBox(
                       height: 25,
                     ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height / 2.4,
-                      child: SingleChildScrollView(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Container(
-                              width: MediaQuery.of(context).size.width,
-                              height: 150,
-                              decoration: const BoxDecoration(
-                                color: Colors.green,
-                              ),
-                              child: const Text("data"),
-                            ),
-                            Container(
-                              width: MediaQuery.of(context).size.width,
-                              height: 150,
-                              decoration: const BoxDecoration(
-                                color: Colors.yellow,
-                              ),
-                              child: const Text("data"),
-                            ),
-                            Container(
-                              width: MediaQuery.of(context).size.width,
-                              height: 150,
-                              decoration: const BoxDecoration(
-                                color: Colors.blue,
-                              ),
-                              child: const Text("data"),
-                            ),
-                            Container(
-                              width: MediaQuery.of(context).size.width,
-                              height: 150,
-                              decoration: const BoxDecoration(
-                                color: Colors.red,
-                              ),
-                              child: const Text("data"),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                    // SizedBox(
+                    //   height: MediaQuery.of(context).size.height / 2.4,
+                    //   child: SingleChildScrollView(
+                    //     child: Column(
+                    //       mainAxisSize: MainAxisSize.min,
+                    //       children: [
+                    //         Container(
+                    //           width: MediaQuery.of(context).size.width,
+                    //           height: 150,
+                    //           decoration: const BoxDecoration(
+                    //             color: Colors.green,
+                    //           ),
+                    //           child: const Text("data"),
+                    //         ),
+                    //         Container(
+                    //           width: MediaQuery.of(context).size.width,
+                    //           height: 150,
+                    //           decoration: const BoxDecoration(
+                    //             color: Colors.yellow,
+                    //           ),
+                    //           child: const Text("data"),
+                    //         ),
+                    //         Container(
+                    //           width: MediaQuery.of(context).size.width,
+                    //           height: 150,
+                    //           decoration: const BoxDecoration(
+                    //             color: Colors.blue,
+                    //           ),
+                    //           child: const Text("data"),
+                    //         ),
+                    //         Container(
+                    //           width: MediaQuery.of(context).size.width,
+                    //           height: 150,
+                    //           decoration: const BoxDecoration(
+                    //             color: Colors.red,
+                    //           ),
+                    //           child: const Text("data"),
+                    //         ),
+                    //       ],
+                    //     ),
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
