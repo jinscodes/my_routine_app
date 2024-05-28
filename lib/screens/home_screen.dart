@@ -42,6 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
         leadingWidth: MediaQuery.of(context).size.width,
+        scrolledUnderElevation: 0,
         leading: Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: 25,
@@ -144,6 +145,30 @@ class _HomeScreenState extends State<HomeScreen> {
                     const AddContainer(),
                     const SizedBox(
                       height: 25,
+                    ),
+                    Container(
+                      height: MediaQuery.of(context).size.height / 2.4,
+                      width: MediaQuery.of(context).size.width,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          width: 1,
+                        ),
+                      ),
+                      child: ListView.builder(
+                        itemCount: ["1", "2", "3", "4"].length,
+                        itemBuilder: (context, idx) {
+                          return Container(
+                            width: 100,
+                            height: 100,
+                            decoration: BoxDecoration(
+                              color: Colors.amber,
+                              border: Border.all(
+                                width: 1,
+                              ),
+                            ),
+                          );
+                        },
+                      ),
                     ),
                     // SizedBox(
                     //   height: MediaQuery.of(context).size.height / 2.4,
