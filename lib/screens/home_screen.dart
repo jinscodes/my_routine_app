@@ -3,6 +3,7 @@ import 'package:workout_app/common/appbar_icon_button.dart';
 import 'package:workout_app/common/color.dart';
 import 'package:workout_app/screens/login_screen.dart';
 import 'package:workout_app/utilities/manageLoginToken.dart';
+import 'package:workout_app/utilities/navigate.dart';
 import 'package:workout_app/widgets/home/add_container.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -13,15 +14,13 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  Future<dynamic> logout() {
+  void logout() {
     removeLoginToken("login_token");
 
-    return Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const LoginScreen(),
-      ),
-    );
+    return Navigate(
+      context: context,
+      builder: (context) => const LoginScreen(),
+    ).navigateReplacementScreen();
   }
 
   // will be Routine
@@ -41,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        foregroundColor: Colors.white,
+        foregroundColor: Colors.black,
         leadingWidth: MediaQuery.of(context).size.width,
         leading: Padding(
           padding: const EdgeInsets.symmetric(

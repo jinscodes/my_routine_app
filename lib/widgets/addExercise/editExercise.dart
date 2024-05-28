@@ -61,8 +61,6 @@ class _EditExerciseState extends State<EditExercise> {
         type = "TIME";
     }
 
-    print("$type; ${nameController.text}; ${descriptionController.text};");
-
     try {
       String res = await PatchApi(
         apiUrl: "/workout",
