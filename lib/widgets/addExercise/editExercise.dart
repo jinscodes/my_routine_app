@@ -1,9 +1,11 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:workout_app/common/color.dart';
 import 'package:workout_app/common/login_text_field.dart';
 import 'package:workout_app/common/next_button.dart';
+import 'package:workout_app/provider/work_provider.dart';
 import 'package:workout_app/screens/add_exercise_outline_screen.dart';
 import 'package:workout_app/utilities/api.dart';
 import 'package:workout_app/utilities/complete_page.dart';
@@ -62,8 +64,8 @@ class _EditExerciseState extends State<EditExercise> {
     }
 
     try {
-      String res = await PatchApi(
-        apiUrl: "/workout",
+      Map<String, dynamic> res = await PatchApi(
+        apiUrl: "/workout/$id",
         body: {
           "name": nameController.text,
           "type": type,
@@ -75,8 +77,8 @@ class _EditExerciseState extends State<EditExercise> {
         Navigate(
           context: context,
           builder: (_) => CompletePage(
-            navigator: _navigateToOutline,
-            buttonTitle: 'Done',
+            navigator: _navigateToHome,
+            buttonTitle: 'Home',
           ),
         ).navigatePushScreen();
       }
@@ -99,6 +101,14 @@ class _EditExerciseState extends State<EditExercise> {
     ).navigateReplacementScreen();
   }
 
+  void _navigateToHome() {
+    Navigate(
+      context: context,
+      // builder: (_) => const HomeScreen(),
+      builder: (_) => const AddExerciseOutlineScreen(),
+    ).navigateReplacementScreen();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -117,132 +127,142 @@ class _EditExerciseState extends State<EditExercise> {
           ),
         ),
       ),
-      body: Container(
-        decoration: const BoxDecoration(
-          color: ColorTheme.loginBgGray,
-        ),
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(30, 0, 30, 30),
-          child: Center(
-            child: Column(
-              children: [
-                Flexible(
-                  flex: 4,
-                  child: Container(
-                    alignment: Alignment.topCenter,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const SizedBox(
-                          height: 25,
-                        ),
-                        LoginTextField(
-                          controller: nameController,
-                          title: "NAME",
-                          isError: isError,
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        const Text(
-                          "TYPE",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: Consumer<ExerciseProvider>(
+        builder: (context, provider, child) {
+          void patchItemCallback(id, body) {
+            provider.patchItem(id, body);
+          }
+
+          return Container(
+            decoration: const BoxDecoration(
+              color: ColorTheme.loginBgGray,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(30, 0, 30, 30),
+              child: Center(
+                child: Column(
+                  children: [
+                    Flexible(
+                      flex: 4,
+                      child: Container(
+                        alignment: Alignment.topCenter,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Container(
-                              width: MediaQuery.of(context).size.width / 2.5,
-                              height: 60,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12),
-                                border: Border.all(
-                                  color: _type == TypeCharacter.count
-                                      ? ColorTheme.mainBlue
-                                      : ColorTheme.gray,
-                                ),
-                              ),
-                              child: RadioListTile(
-                                title: const Text("COUNT"),
-                                value: TypeCharacter.count,
-                                groupValue: _type,
-                                fillColor: MaterialStateColor.resolveWith(
-                                  (states) =>
-                                      ColorTheme.mainBlue.withOpacity(0.7),
-                                ),
-                                onChanged: (value) {
-                                  setState(() {
-                                    _type = value;
-                                  });
-                                },
+                            const SizedBox(
+                              height: 25,
+                            ),
+                            LoginTextField(
+                              controller: nameController,
+                              title: "NAME",
+                              isError: isError,
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            const Text(
+                              "TYPE",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700,
                               ),
                             ),
-                            Container(
-                              width: MediaQuery.of(context).size.width / 2.5,
-                              height: 60,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12),
-                                border: Border.all(
-                                  color: _type == TypeCharacter.time
-                                      ? ColorTheme.mainBlue
-                                      : ColorTheme.gray,
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  width:
+                                      MediaQuery.of(context).size.width / 2.5,
+                                  height: 60,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(12),
+                                    border: Border.all(
+                                      color: _type == TypeCharacter.count
+                                          ? ColorTheme.mainBlue
+                                          : ColorTheme.gray,
+                                    ),
+                                  ),
+                                  child: RadioListTile(
+                                    title: const Text("COUNT"),
+                                    value: TypeCharacter.count,
+                                    groupValue: _type,
+                                    fillColor: MaterialStateColor.resolveWith(
+                                      (states) =>
+                                          ColorTheme.mainBlue.withOpacity(0.7),
+                                    ),
+                                    onChanged: (value) {
+                                      setState(() {
+                                        _type = value;
+                                      });
+                                    },
+                                  ),
                                 ),
-                              ),
-                              child: RadioListTile(
-                                title: const Text("TIME"),
-                                value: TypeCharacter.time,
-                                groupValue: _type,
-                                fillColor: MaterialStateColor.resolveWith(
-                                  (states) =>
-                                      ColorTheme.mainBlue.withOpacity(0.7),
+                                Container(
+                                  width:
+                                      MediaQuery.of(context).size.width / 2.5,
+                                  height: 60,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(12),
+                                    border: Border.all(
+                                      color: _type == TypeCharacter.time
+                                          ? ColorTheme.mainBlue
+                                          : ColorTheme.gray,
+                                    ),
+                                  ),
+                                  child: RadioListTile(
+                                    title: const Text("TIME"),
+                                    value: TypeCharacter.time,
+                                    groupValue: _type,
+                                    fillColor: MaterialStateColor.resolveWith(
+                                      (states) =>
+                                          ColorTheme.mainBlue.withOpacity(0.7),
+                                    ),
+                                    onChanged: (value) {
+                                      setState(() {
+                                        _type = value;
+                                      });
+                                    },
+                                  ),
                                 ),
-                                onChanged: (value) {
-                                  setState(() {
-                                    _type = value;
-                                  });
-                                },
-                              ),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            LoginTextField(
+                              isError: isError,
+                              controller: descriptionController,
+                              title: "DESCRIPTION",
                             ),
                           ],
                         ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        LoginTextField(
-                          isError: isError,
-                          controller: descriptionController,
-                          title: "DESCRIPTION",
-                        ),
-                      ],
+                      ),
                     ),
-                  ),
-                ),
-                Flexible(
-                  flex: 1,
-                  child: Container(
-                    alignment: Alignment.center,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        NextButton(
-                          content: "Next",
-                          handlePressed: () => patchExerciseValidation(),
+                    Flexible(
+                      flex: 1,
+                      child: Container(
+                        alignment: Alignment.center,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            NextButton(
+                              content: "Next",
+                              handlePressed: () => patchExerciseValidation(),
+                            ),
+                          ],
                         ),
-                      ],
+                      ),
                     ),
-                  ),
+                  ],
                 ),
-              ],
+              ),
             ),
-          ),
-        ),
+          );
+        },
       ),
     );
   }

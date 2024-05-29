@@ -30,4 +30,13 @@ class ExerciseProvider with ChangeNotifier {
     ).deleteData();
     notifyListeners();
   }
+
+  void patchItem(int id, Map body) async {
+    Response res = await PatchApi(
+      apiUrl: "/workout/$id",
+      body: body,
+    ).patchData();
+
+    notifyListeners();
+  }
 }
