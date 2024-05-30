@@ -190,6 +190,7 @@ class _AddExerciseOutlineScreenState extends State<AddExerciseOutlineScreen> {
                                 String description =
                                     provider.list[index]["description"];
                                 int id = provider.list[index]["id"];
+
                                 void deleteItemCallback(index, id) {
                                   provider.deleteItem(index, id);
                                 }

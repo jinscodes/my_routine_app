@@ -32,7 +32,7 @@ class _ExerciseState extends State<Exercise> {
     void navigateToEditScreen() {
       Navigate(
         context: context,
-        builder: (context) => EditExercise(
+        builder: (_) => EditExercise(
           exerciseType: widget.exerciseType,
           title: widget.title,
           description: widget.description,
