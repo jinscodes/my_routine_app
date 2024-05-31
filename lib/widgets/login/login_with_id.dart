@@ -44,7 +44,7 @@ class _LoginWithIdState extends State<LoginWithId> {
           create: (_) => ExerciseProvider(),
           child: const HomeScreen(),
         ),
-      ).navigateReplacementScreen();
+      ).pushReplacement();
     } catch (e) {
       // ignore: avoid_print
       print("Err: $e");

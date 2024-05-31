@@ -38,7 +38,7 @@ class _ExerciseState extends State<Exercise> {
           description: widget.description,
           id: widget.id,
         ),
-      ).navigatePushScreen();
+      ).push();
     }
 
     return Container(

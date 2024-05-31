@@ -20,20 +20,8 @@ class _HomeScreenState extends State<HomeScreen> {
     return Navigate(
       context: context,
       builder: (context) => const LoginScreen(),
-    ).navigateReplacementScreen();
+    ).pushReplacement();
   }
-
-  // will be Routine
-  // @override
-  // void initState() {
-  //   super.initState();
-
-  //   WidgetsBinding.instance.addPostFrameCallback(
-  //     (timeStamp) {
-  //       Provider.of<RoutineProvider>(context, listen: false).getRoutineList();
-  //     },
-  //   );
-  // }
 
   @override
   Widget build(BuildContext context) {

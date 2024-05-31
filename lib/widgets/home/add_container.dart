@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:workout_app/common/color.dart';
 import 'package:workout_app/provider/work_provider.dart';
-import 'package:workout_app/screens/add_exercise_outline_screen.dart';
+import 'package:workout_app/screens/exercise_outline_screen.dart';
+import 'package:workout_app/screens/routine_outline_screen.dart';
+import 'package:workout_app/utilities/navigate.dart';
 
 class AddContainer extends StatefulWidget {
   const AddContainer({super.key});
@@ -14,16 +16,21 @@ class AddContainer extends StatefulWidget {
 class _AddContainerState extends State<AddContainer> {
   late List list;
 
-  void _navigateToAddWorkScreen() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => ChangeNotifierProvider(
-          create: (_) => ExerciseProvider(),
-          child: const AddExerciseOutlineScreen(),
-        ),
+  void _navigateToExerciseOutline() {
+    Navigate(
+      context: context,
+      builder: (context) => ChangeNotifierProvider(
+        create: (_) => ExerciseProvider(),
+        child: const ExerciseOutlineScreen(),
       ),
-    );
+    ).push();
+  }
+
+  void _navigateToRoutineOutline() {
+    Navigate(
+      context: context,
+      builder: (_) => const RoutineOutlineScreen(),
+    ).push();
   }
 
   @override
@@ -32,9 +39,7 @@ class _AddContainerState extends State<AddContainer> {
       children: [
         Flexible(
           child: ElevatedButton(
-            onPressed: () {
-              _navigateToAddWorkScreen();
-            },
+            onPressed: () => _navigateToExerciseOutline(),
             style: ElevatedButton.styleFrom(
               elevation: 0,
               minimumSize: Size(MediaQuery.of(context).size.width, 78),
@@ -75,9 +80,7 @@ class _AddContainerState extends State<AddContainer> {
         ),
         Flexible(
           child: ElevatedButton(
-            onPressed: () {
-              print("Add Routine");
-            },
+            onPressed: () => _navigateToRoutineOutline(),
             style: ElevatedButton.styleFrom(
               elevation: 0,
               minimumSize: Size(MediaQuery.of(context).size.width, 78),

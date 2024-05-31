@@ -8,15 +8,14 @@ import 'package:workout_app/utilities/stringToExerciseType.dart';
 import 'package:workout_app/widgets/addExercise/addExercise.dart';
 import 'package:workout_app/widgets/addExercise/exercise.dart';
 
-class AddExerciseOutlineScreen extends StatefulWidget {
-  const AddExerciseOutlineScreen({super.key});
+class ExerciseOutlineScreen extends StatefulWidget {
+  const ExerciseOutlineScreen({super.key});
 
   @override
-  State<AddExerciseOutlineScreen> createState() =>
-      _AddExerciseOutlineScreenState();
+  State<ExerciseOutlineScreen> createState() => _ExerciseOutlineScreenState();
 }
 
-class _AddExerciseOutlineScreenState extends State<AddExerciseOutlineScreen> {
+class _ExerciseOutlineScreenState extends State<ExerciseOutlineScreen> {
   bool isEdit = false;
   int length = 0;
 

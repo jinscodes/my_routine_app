@@ -78,7 +78,7 @@ class _EditExerciseState extends State<EditExercise> {
             navigator: _navigateToHome,
             buttonTitle: 'Home',
           ),
-        ).navigatePushScreen();
+        ).push();
       }
     } catch (e) {
       // ignore: avoid_print
@@ -103,7 +103,7 @@ class _EditExerciseState extends State<EditExercise> {
     Navigate(
       context: context,
       builder: (_) => const HomeScreen(),
-    ).navigateReplacementScreen();
+    ).pushReplacement();
   }
 
   @override
@@ -113,7 +113,7 @@ class _EditExerciseState extends State<EditExercise> {
           elevation: 2.0,
           backgroundColor: Colors.white,
           leading: IconButton(
-            onPressed: () => Navigate(context: context).navigatePopScreen(),
+            onPressed: () => Navigate(context: context).pop(),
             icon: const Icon(Icons.arrow_back_ios_new_rounded),
           ),
           title: const Text(

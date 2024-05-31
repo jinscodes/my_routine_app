@@ -9,7 +9,7 @@ class Navigate {
     this.builder,
   });
 
-  void navigatePushScreen() {
+  void push() {
     if (builder != null) {
       Navigator.push(
         context,
@@ -20,7 +20,7 @@ class Navigate {
     }
   }
 
-  void navigateReplacementScreen() {
+  void pushReplacement() {
     if (builder != null) {
       Navigator.push(
         context,
@@ -31,7 +31,7 @@ class Navigate {
     }
   }
 
-  void navigatePopScreen() {
+  void pop() {
     Navigator.of(context).pop();
   }
 }
