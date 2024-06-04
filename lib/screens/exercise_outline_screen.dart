@@ -3,9 +3,11 @@ import 'package:provider/provider.dart';
 import 'package:workout_app/common/appbar_icon_button.dart';
 import 'package:workout_app/common/color.dart';
 import 'package:workout_app/provider/work_provider.dart';
+import 'package:workout_app/utilities/navigate.dart';
 import 'package:workout_app/utilities/snackbar.dart';
 import 'package:workout_app/utilities/stringToExerciseType.dart';
 import 'package:workout_app/widgets/addExercise/addExercise.dart';
+import 'package:workout_app/widgets/addExercise/editExercise.dart';
 import 'package:workout_app/widgets/addExercise/exercise.dart';
 
 class ExerciseOutlineScreen extends StatefulWidget {
@@ -53,6 +55,22 @@ class _ExerciseOutlineScreenState extends State<ExerciseOutlineScreen> {
     );
   }
 
+  void _navigateToEditExerciseScreen(
+      ExerciseType exerciseType, String title, String description, int id) {
+    Navigate(
+      context: context,
+      builder: (context) => ChangeNotifierProvider(
+        create: (_) => ExerciseProvider(),
+        child: EditExercise(
+          exerciseType: exerciseType,
+          title: title,
+          description: description,
+          id: id,
+        ),
+      ),
+    ).push();
+  }
+
   void _navigateToPreviousScreen() {
     Navigator.of(context).pop();
   }
@@ -90,6 +108,7 @@ class _ExerciseOutlineScreenState extends State<ExerciseOutlineScreen> {
       body: Consumer<ExerciseProvider>(
         builder: (context, provider, child) {
           length = provider.list.length;
+
           return Center(
             child: Column(
               children: [
@@ -190,18 +209,16 @@ class _ExerciseOutlineScreenState extends State<ExerciseOutlineScreen> {
                                     provider.list[index]["description"];
                                 int id = provider.list[index]["id"];
 
-                                void deleteItemCallback(index, id) {
-                                  provider.deleteItem(index, id);
-                                }
-
                                 return Exercise(
-                                  exerciseType: exerciseType,
-                                  title: title,
-                                  description: description,
                                   isEdit: isEdit,
-                                  id: id,
-                                  deleteItem: () =>
-                                      deleteItemCallback(index, id),
+                                  index: index,
+                                  navigateToEdit: () =>
+                                      _navigateToEditExerciseScreen(
+                                    exerciseType!,
+                                    title,
+                                    description,
+                                    id,
+                                  ),
                                 );
                               },
                             ),

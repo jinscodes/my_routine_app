@@ -30,15 +30,4 @@ class ExerciseProvider with ChangeNotifier {
     ).deleteData();
     notifyListeners();
   }
-
-  Future<Map<String, dynamic>> patchItem(int id, Map body) async {
-    Map<String, dynamic> res = await PatchApi(
-      apiUrl: "/workout/$id",
-      body: body,
-    ).patchData();
-
-    notifyListeners();
-
-    return res;
-  }
 }
