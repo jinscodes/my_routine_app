@@ -2,6 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:workout_app/provider/work_provider.dart';
 import 'package:workout_app/screens/home_screen.dart';
+import 'package:workout_app/widgets/addExercise/addExercise.dart';
+import 'package:workout_app/widgets/addExercise/editExercise.dart';
+
+enum NavigateType {
+  push,
+  pushRep,
+}
 
 class Navigate {
   BuildContext context;
@@ -42,7 +49,7 @@ class Navigate {
 class NavigateTo {
   BuildContext context;
   NavigateType type;
-  Object? params;
+  Map<dynamic, dynamic>? params;
 
   NavigateTo({
     required this.context,
@@ -69,9 +76,31 @@ class NavigateTo {
       ).pushReplacement();
     }
   }
-}
 
-enum NavigateType {
-  push,
-  pushRep,
+  void toAddExercise() {
+    if (type == NavigateType.push) {
+      Navigate(
+        context: context,
+        builder: (context) => const AddExercise(),
+      ).push();
+    } else {
+      Navigate(
+        context: context,
+        builder: (context) => const AddExercise(),
+      ).pushReplacement();
+    }
+  }
+
+  void toEditExercise() {
+    if (type == NavigateType.push) {
+      Navigate(
+        context: context,
+        builder: (context) => EditExercise(
+          title: params!["title"],
+          description: params!["description"],
+          id: params!["id"],
+        ),
+      ).push();
+    }
+  }
 }

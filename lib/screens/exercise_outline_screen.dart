@@ -6,7 +6,6 @@ import 'package:workout_app/provider/work_provider.dart';
 import 'package:workout_app/utilities/navigate.dart';
 import 'package:workout_app/utilities/snackbar.dart';
 import 'package:workout_app/utilities/stringToExerciseType.dart';
-import 'package:workout_app/widgets/addExercise/addExercise.dart';
 import 'package:workout_app/widgets/addExercise/editExercise.dart';
 import 'package:workout_app/widgets/addExercise/exercise.dart';
 
@@ -44,15 +43,6 @@ class _ExerciseOutlineScreenState extends State<ExerciseOutlineScreen> {
         isEdit = !isEdit;
       });
     }
-  }
-
-  void _navigateToAddExerciseScreen() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const AddExercise(),
-      ),
-    );
   }
 
   void _navigateToEditExerciseScreen(
@@ -154,7 +144,12 @@ class _ExerciseOutlineScreenState extends State<ExerciseOutlineScreen> {
                             width: MediaQuery.of(context).size.width,
                             height: 60,
                             child: ElevatedButton(
-                              onPressed: () => _navigateToAddExerciseScreen(),
+                              onPressed: () {
+                                NavigateTo(
+                                  context: context,
+                                  type: NavigateType.push,
+                                ).toAddExercise();
+                              },
                               style: ElevatedButton.styleFrom(),
                               child: const Text(
                                 "+ Add Exercise",
@@ -215,13 +210,14 @@ class _ExerciseOutlineScreenState extends State<ExerciseOutlineScreen> {
                                   return Exercise(
                                     isEdit: isEdit,
                                     index: index,
-                                    navigateToEdit: () =>
-                                        _navigateToEditExerciseScreen(
-                                      exerciseType!,
-                                      title,
-                                      description,
-                                      id,
-                                    ),
+                                    navigateToEdit: () {
+                                      _navigateToEditExerciseScreen(
+                                        exerciseType!,
+                                        title,
+                                        description,
+                                        id,
+                                      );
+                                    },
                                   );
                                 },
                               ),
