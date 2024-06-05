@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:workout_app/provider/work_provider.dart';
 import 'package:workout_app/screens/home_screen.dart';
+import 'package:workout_app/screens/login_screen.dart';
 import 'package:workout_app/widgets/addExercise/addExercise.dart';
 import 'package:workout_app/widgets/addExercise/editExercise.dart';
 
@@ -48,14 +49,21 @@ class Navigate {
 
 class NavigateTo {
   BuildContext context;
-  NavigateType type;
+  NavigateType? type;
   Map<dynamic, dynamic>? params;
 
   NavigateTo({
     required this.context,
-    required this.type,
+    this.type,
     this.params,
   });
+
+  void toLogin() {
+    Navigate(
+      context: context,
+      builder: (_) => const LoginScreen(),
+    ).pushReplacement();
+  }
 
   void toHome() {
     if (type == NavigateType.push) {
@@ -78,29 +86,24 @@ class NavigateTo {
   }
 
   void toAddExercise() {
-    if (type == NavigateType.push) {
-      Navigate(
-        context: context,
-        builder: (context) => const AddExercise(),
-      ).push();
-    } else {
-      Navigate(
-        context: context,
-        builder: (context) => const AddExercise(),
-      ).pushReplacement();
-    }
+    Navigate(
+      context: context,
+      builder: (context) => const AddExercise(),
+    ).push();
   }
 
   void toEditExercise() {
-    if (type == NavigateType.push) {
-      Navigate(
-        context: context,
-        builder: (context) => EditExercise(
+    Navigate(
+      context: context,
+      builder: (context) => ChangeNotifierProvider(
+        create: (_) => ExerciseProvider(),
+        child: EditExercise(
           title: params!["title"],
+          exerciseType: params!["exerciseType"],
           description: params!["description"],
           id: params!["id"],
         ),
-      ).push();
-    }
+      ),
+    ).push();
   }
 }

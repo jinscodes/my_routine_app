@@ -6,7 +6,6 @@ import 'package:workout_app/provider/work_provider.dart';
 import 'package:workout_app/utilities/navigate.dart';
 import 'package:workout_app/utilities/snackbar.dart';
 import 'package:workout_app/utilities/stringToExerciseType.dart';
-import 'package:workout_app/widgets/addExercise/editExercise.dart';
 import 'package:workout_app/widgets/addExercise/exercise.dart';
 
 class ExerciseOutlineScreen extends StatefulWidget {
@@ -43,22 +42,6 @@ class _ExerciseOutlineScreenState extends State<ExerciseOutlineScreen> {
         isEdit = !isEdit;
       });
     }
-  }
-
-  void _navigateToEditExerciseScreen(
-      ExerciseType exerciseType, String title, String description, int id) {
-    Navigate(
-      context: context,
-      builder: (context) => ChangeNotifierProvider(
-        create: (_) => ExerciseProvider(),
-        child: EditExercise(
-          exerciseType: exerciseType,
-          title: title,
-          description: description,
-          id: id,
-        ),
-      ),
-    ).push();
   }
 
   @override
@@ -211,12 +194,16 @@ class _ExerciseOutlineScreenState extends State<ExerciseOutlineScreen> {
                                     isEdit: isEdit,
                                     index: index,
                                     navigateToEdit: () {
-                                      _navigateToEditExerciseScreen(
-                                        exerciseType!,
-                                        title,
-                                        description,
-                                        id,
-                                      );
+                                      NavigateTo(
+                                        context: context,
+                                        type: NavigateType.push,
+                                        params: {
+                                          "title": title,
+                                          "description": description,
+                                          "id": id,
+                                          "exerciseType": exerciseType!,
+                                        },
+                                      ).toEditExercise();
                                     },
                                   );
                                 },

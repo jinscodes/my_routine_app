@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:workout_app/common/appbar_icon_button.dart';
 import 'package:workout_app/common/color.dart';
-import 'package:workout_app/screens/login_screen.dart';
 import 'package:workout_app/utilities/manageLoginToken.dart';
 import 'package:workout_app/utilities/navigate.dart';
 import 'package:workout_app/widgets/home/add_container.dart';
@@ -17,10 +16,9 @@ class _HomeScreenState extends State<HomeScreen> {
   void logout() {
     removeLoginToken("login_token");
 
-    return Navigate(
+    NavigateTo(
       context: context,
-      builder: (context) => const LoginScreen(),
-    ).pushReplacement();
+    ).toLogin();
   }
 
   @override
