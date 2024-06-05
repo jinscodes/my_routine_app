@@ -82,7 +82,7 @@ class _EditExerciseState extends State<EditExercise> {
             navigator: _navigateToOutline,
             buttonTitle: 'Next',
           ),
-        ).pushReplacement();
+        ).push();
       }
     } catch (e) {
       // ignore: avoid_print
