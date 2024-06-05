@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:workout_app/screens/login_screen.dart';
 import 'package:workout_app/utilities/manageLoginToken.dart';
 import 'package:workout_app/utilities/navigate.dart';
 
@@ -25,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   _navigateToHome() {
     Timer(
-      const Duration(seconds: 3),
+      const Duration(seconds: 2),
       () {
         NavigateTo(
           context: context,
@@ -37,14 +36,11 @@ class _SplashScreenState extends State<SplashScreen> {
 
   _navigateToLogin() {
     Timer(
-      const Duration(seconds: 3),
+      const Duration(seconds: 2),
       () {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const LoginScreen(),
-          ),
-        );
+        NavigateTo(
+          context: context,
+        ).toLogin();
       },
     );
   }

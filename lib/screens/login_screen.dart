@@ -1,9 +1,11 @@
+// ignore_for_file: avoid_print
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:workout_app/common/color.dart';
+import 'package:workout_app/utilities/navigate.dart';
 import 'package:workout_app/widgets/login/bg_decoration.dart';
 import 'package:workout_app/widgets/login/login_button.dart';
-import 'package:workout_app/widgets/login/login_with_id.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -13,15 +15,6 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  navigateToLoginWithId() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const LoginWithId(),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return PopScope(
@@ -101,7 +94,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               color: Colors.black,
                             ),
                             onPressed: () {
-                              navigateToLoginWithId();
+                              NavigateTo(context: context).toLoginWithId();
                             },
                           ),
                           const SizedBox(

@@ -78,6 +78,14 @@ class _AddExerciseState extends State<AddExercise> {
   }
 
   @override
+  void dispose() {
+    nameController.dispose();
+    typeController.dispose();
+    descriptionController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(

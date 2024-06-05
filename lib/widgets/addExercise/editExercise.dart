@@ -109,6 +109,14 @@ class _EditExerciseState extends State<EditExercise> {
   }
 
   @override
+  void dispose() {
+    nameController.dispose();
+    typeController.dispose();
+    descriptionController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -119,7 +127,7 @@ class _EditExerciseState extends State<EditExercise> {
           icon: const Icon(Icons.arrow_back_ios_new_rounded),
         ),
         title: const Text(
-          "Create Exercise",
+          "Edit Exercise",
           style: TextStyle(
             fontSize: 25,
             fontWeight: FontWeight.w700,

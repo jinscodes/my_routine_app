@@ -1,10 +1,12 @@
+// ignore_for_file: use_build_context_synchronously, avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:workout_app/common/color.dart';
 import 'package:workout_app/common/login_text_field.dart';
 import 'package:workout_app/common/next_button.dart';
-import 'package:workout_app/screens/login_screen.dart';
 import 'package:workout_app/utilities/api.dart';
 import 'package:workout_app/utilities/complete_page.dart';
+import 'package:workout_app/utilities/navigate.dart';
 import 'package:workout_app/utilities/snackbar.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -37,11 +39,9 @@ class _SignupScreenState extends State<SignupScreen> {
         _navigateToCompleteSignup();
       } else {
         // will do
-        // ignore: avoid_print
         print("fail");
       }
     } catch (e) {
-      // ignore: avoid_print
       print("Err_signup: $e");
 
       return Snackbar(
@@ -64,25 +64,19 @@ class _SignupScreenState extends State<SignupScreen> {
     );
   }
 
-  void _navigateToLoginWithId() {
-    Navigator.of(context).pop();
-  }
-
   void _navigateToLogin() {
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const LoginScreen(),
-      ),
-    );
+    NavigateTo(
+      context: context,
+    ).toLogin();
   }
 
-  // @override
-  // void dispose() {
-  //   idController.dispose();
-  //   pwController.dispose();
-  //   super.dispose();
-  // }
+  @override
+  void dispose() {
+    nameController.dispose();
+    idController.dispose();
+    pwController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +85,7 @@ class _SignupScreenState extends State<SignupScreen> {
         elevation: 2.0,
         backgroundColor: Colors.white,
         leading: IconButton(
-          onPressed: () => _navigateToLoginWithId(),
+          onPressed: () => Navigator.of(context).pop(),
           icon: const Icon(Icons.arrow_back_ios_new_rounded),
         ),
         title: const Text(

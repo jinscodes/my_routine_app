@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:workout_app/common/color.dart';
 import 'package:workout_app/common/login_text_field.dart';
 import 'package:workout_app/common/next_button.dart';
-import 'package:workout_app/screens/signup_screen.dart';
 import 'package:workout_app/utilities/api.dart';
 import 'package:workout_app/utilities/manageLoginToken.dart';
 import 'package:workout_app/utilities/navigate.dart';
@@ -51,19 +50,6 @@ class _LoginWithIdState extends State<LoginWithId> {
     }
   }
 
-  _navigateToSignup() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const SignupScreen(),
-      ),
-    );
-  }
-
-  _navigateToLogin() {
-    Navigator.of(context).pop();
-  }
-
   @override
   void dispose() {
     idController.dispose();
@@ -78,7 +64,7 @@ class _LoginWithIdState extends State<LoginWithId> {
         elevation: 2.0,
         backgroundColor: Colors.white,
         leading: IconButton(
-          onPressed: () => _navigateToLogin(),
+          onPressed: () => Navigator.of(context).pop(),
           icon: const Icon(Icons.arrow_back_ios_new_rounded),
         ),
         title: const Text(
@@ -134,7 +120,7 @@ class _LoginWithIdState extends State<LoginWithId> {
                       children: [
                         TextButton(
                           onPressed: () {
-                            _navigateToSignup();
+                            NavigateTo(context: context).toSignup();
                           },
                           child: const Text(
                             "Don't have account? Let's create!",
