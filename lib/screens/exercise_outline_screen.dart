@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:workout_app/common/appbar_icon_button.dart';
 import 'package:workout_app/common/color.dart';
 import 'package:workout_app/provider/work_provider.dart';
-import 'package:workout_app/screens/home_screen.dart';
 import 'package:workout_app/utilities/navigate.dart';
 import 'package:workout_app/utilities/snackbar.dart';
 import 'package:workout_app/utilities/stringToExerciseType.dart';
@@ -72,21 +71,20 @@ class _ExerciseOutlineScreenState extends State<ExerciseOutlineScreen> {
     ).push();
   }
 
-  void _navigateToPreviousScreen() {
-    Navigate(
-      context: context,
-      builder: (context) => ChangeNotifierProvider(
-        create: (_) => ExerciseProvider(),
-        child: const HomeScreen(),
-      ),
-    ).push();
-  }
+  // void _navigateToPreviousScreen() {
+  //   Navigate(
+  //     context: context,
+  //     builder: (context) => ChangeNotifierProvider(
+  //       create: (_) => ExerciseProvider(),
+  //       child: const HomeScreen(),
+  //     ),
+  //   ).push();
+  // }
 
   @override
   Widget build(BuildContext context) {
     return PopScope(
-      canPop: true,
-      onPopInvoked: (didPop) => _navigateToPreviousScreen(),
+      canPop: false,
       child: Scaffold(
         backgroundColor: ColorTheme.mainBlue,
         appBar: AppBar(
@@ -101,7 +99,12 @@ class _ExerciseOutlineScreenState extends State<ExerciseOutlineScreen> {
               children: [
                 Flexible(
                   child: AppbarIconButton(
-                    handleClick: () => _navigateToPreviousScreen(),
+                    handleClick: () {
+                      NavigateTo(
+                        context: context,
+                        type: NavigateType.push,
+                      ).toHome();
+                    },
                     icon: Icons.arrow_back_ios_new_rounded,
                   ),
                 ),
