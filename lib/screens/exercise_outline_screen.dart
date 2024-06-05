@@ -71,16 +71,6 @@ class _ExerciseOutlineScreenState extends State<ExerciseOutlineScreen> {
     ).push();
   }
 
-  // void _navigateToPreviousScreen() {
-  //   Navigate(
-  //     context: context,
-  //     builder: (context) => ChangeNotifierProvider(
-  //       create: (_) => ExerciseProvider(),
-  //       child: const HomeScreen(),
-  //     ),
-  //   ).push();
-  // }
-
   @override
   Widget build(BuildContext context) {
     return PopScope(

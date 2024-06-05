@@ -1,12 +1,9 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:workout_app/common/color.dart';
 import 'package:workout_app/common/login_text_field.dart';
 import 'package:workout_app/common/next_button.dart';
-import 'package:workout_app/provider/work_provider.dart';
-import 'package:workout_app/screens/home_screen.dart';
 import 'package:workout_app/screens/signup_screen.dart';
 import 'package:workout_app/utilities/api.dart';
 import 'package:workout_app/utilities/manageLoginToken.dart';
@@ -38,13 +35,10 @@ class _LoginWithIdState extends State<LoginWithId> {
 
       await setLoginToken(token);
 
-      Navigate(
+      NavigateTo(
         context: context,
-        builder: (context) => ChangeNotifierProvider(
-          create: (_) => ExerciseProvider(),
-          child: const HomeScreen(),
-        ),
-      ).pushReplacement();
+        type: NavigateType.pushRep,
+      ).toHome();
     } catch (e) {
       // ignore: avoid_print
       print("Err: $e");

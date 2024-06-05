@@ -1,11 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:workout_app/provider/work_provider.dart';
-import 'package:workout_app/screens/home_screen.dart';
 import 'package:workout_app/screens/login_screen.dart';
 import 'package:workout_app/utilities/manageLoginToken.dart';
+import 'package:workout_app/utilities/navigate.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -29,15 +27,10 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(
       const Duration(seconds: 3),
       () {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => ChangeNotifierProvider(
-              create: (_) => ExerciseProvider(),
-              child: const HomeScreen(),
-            ),
-          ),
-        );
+        NavigateTo(
+          context: context,
+          type: NavigateType.pushRep,
+        ).toHome();
       },
     );
   }
