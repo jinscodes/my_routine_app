@@ -4,6 +4,7 @@ import 'package:workout_app/provider/work_provider.dart';
 import 'package:workout_app/screens/home_screen.dart';
 import 'package:workout_app/screens/login_screen.dart';
 import 'package:workout_app/screens/signup_screen.dart';
+import 'package:workout_app/utilities/complete_page.dart';
 import 'package:workout_app/widgets/addExercise/addExercise.dart';
 import 'package:workout_app/widgets/addExercise/editExercise.dart';
 import 'package:workout_app/widgets/login/login_with_id.dart';
@@ -47,6 +48,18 @@ class Navigate {
   void pop() {
     Navigator.of(context).pop();
   }
+
+  void completePage(Function navigateTo) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => CompletePage(
+          navigator: navigateTo,
+          buttonTitle: "Next",
+        ),
+      ),
+    );
+  }
 }
 
 class NavigateTo {
@@ -59,18 +72,6 @@ class NavigateTo {
     this.type,
     this.params,
   });
-
-  // void completePage(NavigateType type, Widget page) {
-  //   if (type == NavigateType.push) {
-  //     Navigate(
-  //       context: context,
-  //       builder: (_) => CompletePage(
-  //         navigator: page,
-  //         buttonTitle: "Login",
-  //       ),
-  //     ).push();
-  //   }
-  // }
 
   void toLogin() {
     Navigate(

@@ -57,17 +57,13 @@ class _SignupScreenState extends State<SignupScreen> {
       context,
       MaterialPageRoute(
         builder: (context) => CompletePage(
-          navigator: _navigateToLogin,
+          navigator: () => NavigateTo(
+            context: context,
+          ).toLogin(),
           buttonTitle: "Login",
         ),
       ),
     );
-  }
-
-  void _navigateToLogin() {
-    NavigateTo(
-      context: context,
-    ).toLogin();
   }
 
   @override
