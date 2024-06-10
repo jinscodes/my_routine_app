@@ -14,6 +14,10 @@ enum NavigateType {
   pushRep,
 }
 
+enum CompleteType {
+  complete,
+}
+
 class Navigate {
   BuildContext context;
   WidgetBuilder? builder;
@@ -65,6 +69,7 @@ class Navigate {
 class NavigateTo {
   BuildContext context;
   NavigateType? type;
+
   Map<dynamic, dynamic>? params;
 
   NavigateTo({
