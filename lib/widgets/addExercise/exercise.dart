@@ -49,12 +49,15 @@ class _ExerciseState extends State<Exercise> {
             context: context,
             builder: (_) {
               return AlertDialog(
-                title: const Center(
-                  child: Text(
-                    "Delete",
-                    style: TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.w500,
+                title: const SizedBox(
+                  height: 50,
+                  child: Center(
+                    child: Text(
+                      "Delete",
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                 ),
@@ -71,6 +74,7 @@ class _ExerciseState extends State<Exercise> {
                   TextButton(
                     onPressed: () {
                       provider.deleteItem(index, id);
+                      Navigator.of(context).pop();
                     },
                     child: const Text("Yes"),
                   ),
