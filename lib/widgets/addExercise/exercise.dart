@@ -44,8 +44,40 @@ class _ExerciseState extends State<Exercise> {
         String description = provider.list[index]["description"];
         int id = provider.list[index]["id"];
 
-        void deleteItemCallback(index, id) {
-          provider.deleteItem(index, id);
+        Future<void> deleteItemCallback(index, id) {
+          return showDialog(
+            context: context,
+            builder: (_) {
+              return AlertDialog(
+                title: const Center(
+                  child: Text(
+                    "Delete",
+                    style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+                content: const Text(
+                  "Are you sure you want to delete this item?",
+                ),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: const Text("Cancel"),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      provider.deleteItem(index, id);
+                    },
+                    child: const Text("Yes"),
+                  ),
+                ],
+              );
+            },
+          );
         }
 
         return Container(
