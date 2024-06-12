@@ -256,7 +256,7 @@ class User extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Hi, $username 👋🏻",
+                      "Hi, ${username!.substring(1, 10)} 👋🏻",
                       style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w800,
