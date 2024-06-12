@@ -68,6 +68,8 @@ class PostApi {
       data: body,
     );
 
+    print(res);
+
     return res.data;
   }
 }

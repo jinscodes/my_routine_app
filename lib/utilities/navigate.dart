@@ -15,7 +15,7 @@ enum NavigateType {
 }
 
 enum CompleteType {
-  complete,
+  isComplete,
 }
 
 class Navigate {
@@ -69,7 +69,6 @@ class Navigate {
 class NavigateTo {
   BuildContext context;
   NavigateType? type;
-
   Map<dynamic, dynamic>? params;
 
   NavigateTo({

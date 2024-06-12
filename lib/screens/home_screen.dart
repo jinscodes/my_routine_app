@@ -13,6 +13,22 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  String? username;
+
+  @override
+  void initState() {
+    super.initState();
+    getName();
+  }
+
+  Future<void> getName() async {
+    String? loginToken = await getLoginToken();
+
+    setState(() {
+      username = loginToken;
+    });
+  }
+
   void logout() {
     removeLoginToken("login_token");
 
@@ -60,7 +76,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 decoration: const BoxDecoration(
                   color: Colors.green,
                 ),
-                child: const User(),
+                child: User(
+                  username: username,
+                ),
               ),
             ),
             Flexible(
@@ -210,8 +228,11 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 class User extends StatelessWidget {
+  final String? username;
+
   const User({
     super.key,
+    required this.username,
   });
 
   @override
@@ -234,9 +255,9 @@ class User extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      "Hi, Name 👋🏻",
-                      style: TextStyle(
+                    Text(
+                      "Hi, $username 👋🏻",
+                      style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w800,
                       ),

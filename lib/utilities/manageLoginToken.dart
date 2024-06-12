@@ -6,15 +6,16 @@ setLoginToken(String loginToken) async {
   await prefs.setString("login_token", loginToken);
 }
 
-getLoginToken() async {
+Future<String?> getLoginToken() async {
   final SharedPreferences prefs = await SharedPreferences.getInstance();
   final String? loginToken = prefs.getString("login_token");
 
   return loginToken;
 }
 
-removeLoginToken(String key) async {
+Future<String?> removeLoginToken(String key) async {
   final SharedPreferences prefs = await SharedPreferences.getInstance();
 
   await prefs.remove(key);
+  return null;
 }
