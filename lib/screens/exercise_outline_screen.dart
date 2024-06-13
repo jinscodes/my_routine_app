@@ -63,11 +63,10 @@ class _ExerciseOutlineScreenState extends State<ExerciseOutlineScreen> {
                 Flexible(
                   child: AppbarIconButton(
                     handleClick: () {
-                      Navigator.of(context).pop();
-                      // NavigateTo(
-                      //   context: context,
-                      //   type: NavigateType.push,
-                      // ).toHome();
+                      NavigateTo(
+                        context: context,
+                        type: NavigateType.push,
+                      ).toHome();
                     },
                     icon: Icons.arrow_back_ios_new_rounded,
                   ),

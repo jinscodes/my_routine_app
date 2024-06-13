@@ -123,7 +123,7 @@ class _EditExerciseState extends State<EditExercise> {
         elevation: 2.0,
         backgroundColor: Colors.white,
         leading: IconButton(
-          onPressed: () => Navigate(context: context).pop(),
+          onPressed: () => Navigator.of(context).pop(),
           icon: const Icon(Icons.arrow_back_ios_new_rounded),
         ),
         title: const Text(
