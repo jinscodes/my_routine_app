@@ -19,6 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     getName();
+    print(username);
   }
 
   Future<void> getName() async {
@@ -256,7 +257,7 @@ class User extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Hi, ${username!.substring(1, 10)} 👋🏻",
+                      "Hi, ${username?.substring(0, 10)} 👋🏻",
                       style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w800,

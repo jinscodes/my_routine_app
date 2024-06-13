@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:workout_app/provider/work_provider.dart';
 import 'package:workout_app/screens/home_screen.dart';
 import 'package:workout_app/screens/login_screen.dart';
+import 'package:workout_app/screens/routine_outline_screen.dart';
 import 'package:workout_app/screens/signup_screen.dart';
 import 'package:workout_app/utilities/complete_page.dart';
 import 'package:workout_app/widgets/addExercise/addExercise.dart';
@@ -76,6 +77,13 @@ class NavigateTo {
     this.type,
     this.params,
   });
+
+  void toExerciseOutline() {
+    Navigate(
+      context: context,
+      builder: (_) => const RoutineOutlineScreen(),
+    ).push();
+  }
 
   void toLogin() {
     Navigate(

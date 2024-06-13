@@ -97,7 +97,12 @@ class _ExerciseState extends State<Exercise> {
             minVerticalPadding: 0.0,
             trailing: widget.isEdit
                 ? IconButton(
-                    onPressed: () => navigateToEdit(),
+                    onPressed: () {
+                      navigateToEdit();
+                      setState(() {
+                        isEdit = false;
+                      });
+                    },
                     icon: const Icon(
                       Icons.edit,
                     ),

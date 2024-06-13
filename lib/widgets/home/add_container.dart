@@ -80,7 +80,11 @@ class _AddContainerState extends State<AddContainer> {
         ),
         Flexible(
           child: ElevatedButton(
-            onPressed: () => _navigateToRoutineOutline(),
+            onPressed: () {
+              NavigateTo(
+                context: context,
+              ).toExerciseOutline();
+            },
             style: ElevatedButton.styleFrom(
               elevation: 0,
               minimumSize: Size(MediaQuery.of(context).size.width, 78),
