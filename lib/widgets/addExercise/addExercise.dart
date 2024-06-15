@@ -53,7 +53,6 @@ class _AddExerciseState extends State<AddExercise> {
           context: context,
           builder: (_) => CompletePage(
             navigator: () => NavigateTo(context: context).toExerciseOutline(),
-            buttonTitle: 'Home',
           ),
         ).push();
       }

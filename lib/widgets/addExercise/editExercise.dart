@@ -79,7 +79,6 @@ class _EditExerciseState extends State<EditExercise> {
           context: context,
           builder: (_) => CompletePage(
             navigator: () => NavigateTo(context: context).toExerciseOutline(),
-            buttonTitle: 'Next',
           ),
         ).push();
       }

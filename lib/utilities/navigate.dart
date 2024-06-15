@@ -5,6 +5,7 @@ import 'package:workout_app/screens/exercise_outline_screen.dart';
 import 'package:workout_app/screens/home_screen.dart';
 import 'package:workout_app/screens/login_screen.dart';
 import 'package:workout_app/screens/signup_screen.dart';
+import 'package:workout_app/utilities/complete_page.dart';
 import 'package:workout_app/widgets/addExercise/addExercise.dart';
 import 'package:workout_app/widgets/addExercise/editExercise.dart';
 import 'package:workout_app/widgets/login/login_with_id.dart';
@@ -77,10 +78,22 @@ class NavigateTo {
   }
 
   void toLogin() {
-    Navigate(
-      context: context,
-      builder: (_) => const LoginScreen(),
-    ).pushReplacement();
+    if (type == NavigateType.complete) {
+      Navigate(
+        context: context,
+        builder: (context) => CompletePage(
+          navigator: () => Navigate(
+            context: context,
+            builder: (_) => const LoginScreen(),
+          ).pushReplacement(),
+        ),
+      ).push();
+    } else {
+      Navigate(
+        context: context,
+        builder: (_) => const LoginScreen(),
+      ).pushReplacement();
+    }
   }
 
   void toLoginWithId() {

@@ -34,19 +34,16 @@ class _LoginWithIdState extends State<LoginWithId> {
 
       await setLoginToken(token);
 
-      NavigateTo(
-        context: context,
-        type: NavigateType.pushRep,
-      ).toHome();
+      NavigateTo(context: context).toHome();
     } catch (e) {
       // ignore: avoid_print
       print("Err: $e");
 
       Snackbar(
-              type: SnackbarType.error,
-              context: context,
-              content: "Login failed 🥲")
-          .showSnackBar();
+        type: SnackbarType.error,
+        context: context,
+        content: "Login failed 🥲",
+      ).showSnackBar();
     }
   }
 

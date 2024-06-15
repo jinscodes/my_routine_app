@@ -5,7 +5,6 @@ import 'package:workout_app/common/color.dart';
 import 'package:workout_app/common/login_text_field.dart';
 import 'package:workout_app/common/next_button.dart';
 import 'package:workout_app/utilities/api.dart';
-import 'package:workout_app/utilities/complete_page.dart';
 import 'package:workout_app/utilities/navigate.dart';
 import 'package:workout_app/utilities/snackbar.dart';
 
@@ -36,7 +35,10 @@ class _SignupScreenState extends State<SignupScreen> {
       ).postData();
 
       if (res["userId"] != null) {
-        _navigateToCompleteSignup();
+        NavigateTo(
+          context: context,
+          type: NavigateType.complete,
+        ).toLogin();
       } else {
         // will do
         print("fail");
@@ -45,25 +47,11 @@ class _SignupScreenState extends State<SignupScreen> {
       print("Err_signup: $e");
 
       return Snackbar(
-              type: SnackbarType.error,
-              context: context,
-              content: "Signup failed 🥲")
-          .showSnackBar();
+        type: SnackbarType.error,
+        context: context,
+        content: "Signup failed 🥲",
+      ).showSnackBar();
     }
-  }
-
-  void _navigateToCompleteSignup() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => CompletePage(
-          navigator: () => NavigateTo(
-            context: context,
-          ).toLogin(),
-          buttonTitle: "Login",
-        ),
-      ),
-    );
   }
 
   @override
