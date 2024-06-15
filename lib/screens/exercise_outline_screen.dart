@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:workout_app/common/appbar_icon_button.dart';
 import 'package:workout_app/common/color.dart';
 import 'package:workout_app/provider/work_provider.dart';
+import 'package:workout_app/screens/home_screen.dart';
 import 'package:workout_app/utilities/navigate.dart';
 import 'package:workout_app/utilities/snackbar.dart';
 import 'package:workout_app/utilities/stringToExerciseType.dart';
@@ -44,6 +45,26 @@ class _ExerciseOutlineScreenState extends State<ExerciseOutlineScreen> {
     }
   }
 
+  Route _createRoute() {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) =>
+          const HomeScreen(),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        const begin = Offset(-1.0, 0.0);
+        const end = Offset.zero;
+        const curve = Curves.ease;
+
+        var tween =
+            Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+        return SlideTransition(
+          position: animation.drive(tween),
+          child: child,
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return PopScope(
@@ -63,10 +84,11 @@ class _ExerciseOutlineScreenState extends State<ExerciseOutlineScreen> {
                 Flexible(
                   child: AppbarIconButton(
                     handleClick: () {
-                      NavigateTo(
-                        context: context,
-                        type: NavigateType.push,
-                      ).toHome();
+                      // NavigateTo(
+                      //   context: context,
+                      //   type: NavigateType.push,
+                      // ).toHome();
+                      Navigator.of(context).push(_createRoute());
                     },
                     icon: Icons.arrow_back_ios_new_rounded,
                   ),
