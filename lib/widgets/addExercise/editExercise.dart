@@ -6,7 +6,6 @@ import 'package:workout_app/common/color.dart';
 import 'package:workout_app/common/login_text_field.dart';
 import 'package:workout_app/common/next_button.dart';
 import 'package:workout_app/provider/work_provider.dart';
-import 'package:workout_app/screens/exercise_outline_screen.dart';
 import 'package:workout_app/utilities/api.dart';
 import 'package:workout_app/utilities/complete_page.dart';
 import 'package:workout_app/utilities/navigate.dart';
@@ -79,7 +78,7 @@ class _EditExerciseState extends State<EditExercise> {
         Navigate(
           context: context,
           builder: (_) => CompletePage(
-            navigator: _navigateToOutline,
+            navigator: () => NavigateTo(context: context).toExerciseOutline(),
             buttonTitle: 'Next',
           ),
         ).push();
@@ -94,18 +93,6 @@ class _EditExerciseState extends State<EditExercise> {
         content: "Adding exercise failed 🥲",
       ).showSnackBar();
     }
-  }
-
-  void _navigateToOutline() {
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (context) => ChangeNotifierProvider(
-          create: (_) => ExerciseProvider(),
-          child: const ExerciseOutlineScreen(),
-        ),
-      ),
-    );
   }
 
   @override
@@ -123,7 +110,7 @@ class _EditExerciseState extends State<EditExercise> {
         elevation: 2.0,
         backgroundColor: Colors.white,
         leading: IconButton(
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () => Navigate(context: context).pop(),
           icon: const Icon(Icons.arrow_back_ios_new_rounded),
         ),
         title: const Text(

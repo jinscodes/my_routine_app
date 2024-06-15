@@ -1,12 +1,9 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:workout_app/common/color.dart';
 import 'package:workout_app/common/login_text_field.dart';
 import 'package:workout_app/common/next_button.dart';
-import 'package:workout_app/provider/work_provider.dart';
-import 'package:workout_app/screens/exercise_outline_screen.dart';
 import 'package:workout_app/utilities/api.dart';
 import 'package:workout_app/utilities/complete_page.dart';
 import 'package:workout_app/utilities/navigate.dart';
@@ -55,7 +52,7 @@ class _AddExerciseState extends State<AddExercise> {
         Navigate(
           context: context,
           builder: (_) => CompletePage(
-            navigator: _navigateToHome,
+            navigator: () => NavigateTo(context: context).toExerciseOutline(),
             buttonTitle: 'Home',
           ),
         ).push();
@@ -70,16 +67,6 @@ class _AddExerciseState extends State<AddExercise> {
         content: "Adding exercise failed 🥲",
       ).showSnackBar();
     }
-  }
-
-  void _navigateToHome() {
-    Navigate(
-      context: context,
-      builder: (context) => ChangeNotifierProvider(
-        create: (_) => ExerciseProvider(),
-        child: const ExerciseOutlineScreen(),
-      ),
-    ).pushReplacement();
   }
 
   @override

@@ -48,7 +48,10 @@ class _ExerciseOutlineScreenState extends State<ExerciseOutlineScreen> {
   Route _createRoute() {
     return PageRouteBuilder(
       pageBuilder: (context, animation, secondaryAnimation) =>
-          const HomeScreen(),
+          ChangeNotifierProvider(
+        create: (_) => ExerciseProvider(),
+        child: const HomeScreen(),
+      ),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         const begin = Offset(-1.0, 0.0);
         const end = Offset.zero;
@@ -84,10 +87,6 @@ class _ExerciseOutlineScreenState extends State<ExerciseOutlineScreen> {
                 Flexible(
                   child: AppbarIconButton(
                     handleClick: () {
-                      // NavigateTo(
-                      //   context: context,
-                      //   type: NavigateType.push,
-                      // ).toHome();
                       Navigator.of(context).push(_createRoute());
                     },
                     icon: Icons.arrow_back_ios_new_rounded,

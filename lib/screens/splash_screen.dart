@@ -16,32 +16,20 @@ class _SplashScreenState extends State<SplashScreen> {
     String? loginToken = await getLoginToken();
 
     if (loginToken == null || loginToken.isEmpty) {
-      return _navigateToLogin();
+      return throughTimer(
+        () => NavigateTo(context: context).toLogin(),
+      );
     } else {
-      return _navigateToHome();
+      return throughTimer(
+        () => NavigateTo(context: context).toHome(),
+      );
     }
   }
 
-  _navigateToHome() {
+  void throughTimer(Function navigate) {
     Timer(
       const Duration(seconds: 2),
-      () {
-        NavigateTo(
-          context: context,
-          type: NavigateType.pushRep,
-        ).toHome();
-      },
-    );
-  }
-
-  _navigateToLogin() {
-    Timer(
-      const Duration(seconds: 2),
-      () {
-        NavigateTo(
-          context: context,
-        ).toLogin();
-      },
+      () => navigate(),
     );
   }
 
@@ -49,7 +37,6 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     _checkLoginToken();
-    _navigateToLogin();
   }
 
   @override
