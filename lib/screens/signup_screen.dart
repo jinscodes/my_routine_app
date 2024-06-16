@@ -58,8 +58,8 @@ class _SignupScreenState extends State<SignupScreen> {
   void idDoubleCheck() async {
     try {
       Response res = await GetApi(apiUrl: "/id/exists/$idController").getData();
-      bool isDuplicated = res.data["isAvailable"];
-      print(isDuplicated);
+      Map<String, dynamic> isDuplicated = res.data;
+      print("signup: $isDuplicated");
     } catch (e) {
       print("Err_signup: $e");
 

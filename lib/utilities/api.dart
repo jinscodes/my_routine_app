@@ -29,6 +29,8 @@ class GetApi {
       url,
     );
 
+    print("api: $res");
+
     return res;
   }
 }
@@ -46,7 +48,6 @@ class PostApi {
 
   Future postData() async {
     await dotenv.load(fileName: ".env");
-    // String token = await getLoginToken();
 
     String? baseUrl = dotenv.env["BASE_URL"];
 
@@ -60,15 +61,8 @@ class PostApi {
 
     Response res = await dio.post(
       url,
-      // options: Options(
-      //   headers: {
-      //     "authorization": "Bearer $token",
-      //   },
-      // ),
       data: body,
     );
-
-    print(res);
 
     return res.data;
   }
