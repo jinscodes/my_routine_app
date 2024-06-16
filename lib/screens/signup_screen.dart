@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously, avoid_print
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:workout_app/common/color.dart';
 import 'package:workout_app/common/login_text_field.dart';
@@ -43,6 +44,22 @@ class _SignupScreenState extends State<SignupScreen> {
         // will do
         print("fail");
       }
+    } catch (e) {
+      print("Err_signup: $e");
+
+      return Snackbar(
+        type: SnackbarType.error,
+        context: context,
+        content: "Signup failed 🥲",
+      ).showSnackBar();
+    }
+  }
+
+  void idDoubleCheck() async {
+    try {
+      Response res = await GetApi(apiUrl: "/id/exists/$idController").getData();
+      bool isDuplicated = res.data["isAvailable"];
+      print(isDuplicated);
     } catch (e) {
       print("Err_signup: $e");
 
@@ -135,7 +152,8 @@ class _SignupScreenState extends State<SignupScreen> {
                       NextButton(
                         content: "Next",
                         handlePressed: () {
-                          _signupValidation();
+                          idDoubleCheck();
+                          // _signupValidation();
                         },
                       ),
                     ],
