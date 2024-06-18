@@ -67,7 +67,7 @@ class _SignupScreenState extends State<SignupScreen> {
       return Snackbar(
         type: SnackbarType.error,
         context: context,
-        content: "Signup failed 🥲",
+        content: "This id already exists 🥲",
       ).showSnackBar();
     }
   }
@@ -137,6 +137,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           controller: pwController,
                           title: "PW",
                           isError: isError,
+                          type: "password",
                         ),
                       ],
                     ),
