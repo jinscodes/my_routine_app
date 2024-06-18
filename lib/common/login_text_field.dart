@@ -5,12 +5,16 @@ class LoginTextField extends StatefulWidget {
   final String title;
   final TextEditingController controller;
   final bool isError;
+  final String? type;
+  final bool? isDoublecheckNeeded;
 
   const LoginTextField({
     super.key,
     required this.controller,
     required this.title,
     required this.isError,
+    this.type,
+    this.isDoublecheckNeeded,
   });
 
   @override
@@ -21,6 +25,7 @@ class _LoginTextFieldState extends State<LoginTextField> {
   late TextEditingController controller;
   late String title;
   late bool isError;
+  late String? type;
   bool isText = false;
 
   void handleChange(String word) {
@@ -47,6 +52,7 @@ class _LoginTextFieldState extends State<LoginTextField> {
     controller = widget.controller;
     title = widget.title;
     isError = widget.isError;
+    type = widget.type;
     super.initState();
   }
 
@@ -68,6 +74,7 @@ class _LoginTextFieldState extends State<LoginTextField> {
         ),
         TextField(
           controller: controller,
+          obscureText: type == "password" ? true : false,
           onChanged: (value) {
             handleChange(value);
           },
@@ -78,15 +85,43 @@ class _LoginTextFieldState extends State<LoginTextField> {
           decoration: InputDecoration(
             suffixIcon: controller.text.isEmpty
                 ? null
-                : IconButton(
-                    onPressed: () {
-                      resetText(controller);
-                    },
-                    icon: const Icon(
-                      Icons.cancel_rounded,
-                      color: ColorTheme.gray,
-                    ),
-                  ),
+                : type == "password"
+                    ? SizedBox(
+                        width: 100,
+                        child: Row(
+                          children: [
+                            IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  type = null;
+                                });
+                              },
+                              icon: const Icon(
+                                Icons.remove_red_eye,
+                                color: ColorTheme.gray,
+                              ),
+                            ),
+                            IconButton(
+                              onPressed: () {
+                                resetText(controller);
+                              },
+                              icon: const Icon(
+                                Icons.cancel_rounded,
+                                color: ColorTheme.gray,
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                    : IconButton(
+                        onPressed: () {
+                          resetText(controller);
+                        },
+                        icon: const Icon(
+                          Icons.cancel_rounded,
+                          color: ColorTheme.gray,
+                        ),
+                      ),
             hintText: "Enter your ${title.toLowerCase()}",
             hintStyle: const TextStyle(
               color: ColorTheme.gray,
