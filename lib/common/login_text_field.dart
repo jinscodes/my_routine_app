@@ -74,7 +74,7 @@ class _LoginTextFieldState extends State<LoginTextField> {
         ),
         TextField(
           controller: controller,
-          obscureText: type == "password" ? true : false,
+          obscureText: type?.contains("open") == true ? true : false,
           onChanged: (value) {
             handleChange(value);
           },
@@ -85,34 +85,62 @@ class _LoginTextFieldState extends State<LoginTextField> {
           decoration: InputDecoration(
             suffixIcon: controller.text.isEmpty
                 ? null
-                : type == "password"
-                    ? SizedBox(
-                        width: 100,
-                        child: Row(
-                          children: [
-                            IconButton(
-                              onPressed: () {
-                                setState(() {
-                                  type = null;
-                                });
-                              },
-                              icon: const Icon(
-                                Icons.remove_red_eye,
-                                color: ColorTheme.gray,
-                              ),
+                : type?.contains("password") == true
+                    ? type?.contains("close") == false
+                        ? SizedBox(
+                            width: 100,
+                            child: Row(
+                              children: [
+                                IconButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      type = "password close";
+                                    });
+                                  },
+                                  icon: const Icon(
+                                    Icons.visibility,
+                                    color: ColorTheme.gray,
+                                  ),
+                                ),
+                                IconButton(
+                                  onPressed: () {
+                                    resetText(controller);
+                                  },
+                                  icon: const Icon(
+                                    Icons.cancel_rounded,
+                                    color: ColorTheme.gray,
+                                  ),
+                                ),
+                              ],
                             ),
-                            IconButton(
-                              onPressed: () {
-                                resetText(controller);
-                              },
-                              icon: const Icon(
-                                Icons.cancel_rounded,
-                                color: ColorTheme.gray,
-                              ),
+                          )
+                        : SizedBox(
+                            width: 100,
+                            child: Row(
+                              children: [
+                                IconButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      type = "password open";
+                                    });
+                                  },
+                                  icon: const Icon(
+                                    Icons.visibility_off,
+                                    color: ColorTheme.gray,
+                                  ),
+                                ),
+                                IconButton(
+                                  onPressed: () {
+                                    resetText(controller);
+                                  },
+                                  icon: const Icon(
+                                    Icons.cancel_rounded,
+                                    color: ColorTheme.gray,
+                                  ),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                      )
+                          )
                     : IconButton(
                         onPressed: () {
                           resetText(controller);
