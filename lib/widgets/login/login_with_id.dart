@@ -95,6 +95,7 @@ class _LoginWithIdState extends State<LoginWithId> {
                           controller: idController,
                           title: "ID",
                           isError: isError,
+                          type: "",
                         ),
                         const SizedBox(
                           height: 20,
@@ -103,6 +104,7 @@ class _LoginWithIdState extends State<LoginWithId> {
                           isError: isError,
                           controller: pwController,
                           title: "PW",
+                          type: "password open",
                         ),
                       ],
                     ),

@@ -117,6 +117,7 @@ class _AddExerciseState extends State<AddExercise> {
                           controller: nameController,
                           title: "NAME",
                           isError: isError,
+                          type: "",
                         ),
                         const SizedBox(
                           height: 20,
@@ -194,6 +195,7 @@ class _AddExerciseState extends State<AddExercise> {
                           isError: isError,
                           controller: descriptionController,
                           title: "DESCRIPTION",
+                          type: "",
                         ),
                       ],
                     ),

@@ -5,7 +5,7 @@ class LoginTextField extends StatefulWidget {
   final String title;
   final TextEditingController controller;
   final bool isError;
-  final String? type;
+  final String type;
   final bool? isDoublecheckNeeded;
 
   const LoginTextField({
@@ -13,7 +13,7 @@ class LoginTextField extends StatefulWidget {
     required this.controller,
     required this.title,
     required this.isError,
-    this.type,
+    required this.type,
     this.isDoublecheckNeeded,
   });
 
@@ -25,7 +25,7 @@ class _LoginTextFieldState extends State<LoginTextField> {
   late TextEditingController controller;
   late String title;
   late bool isError;
-  late String? type;
+  late String type;
   bool isText = false;
 
   void handleChange(String word) {
@@ -74,7 +74,7 @@ class _LoginTextFieldState extends State<LoginTextField> {
         ),
         TextField(
           controller: controller,
-          obscureText: type?.contains("open") == true ? true : false,
+          obscureText: type.contains("open") == true ? true : false,
           onChanged: (value) {
             handleChange(value);
           },
@@ -85,8 +85,8 @@ class _LoginTextFieldState extends State<LoginTextField> {
           decoration: InputDecoration(
             suffixIcon: controller.text.isEmpty
                 ? null
-                : type?.contains("password") == true
-                    ? type?.contains("close") == false
+                : type.contains("password") == true
+                    ? type.contains("close") == false
                         ? SizedBox(
                             width: 100,
                             child: Row(

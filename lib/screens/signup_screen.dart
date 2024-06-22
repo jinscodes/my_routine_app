@@ -121,6 +121,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           controller: nameController,
                           title: "NAME",
                           isError: isError,
+                          type: "",
                         ),
                         const SizedBox(
                           height: 20,
@@ -129,6 +130,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           controller: idController,
                           title: "ID",
                           isError: isError,
+                          type: "id",
                         ),
                         const SizedBox(
                           height: 20,
@@ -137,7 +139,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           controller: pwController,
                           title: "PW",
                           isError: isError,
-                          type: "password",
+                          type: "password open",
                         ),
                       ],
                     ),
