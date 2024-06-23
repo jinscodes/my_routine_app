@@ -69,6 +69,10 @@ class _SignupScreenState extends State<SignupScreen> {
     } catch (e) {
       print("Err_signup: $e");
 
+      setState(() {
+        isIdDoubleChecked = false;
+      });
+
       return Snackbar(
         type: SnackbarType.error,
         context: context,
@@ -134,13 +138,8 @@ class _SignupScreenState extends State<SignupScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Container(
+                            SizedBox(
                               width: MediaQuery.of(context).size.width / 1.7,
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  width: 1,
-                                ),
-                              ),
                               child: LoginTextField(
                                 controller: idController,
                                 title: "ID",
@@ -148,32 +147,27 @@ class _SignupScreenState extends State<SignupScreen> {
                                 type: "id doublecheck",
                               ),
                             ),
-                            Container(
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  width: 1,
-                                ),
-                              ),
-                              child: Row(
-                                children: [
-                                  isIdDoubleChecked
-                                      ? const Icon(
-                                          Icons.check_circle_outline_outlined,
-                                        )
-                                      : const Icon(
-                                          Icons.cancel_outlined,
-                                        ),
-                                  SizedBox(
-                                    width: 70,
-                                    child: TextButton(
-                                      onPressed: () {
-                                        idDoubleCheck();
-                                      },
-                                      child: const Text("Check"),
-                                    ),
+                            Row(
+                              children: [
+                                isIdDoubleChecked
+                                    ? const Icon(
+                                        Icons.check_circle_outline_outlined,
+                                        color: Colors.green,
+                                      )
+                                    : const Icon(
+                                        Icons.cancel_outlined,
+                                        color: Colors.red,
+                                      ),
+                                SizedBox(
+                                  width: 70,
+                                  child: TextButton(
+                                    onPressed: () {
+                                      idDoubleCheck();
+                                    },
+                                    child: const Text("Check"),
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           ],
                         ),
