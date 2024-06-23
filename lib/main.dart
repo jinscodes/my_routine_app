@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:workout_app/screens/splash_screen.dart';
+import 'package:workout_app/screens/splash.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
           backgroundColor: const Color(0xFFF5F8FF),
         ),
       ),
-      home: const SplashScreen(),
+      home: const Splash(),
     );
   }
 }
