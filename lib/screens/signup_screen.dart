@@ -23,6 +23,7 @@ class _SignupScreenState extends State<SignupScreen> {
   bool isText = false;
   bool isError = false;
   bool isLoad = false;
+  bool isIdDoubleChecked = false;
 
   _signupValidation() async {
     try {
@@ -59,8 +60,12 @@ class _SignupScreenState extends State<SignupScreen> {
     try {
       Response res =
           await GetApi(apiUrl: "/id/exists/${idController.text}").getData();
-      Map<String, dynamic> isDuplicated = res.data;
-      print("signup: $isDuplicated");
+
+      if (res.data["isAvailable"] == true) {
+        setState(() {
+          isIdDoubleChecked = true;
+        });
+      }
     } catch (e) {
       print("Err_signup: $e");
 
@@ -126,11 +131,51 @@ class _SignupScreenState extends State<SignupScreen> {
                         const SizedBox(
                           height: 20,
                         ),
-                        LoginTextField(
-                          controller: idController,
-                          title: "ID",
-                          isError: isError,
-                          type: "id",
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              width: MediaQuery.of(context).size.width / 1.7,
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  width: 1,
+                                ),
+                              ),
+                              child: LoginTextField(
+                                controller: idController,
+                                title: "ID",
+                                isError: isError,
+                                type: "id doublecheck",
+                              ),
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  width: 1,
+                                ),
+                              ),
+                              child: Row(
+                                children: [
+                                  isIdDoubleChecked
+                                      ? const Icon(
+                                          Icons.check_circle_outline_outlined,
+                                        )
+                                      : const Icon(
+                                          Icons.cancel_outlined,
+                                        ),
+                                  SizedBox(
+                                    width: 70,
+                                    child: TextButton(
+                                      onPressed: () {
+                                        idDoubleCheck();
+                                      },
+                                      child: const Text("Check"),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
                         const SizedBox(
                           height: 20,
