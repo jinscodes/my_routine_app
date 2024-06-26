@@ -1,8 +1,5 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-
-import '../trash/utilities/manageLoginToken.dart';
+import 'package:workout_app/utilities/splash/check_login_token.dart';
 
 class Splash extends StatefulWidget {
   const Splash({super.key});
@@ -12,18 +9,11 @@ class Splash extends StatefulWidget {
 }
 
 class _SplashState extends State<Splash> {
-  void _checkLoginToken() async {
-    String? loginToken = await getLoginToken();
+  @override
+  void initState() {
+    super.initState();
 
-    if (loginToken == null || loginToken.isEmpty) {
-    } else {}
-  }
-
-  void throughTimer(Function navigate) {
-    Timer(
-      const Duration(seconds: 2),
-      () => navigate(),
-    );
+    checkLoginToken(context);
   }
 
   @override
