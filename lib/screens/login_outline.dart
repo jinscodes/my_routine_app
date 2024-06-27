@@ -5,10 +5,18 @@ class LoginOutline extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Center(
-          child: Text("Login outline screen"),
+    return Scaffold(
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/background.png"),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: const Center(
+          child: Column(
+            children: [],
+          ),
         ),
       ),
     );
