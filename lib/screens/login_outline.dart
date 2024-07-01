@@ -15,6 +15,8 @@ class _LoginOutlineState extends State<LoginOutline> {
 
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -28,15 +30,14 @@ class _LoginOutlineState extends State<LoginOutline> {
             children: [
               Flexible(
                 flex: 3,
-                child: Container(
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        child: slider(),
-                      ),
-                      // sliderIndicator(),
-                    ],
-                  ),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: screenHeight / 1.3,
+                      child: slider(),
+                    ),
+                    sliderIndicator(),
+                  ],
                 ),
               ),
             ],
@@ -47,16 +48,19 @@ class _LoginOutlineState extends State<LoginOutline> {
   }
 
   Widget slider() {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
     return CarouselSlider(
       carouselController: _controller,
       options: CarouselOptions(
           enableInfiniteScroll: true,
-          autoPlay: true,
+          autoPlay: false,
           autoPlayInterval: const Duration(
             seconds: 3,
           ),
           viewportFraction: 1,
-          height: MediaQuery.of(context).size.height,
+          height: screenHeight,
           onPageChanged: (index, reason) {
             setState(() {
               _current = index;
@@ -65,36 +69,121 @@ class _LoginOutlineState extends State<LoginOutline> {
             print(_current);
           }),
       items: [1, 2, 3].map((i) {
-        return Builder(
-          builder: (BuildContext context) {
-            if (i == 1) {
-              return Image.asset("assets/images/bgDecoration.png");
-            } else if (i == 2) {
-              return Image.asset("assets/images/bgDecoration3.png");
-            } else {
-              return Image.asset("assets/images/bgDecoration2.png");
-            }
-          },
+        return Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 30,
+          ),
+          child: Builder(
+            builder: (BuildContext context) {
+              if (i == 1) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Flexible(
+                      flex: 3,
+                      child: Container(
+                        alignment: Alignment.bottomCenter,
+                        child: Image.asset("assets/images/bgDecoration.png"),
+                      ),
+                    ),
+                    Flexible(
+                      flex: 1,
+                      child: Container(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "Create\nGood Habits",
+                          style: TextStyle(
+                            fontSize: screenWidth * 0.08,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+              } else if (i == 2) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Flexible(
+                      flex: 3,
+                      child: Container(
+                        alignment: Alignment.bottomCenter,
+                        child: Image.asset("assets/images/bgDecoration3.png"),
+                      ),
+                    ),
+                    Flexible(
+                      flex: 1,
+                      child: Container(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "Track\nYour Progress",
+                          style: TextStyle(
+                            fontSize: screenWidth * 0.08,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+              } else {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Flexible(
+                      flex: 3,
+                      child: Container(
+                        alignment: Alignment.bottomCenter,
+                        child: Image.asset("assets/images/bgDecoration2.png"),
+                      ),
+                    ),
+                    Flexible(
+                      flex: 1,
+                      child: Container(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "Track\nYour Progress",
+                          style: TextStyle(
+                            fontSize: screenWidth * 0.08,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+              }
+            },
+          ),
         );
       }).toList(),
     );
   }
 
   Widget sliderIndicator() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        for (int i = 0; i < 3; i++)
-          Container(
-            height: 12,
-            width: 12,
-            margin: const EdgeInsets.all(5),
-            decoration: BoxDecoration(
-              color: _current == i ? ColorTheme.infoBlue : Colors.white,
-              shape: BoxShape.circle,
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 30,
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          for (int i = 0; i < 3; i++)
+            Container(
+              height: 12,
+              width: 12,
+              margin: const EdgeInsets.all(5),
+              decoration: BoxDecoration(
+                color: _current == i ? ColorTheme.infoBlue : Colors.white,
+                shape: BoxShape.circle,
+              ),
             ),
-          ),
-      ],
+        ],
+      ),
     );
   }
 }
