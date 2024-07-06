@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:workout_app/trash/common/color.dart';
+import 'package:workout_app/widgets/login_outline/slide_content.dart';
 
 class LoginOutline extends StatefulWidget {
   const LoginOutline({super.key});
@@ -65,8 +66,6 @@ class _LoginOutlineState extends State<LoginOutline> {
             setState(() {
               _current = index;
             });
-
-            print(_current);
           }),
       items: [1, 2, 3].map((i) {
         return Padding(
@@ -76,85 +75,19 @@ class _LoginOutlineState extends State<LoginOutline> {
           child: Builder(
             builder: (BuildContext context) {
               if (i == 1) {
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Flexible(
-                      flex: 3,
-                      child: Container(
-                        alignment: Alignment.bottomCenter,
-                        child: Image.asset("assets/images/bgDecoration.png"),
-                      ),
-                    ),
-                    Flexible(
-                      flex: 1,
-                      child: Container(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Create\nGood Habits",
-                          style: TextStyle(
-                            fontSize: screenWidth * 0.08,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+                return const SlideContent(
+                  content: "Create\nGood Habits",
+                  ImagePath: "assets/images/bgDecoration.png",
                 );
               } else if (i == 2) {
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Flexible(
-                      flex: 3,
-                      child: Container(
-                        alignment: Alignment.bottomCenter,
-                        child: Image.asset("assets/images/bgDecoration3.png"),
-                      ),
-                    ),
-                    Flexible(
-                      flex: 1,
-                      child: Container(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Track\nYour Progress",
-                          style: TextStyle(
-                            fontSize: screenWidth * 0.08,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+                return const SlideContent(
+                  content: "Trace\nYour Progress",
+                  ImagePath: "assets/images/bgDecoration2.png",
                 );
               } else {
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Flexible(
-                      flex: 3,
-                      child: Container(
-                        alignment: Alignment.bottomCenter,
-                        child: Image.asset("assets/images/bgDecoration2.png"),
-                      ),
-                    ),
-                    Flexible(
-                      flex: 1,
-                      child: Container(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Track\nYour Progress",
-                          style: TextStyle(
-                            fontSize: screenWidth * 0.08,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+                return const SlideContent(
+                  content: "Track\nYour Progress",
+                  ImagePath: "assets/images/bgDecoration3.png",
                 );
               }
             },
@@ -174,8 +107,8 @@ class _LoginOutlineState extends State<LoginOutline> {
         children: [
           for (int i = 0; i < 3; i++)
             Container(
-              height: 12,
-              width: 12,
+              height: 10,
+              width: 10,
               margin: const EdgeInsets.all(5),
               decoration: BoxDecoration(
                 color: _current == i ? ColorTheme.infoBlue : Colors.white,
