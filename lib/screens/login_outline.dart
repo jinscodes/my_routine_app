@@ -16,6 +16,9 @@ class _LoginOutlineState extends State<LoginOutline> {
 
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -39,10 +42,26 @@ class _LoginOutlineState extends State<LoginOutline> {
               ),
               Flexible(
                 flex: 1,
-                child: Container(
-                  decoration: const BoxDecoration(
-                    color: Colors.yellow,
-                  ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: Size(screenWidth * 0.8, 50),
+                      ),
+                      onPressed: () {
+                        print("login");
+                      },
+                      child: const Text(
+                        "LOGIN",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: ColorTheme.mainBlue,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
