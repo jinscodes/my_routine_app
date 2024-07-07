@@ -16,8 +16,6 @@ class _LoginOutlineState extends State<LoginOutline> {
 
   @override
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
-
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -32,13 +30,19 @@ class _LoginOutlineState extends State<LoginOutline> {
               Flexible(
                 flex: 3,
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(
-                      height: screenHeight / 1.3,
-                      child: slider(),
-                    ),
+                    slider(),
                     sliderIndicator(),
                   ],
+                ),
+              ),
+              Flexible(
+                flex: 1,
+                child: Container(
+                  decoration: const BoxDecoration(
+                    color: Colors.yellow,
+                  ),
                 ),
               ),
             ],
@@ -49,7 +53,6 @@ class _LoginOutlineState extends State<LoginOutline> {
   }
 
   Widget slider() {
-    double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 
     return CarouselSlider(
@@ -61,7 +64,7 @@ class _LoginOutlineState extends State<LoginOutline> {
             seconds: 3,
           ),
           viewportFraction: 1,
-          height: screenHeight,
+          height: screenHeight * 0.7,
           onPageChanged: (index, reason) {
             setState(() {
               _current = index;
