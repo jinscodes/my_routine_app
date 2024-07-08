@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:workout_app/screens/login.dart';
 import 'package:workout_app/trash/common/color.dart';
 import 'package:workout_app/widgets/login_outline/slide_content.dart';
 
@@ -14,6 +15,15 @@ class LoginOutline extends StatefulWidget {
 class _LoginOutlineState extends State<LoginOutline> {
   int _current = 0;
   final CarouselController _controller = CarouselController();
+
+  _navigateToLogin() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => const Login(),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +66,7 @@ class _LoginOutlineState extends State<LoginOutline> {
                           ),
                         ),
                         onPressed: () {
-                          print("login");
+                          _navigateToLogin();
                         },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
