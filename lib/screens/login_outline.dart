@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:workout_app/trash/common/color.dart';
 import 'package:workout_app/widgets/login_outline/slide_content.dart';
 
@@ -16,7 +17,6 @@ class _LoginOutlineState extends State<LoginOutline> {
 
   @override
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Container(
@@ -42,8 +42,8 @@ class _LoginOutlineState extends State<LoginOutline> {
               Flexible(
                 flex: 1,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 30,
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 30.w,
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -58,21 +58,21 @@ class _LoginOutlineState extends State<LoginOutline> {
                         onPressed: () {
                           print("login");
                         },
-                        child: const Row(
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Icon(
+                            const Icon(
                               Icons.login,
                               color: Colors.black,
                             ),
                             SizedBox(
-                              width: 5,
+                              width: 5.w,
                             ),
                             Text(
                               "Continue with ID/PW",
                               style: TextStyle(
-                                fontSize: 15,
+                                fontSize: 15.sp,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
                               ),
@@ -80,13 +80,14 @@ class _LoginOutlineState extends State<LoginOutline> {
                           ],
                         ),
                       ),
-                      const SizedBox(
-                        height: 12,
+                      SizedBox(
+                        height: 12.h,
                       ),
                       Text(
                         "By continuing you agree Terms of Services & Privacy Policy",
                         style: TextStyle(
-                          fontSize: screenWidth * 0.028,
+                          fontSize: 12.sp,
+                          color: ColorTheme.infoBlue,
                         ),
                       )
                     ],
@@ -112,7 +113,7 @@ class _LoginOutlineState extends State<LoginOutline> {
             seconds: 3,
           ),
           viewportFraction: 1,
-          height: screenHeight * 0.7,
+          height: 650.h,
           onPageChanged: (index, reason) {
             setState(() {
               _current = index;
@@ -128,17 +129,17 @@ class _LoginOutlineState extends State<LoginOutline> {
               if (i == 1) {
                 return const SlideContent(
                   content: "Create\nGood Habits",
-                  ImagePath: "assets/images/bgDecoration.png",
+                  imagePath: "assets/images/bgDecoration.png",
                 );
               } else if (i == 2) {
                 return const SlideContent(
                   content: "Trace\nYour Progress",
-                  ImagePath: "assets/images/bgDecoration2.png",
+                  imagePath: "assets/images/bgDecoration2.png",
                 );
               } else {
                 return const SlideContent(
                   content: "Track\nYour Progress",
-                  ImagePath: "assets/images/bgDecoration3.png",
+                  imagePath: "assets/images/bgDecoration3.png",
                 );
               }
             },
