@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SlideContent extends StatelessWidget {
   final String content;
-  final String ImagePath;
+  final String imagePath;
 
   const SlideContent({
     super.key,
     required this.content,
-    required this.ImagePath,
+    required this.imagePath,
   });
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -21,7 +20,7 @@ class SlideContent extends StatelessWidget {
           flex: 3,
           child: Container(
             alignment: Alignment.bottomCenter,
-            child: Image.asset(ImagePath),
+            child: Image.asset(imagePath),
           ),
         ),
         Flexible(
@@ -31,7 +30,7 @@ class SlideContent extends StatelessWidget {
             child: Text(
               content,
               style: TextStyle(
-                fontSize: screenWidth * 0.08,
+                fontSize: 40.sp,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
