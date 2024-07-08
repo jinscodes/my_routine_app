@@ -18,7 +18,6 @@ class _LoginOutlineState extends State<LoginOutline> {
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
-
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -42,26 +41,56 @@ class _LoginOutlineState extends State<LoginOutline> {
               ),
               Flexible(
                 flex: 1,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        minimumSize: Size(screenWidth * 0.8, 50),
-                      ),
-                      onPressed: () {
-                        print("login");
-                      },
-                      child: const Text(
-                        "LOGIN",
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: ColorTheme.mainBlue,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 30,
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          minimumSize: Size(screenWidth, 56),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(24),
+                          ),
+                        ),
+                        onPressed: () {
+                          print("login");
+                        },
+                        child: const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.login,
+                              color: Colors.black,
+                            ),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Text(
+                              "Continue with ID/PW",
+                              style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                    ),
-                  ],
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      Text(
+                        "By continuing you agree Terms of Services & Privacy Policy",
+                        style: TextStyle(
+                          fontSize: screenWidth * 0.028,
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
             ],
