@@ -12,7 +12,6 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   TextEditingController idController = TextEditingController();
-  String id = "";
 
   @override
   void dispose() {
@@ -50,8 +49,7 @@ class _LoginState extends State<Login> {
                   ),
                   TextField(
                     controller: idController,
-                    onChanged: (value) =>
-                        setState(() => id = idController.text),
+                    onChanged: (value) => setState(() => idController.text),
                     decoration: InputDecoration(
                       hintText: "Enter your ID",
                       hintStyle: TextStyle(
