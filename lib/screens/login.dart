@@ -3,8 +3,22 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:workout_app/trash/common/color.dart';
 import 'package:workout_app/widgets/appbar.dart';
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
   const Login({super.key});
+
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  TextEditingController idController = TextEditingController();
+  late String id;
+
+  @override
+  void dispose() {
+    super.dispose();
+    idController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,10 +53,20 @@ class Login extends StatelessWidget {
                       height: 10,
                     ),
                     TextField(
+                      controller: idController,
+                      onChanged: (value) {
+                        setState(() => id = idController.text);
+
+                        print(id);
+                      },
                       decoration: InputDecoration(
                         hintText: "Enter your ID",
                         hintStyle: TextStyle(
                           fontSize: 20.sp,
+                          color: ColorTheme.gray,
+                        ),
+                        suffixIcon: const Icon(
+                          Icons.cancel_rounded,
                           color: ColorTheme.gray,
                         ),
                         enabledBorder: UnderlineInputBorder(
