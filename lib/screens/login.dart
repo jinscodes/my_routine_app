@@ -12,7 +12,7 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   TextEditingController idController = TextEditingController();
-  late String id;
+  String id = "";
 
   @override
   void dispose() {
@@ -34,57 +34,55 @@ class _LoginState extends State<Login> {
           children: [
             Flexible(
               flex: 4,
-              child: Container(
-                decoration: const BoxDecoration(
-                    // color: Colors.green,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Login",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w700,
                     ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Login",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w700,
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  TextField(
+                    controller: idController,
+                    onChanged: (value) =>
+                        setState(() => id = idController.text),
+                    decoration: InputDecoration(
+                      hintText: "Enter your ID",
+                      hintStyle: TextStyle(
+                        fontSize: 20.sp,
+                        color: ColorTheme.gray,
                       ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    TextField(
-                      controller: idController,
-                      onChanged: (value) {
-                        setState(() => id = idController.text);
-
-                        print(id);
-                      },
-                      decoration: InputDecoration(
-                        hintText: "Enter your ID",
-                        hintStyle: TextStyle(
-                          fontSize: 20.sp,
-                          color: ColorTheme.gray,
-                        ),
-                        suffixIcon: const Icon(
-                          Icons.cancel_rounded,
-                          color: ColorTheme.gray,
-                        ),
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: ColorTheme.gray.withOpacity(0.6),
-                            width: 3,
-                          ),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: ColorTheme.green.withOpacity(0.5),
-                            width: 5,
-                          ),
+                      suffixIcon: idController.text.isNotEmpty
+                          ? IconButton(
+                              onPressed: () =>
+                                  setState(() => idController.clear()),
+                              icon: const Icon(
+                                Icons.cancel_rounded,
+                                color: ColorTheme.gray,
+                              ),
+                            )
+                          : null,
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: ColorTheme.gray.withOpacity(0.6),
+                          width: 3,
                         ),
                       ),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: ColorTheme.green.withOpacity(0.5),
+                          width: 5,
+                        ),
+                      ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
             Flexible(
