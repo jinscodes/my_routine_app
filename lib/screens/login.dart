@@ -3,8 +3,22 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:workout_app/trash/common/color.dart';
 import 'package:workout_app/widgets/appbar.dart';
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
   const Login({super.key});
+
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  TextEditingController idController = TextEditingController();
+  String id = "";
+
+  @override
+  void dispose() {
+    super.dispose();
+    idController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,47 +34,55 @@ class Login extends StatelessWidget {
           children: [
             Flexible(
               flex: 4,
-              child: Container(
-                decoration: const BoxDecoration(
-                    // color: Colors.green,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Login",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w700,
                     ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Login",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w700,
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  TextField(
+                    controller: idController,
+                    onChanged: (value) =>
+                        setState(() => id = idController.text),
+                    decoration: InputDecoration(
+                      hintText: "Enter your ID",
+                      hintStyle: TextStyle(
+                        fontSize: 20.sp,
+                        color: ColorTheme.gray,
+                      ),
+                      suffixIcon: idController.text.isNotEmpty
+                          ? IconButton(
+                              onPressed: () =>
+                                  setState(() => idController.clear()),
+                              icon: const Icon(
+                                Icons.cancel_rounded,
+                                color: ColorTheme.gray,
+                              ),
+                            )
+                          : null,
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: ColorTheme.gray.withOpacity(0.6),
+                          width: 3,
+                        ),
+                      ),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: ColorTheme.green.withOpacity(0.5),
+                          width: 5,
+                        ),
                       ),
                     ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    TextField(
-                      decoration: InputDecoration(
-                        hintText: "Enter your ID",
-                        hintStyle: TextStyle(
-                          fontSize: 20.sp,
-                          color: ColorTheme.gray,
-                        ),
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: ColorTheme.gray.withOpacity(0.6),
-                            width: 3,
-                          ),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: ColorTheme.green.withOpacity(0.5),
-                            width: 5,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
             Flexible(
