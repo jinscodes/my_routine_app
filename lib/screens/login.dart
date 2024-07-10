@@ -12,6 +12,48 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   TextEditingController idController = TextEditingController();
+  bool visible = false;
+  String type = "";
+
+  suffix() {
+    if (type == "pw") {
+      if (idController.text.isNotEmpty) {
+        return Row(
+          children: [
+            IconButton(
+              onPressed: () => setState(() => visible = true),
+              icon: const Icon(
+                Icons.visibility,
+                color: ColorTheme.gray,
+              ),
+            ),
+            IconButton(
+              onPressed: () => setState(
+                () => idController.clear(),
+              ),
+              icon: const Icon(
+                Icons.cancel_rounded,
+                color: ColorTheme.gray,
+              ),
+            ),
+          ],
+        );
+      } else {
+        return null;
+      }
+    } else {
+      if (idController.text.isNotEmpty) {
+        return IconButton(
+          onPressed: () {},
+          icon: const Icon(
+            Icons.cancel_rounded,
+          ),
+        );
+      } else {
+        return null;
+      }
+    }
+  }
 
   @override
   void dispose() {
@@ -50,6 +92,7 @@ class _LoginState extends State<Login> {
                   TextField(
                     controller: idController,
                     onChanged: (value) => setState(() => idController.text),
+                    obscureText: visible,
                     decoration: InputDecoration(
                       hintText: "Enter your ID",
                       hintStyle: TextStyle(
