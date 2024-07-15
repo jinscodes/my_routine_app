@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:workout_app/trash/common/color.dart';
 import 'package:workout_app/widgets/appbar.dart';
+import 'package:workout_app/widgets/login_outline/login_input.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -12,48 +13,9 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   TextEditingController idController = TextEditingController();
+  TextEditingController pwController = TextEditingController();
   bool visible = false;
   String type = "";
-
-  suffix() {
-    if (type == "pw") {
-      if (idController.text.isNotEmpty) {
-        return Row(
-          children: [
-            IconButton(
-              onPressed: () => setState(() => visible = true),
-              icon: const Icon(
-                Icons.visibility,
-                color: ColorTheme.gray,
-              ),
-            ),
-            IconButton(
-              onPressed: () => setState(
-                () => idController.clear(),
-              ),
-              icon: const Icon(
-                Icons.cancel_rounded,
-                color: ColorTheme.gray,
-              ),
-            ),
-          ],
-        );
-      } else {
-        return null;
-      }
-    } else {
-      if (idController.text.isNotEmpty) {
-        return IconButton(
-          onPressed: () {},
-          icon: const Icon(
-            Icons.cancel_rounded,
-          ),
-        );
-      } else {
-        return null;
-      }
-    }
-  }
 
   @override
   void dispose() {
@@ -78,50 +40,17 @@ class _LoginState extends State<Login> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "Login",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w700,
-                    ),
+                  LoginInput(
+                    controller: idController,
+                    title: "Login",
                   ),
                   const SizedBox(
-                    height: 10,
+                    height: 30,
                   ),
-                  TextField(
-                    controller: idController,
-                    onChanged: (value) => setState(() => idController.text),
-                    obscureText: visible,
-                    decoration: InputDecoration(
-                      hintText: "Enter your ID",
-                      hintStyle: TextStyle(
-                        fontSize: 20.sp,
-                        color: ColorTheme.gray,
-                      ),
-                      suffixIcon: idController.text.isNotEmpty
-                          ? IconButton(
-                              onPressed: () =>
-                                  setState(() => idController.clear()),
-                              icon: const Icon(
-                                Icons.cancel_rounded,
-                                color: ColorTheme.gray,
-                              ),
-                            )
-                          : null,
-                      enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: ColorTheme.gray.withOpacity(0.6),
-                          width: 3,
-                        ),
-                      ),
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: ColorTheme.green.withOpacity(0.5),
-                          width: 5,
-                        ),
-                      ),
-                    ),
+                  LoginInput(
+                    controller: pwController,
+                    title: "Password",
+                    type: "pw",
                   ),
                 ],
               ),
