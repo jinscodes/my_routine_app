@@ -22,30 +22,34 @@ class _LoginInputState extends State<LoginInput> {
   late TextEditingController controller;
   late String title;
   late String? type;
-  bool visible = false;
+  late bool visible;
 
   suffix() {
     if (type == "pw") {
       if (controller.text.isNotEmpty) {
-        return Row(
-          children: [
-            IconButton(
-              onPressed: () => setState(() => visible = true),
-              icon: const Icon(
-                Icons.visibility,
-                color: ColorTheme.gray,
+        return SizedBox(
+          width: 100.w,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              IconButton(
+                onPressed: () => setState(() => visible = true),
+                icon: const Icon(
+                  Icons.visibility,
+                  color: ColorTheme.gray,
+                ),
               ),
-            ),
-            IconButton(
-              onPressed: () => setState(
-                () => controller.clear(),
+              IconButton(
+                onPressed: () => setState(
+                  () => controller.clear(),
+                ),
+                icon: const Icon(
+                  Icons.cancel_rounded,
+                  color: ColorTheme.gray,
+                ),
               ),
-              icon: const Icon(
-                Icons.cancel_rounded,
-                color: ColorTheme.gray,
-              ),
-            ),
-          ],
+            ],
+          ),
         );
       } else {
         return null;
@@ -53,9 +57,12 @@ class _LoginInputState extends State<LoginInput> {
     } else {
       if (controller.text.isNotEmpty) {
         return IconButton(
-          onPressed: () {},
+          onPressed: () => setState(
+            () => controller.clear(),
+          ),
           icon: const Icon(
             Icons.cancel_rounded,
+            color: ColorTheme.gray,
           ),
         );
       } else {
@@ -70,6 +77,12 @@ class _LoginInputState extends State<LoginInput> {
     controller = widget.controller;
     title = widget.title;
     type = widget.type;
+
+    if (type == "pw") {
+      visible = true;
+    } else {
+      visible = false;
+    }
   }
 
   @override
@@ -93,20 +106,12 @@ class _LoginInputState extends State<LoginInput> {
           onChanged: (value) => setState(() => controller.text),
           obscureText: visible,
           decoration: InputDecoration(
-            hintText: "Enter your ID",
+            hintText: "Enter your $title",
             hintStyle: TextStyle(
               fontSize: 20.sp,
               color: ColorTheme.gray,
             ),
-            suffixIcon: controller.text.isNotEmpty
-                ? IconButton(
-                    onPressed: () => setState(() => controller.clear()),
-                    icon: const Icon(
-                      Icons.cancel_rounded,
-                      color: ColorTheme.gray,
-                    ),
-                  )
-                : null,
+            suffixIcon: suffix(),
             enabledBorder: UnderlineInputBorder(
               borderSide: BorderSide(
                 color: ColorTheme.gray.withOpacity(0.6),
