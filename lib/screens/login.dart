@@ -21,6 +21,7 @@ class _LoginState extends State<Login> {
   void dispose() {
     super.dispose();
     idController.dispose();
+    pwController.dispose();
   }
 
   @override
@@ -33,38 +34,39 @@ class _LoginState extends State<Login> {
       body: Padding(
         padding: EdgeInsets.all(30.w),
         child: Center(
-            child: Column(
-          children: [
-            Flexible(
-              flex: 4,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  LoginInput(
-                    controller: idController,
-                    title: "Login",
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  LoginInput(
-                    controller: pwController,
-                    title: "Password",
-                    type: "pw",
-                  ),
-                ],
-              ),
-            ),
-            Flexible(
-              flex: 1,
-              child: Container(
-                decoration: const BoxDecoration(
-                  color: Colors.yellow,
+          child: Column(
+            children: [
+              Flexible(
+                flex: 4,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    LoginInput(
+                      controller: idController,
+                      title: "ID",
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    LoginInput(
+                      controller: pwController,
+                      title: "Password",
+                      type: "pw",
+                    ),
+                  ],
                 ),
               ),
-            ),
-          ],
-        )),
+              Flexible(
+                flex: 1,
+                child: Container(
+                  decoration: const BoxDecoration(
+                    color: Colors.yellow,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
