@@ -22,7 +22,7 @@ class _LoginInputState extends State<LoginInput> {
   late TextEditingController controller;
   late String title;
   late String? type;
-  late bool visible;
+  bool visible = false;
 
   suffix() {
     if (type == "pw") {
@@ -33,9 +33,9 @@ class _LoginInputState extends State<LoginInput> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               IconButton(
-                onPressed: () => setState(() => visible = true),
-                icon: const Icon(
-                  Icons.visibility,
+                onPressed: () => setState(() => visible = !visible),
+                icon: Icon(
+                  visible ? Icons.visibility_off : Icons.visibility,
                   color: ColorTheme.gray,
                 ),
               ),
@@ -77,16 +77,12 @@ class _LoginInputState extends State<LoginInput> {
     controller = widget.controller;
     title = widget.title;
     type = widget.type;
-
-    if (type == "pw") {
-      visible = true;
-    } else {
-      visible = false;
-    }
   }
 
   @override
   Widget build(BuildContext context) {
+    print(visible);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
