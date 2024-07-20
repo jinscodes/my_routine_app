@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:workout_app/trash/common/color.dart';
 import 'package:workout_app/trash/common/login_text_field.dart';
 import 'package:workout_app/trash/common/next_button.dart';
@@ -77,7 +78,7 @@ class _LoginWithIdState extends State<LoginWithId> {
           color: ColorTheme.loginBgGray,
         ),
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(30, 0, 30, 30),
+          padding: EdgeInsets.fromLTRB(30.w, 0, 30.w, 30.w),
           child: Center(
             child: Column(
               children: [
