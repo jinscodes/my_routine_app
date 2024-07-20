@@ -98,7 +98,7 @@ class _LoginInputState extends State<LoginInput> {
         TextField(
           controller: controller,
           onChanged: (value) => setState(() => controller.text),
-          obscureText: visible,
+          obscureText: type == "pw" ? visible : !visible,
           decoration: InputDecoration(
             hintText: "Enter your $title",
             hintStyle: TextStyle(
