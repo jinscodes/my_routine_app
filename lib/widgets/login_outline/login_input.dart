@@ -22,7 +22,7 @@ class _LoginInputState extends State<LoginInput> {
   late TextEditingController controller;
   late String title;
   late String? type;
-  bool visible = false;
+  bool visible = true;
 
   suffix() {
     if (type == "pw") {
@@ -81,8 +81,6 @@ class _LoginInputState extends State<LoginInput> {
 
   @override
   Widget build(BuildContext context) {
-    print(visible);
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

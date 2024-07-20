@@ -37,7 +37,7 @@ class _LoginState extends State<Login> {
           child: Column(
             children: [
               Flexible(
-                flex: 4,
+                flex: 8,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -58,9 +58,23 @@ class _LoginState extends State<Login> {
               ),
               Flexible(
                 flex: 1,
-                child: Container(
-                  decoration: const BoxDecoration(
-                    color: Colors.yellow,
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  height: 56,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      print("Next");
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: ColorTheme.mainBlue,
+                    ),
+                    child: Text(
+                      "Next",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15.sp,
+                      ),
+                    ),
                   ),
                 ),
               ),
