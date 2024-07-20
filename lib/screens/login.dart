@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:workout_app/screens/home.dart';
 import 'package:workout_app/trash/common/color.dart';
+import 'package:workout_app/utilities/login/login_validation.dart';
 import 'package:workout_app/widgets/appbar.dart';
 import 'package:workout_app/widgets/login_outline/login_input.dart';
 
@@ -22,6 +24,15 @@ class _LoginState extends State<Login> {
     super.dispose();
     idController.dispose();
     pwController.dispose();
+  }
+
+  void _navigator() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => const Home(),
+      ),
+    );
   }
 
   @override
@@ -63,7 +74,8 @@ class _LoginState extends State<Login> {
                   height: 56,
                   child: ElevatedButton(
                     onPressed: () {
-                      print("Next");
+                      loginValidation(idController.text, pwController.text);
+                      _navigator();
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: ColorTheme.mainBlue,
