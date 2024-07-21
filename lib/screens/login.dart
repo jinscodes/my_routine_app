@@ -73,10 +73,8 @@ class _LoginState extends State<Login> {
                   width: MediaQuery.of(context).size.width,
                   height: 56,
                   child: ElevatedButton(
-                    onPressed: () {
-                      loginValidation(idController.text, pwController.text);
-                      _navigator();
-                    },
+                    onPressed: () => loginValidation(
+                        context, idController.text, pwController.text),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: ColorTheme.mainBlue,
                     ),
