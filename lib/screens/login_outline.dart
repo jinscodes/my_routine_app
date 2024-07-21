@@ -55,20 +55,18 @@ class _LoginOutlineState extends State<LoginOutline> {
                 child: Padding(
                   padding: EdgeInsets.symmetric(
                     horizontal: 30.w,
+                    vertical: 24.h,
                   ),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          minimumSize: Size(screenWidth, 56),
+                          minimumSize: Size(screenWidth, 52),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(24),
                           ),
                         ),
-                        onPressed: () {
-                          _navigateToLogin();
-                        },
+                        onPressed: () => _navigateToLogin(),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -89,6 +87,32 @@ class _LoginOutlineState extends State<LoginOutline> {
                               ),
                             ),
                           ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 12.h,
+                      ),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          minimumSize: Size(screenWidth, 52),
+                          backgroundColor: Colors.transparent,
+                          side: const BorderSide(
+                            color: Colors.white,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(24),
+                          ),
+                        ),
+                        onPressed: () {
+                          print("Will navigate to signup page");
+                        },
+                        child: Text(
+                          "Signup with ID/PW",
+                          style: TextStyle(
+                            fontSize: 15.sp,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                       SizedBox(
