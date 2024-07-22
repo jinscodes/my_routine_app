@@ -81,46 +81,47 @@ class _LoginInputState extends State<LoginInput> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 16.sp,
-            fontWeight: FontWeight.w700,
-          ),
+    return Container(
+      width: 1.sw,
+      height: 60,
+      decoration: BoxDecoration(
+        color: Colors.white.withOpacity(0.3),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 18,
         ),
-        const SizedBox(
-          height: 10,
-        ),
-        TextField(
+        child: TextField(
           controller: controller,
           onChanged: (value) => setState(() => controller.text),
           obscureText: type == "pw" ? visible : !visible,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
           decoration: InputDecoration(
-            hintText: "Enter your $title",
-            hintStyle: TextStyle(
-              fontSize: 20.sp,
-              color: ColorTheme.gray,
+            prefixIcon: Icon(
+              type == "pw"
+                  ? Icons.lock_outline_rounded
+                  : Icons.person_outline_rounded,
+              color: Colors.white,
+              size: 30,
             ),
             suffixIcon: suffix(),
-            enabledBorder: UnderlineInputBorder(
-              borderSide: BorderSide(
-                color: ColorTheme.gray.withOpacity(0.6),
-                width: 3,
-              ),
+            hintText: title,
+            hintStyle: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
             ),
-            focusedBorder: UnderlineInputBorder(
-              borderSide: BorderSide(
-                color: ColorTheme.green.withOpacity(0.5),
-                width: 5,
-              ),
+            border: const OutlineInputBorder(
+              borderSide: BorderSide.none,
             ),
           ),
         ),
-      ],
+      ),
     );
   }
 }

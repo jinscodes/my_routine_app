@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:workout_app/screens/home.dart';
-import 'package:workout_app/trash/common/color.dart';
-import 'package:workout_app/utilities/login/login_validation.dart';
-import 'package:workout_app/widgets/appbar.dart';
 import 'package:workout_app/widgets/login_outline/login_input.dart';
 
 class Login extends StatefulWidget {
@@ -38,57 +35,44 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const Appbar(
-        content: "Continue with ID & PW",
-      ),
-      backgroundColor: ColorTheme.loginBgGray,
-      body: Padding(
-        padding: EdgeInsets.all(30.w),
-        child: Center(
-          child: Column(
-            children: [
-              Flexible(
-                flex: 8,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    LoginInput(
-                      controller: idController,
-                      title: "ID",
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    LoginInput(
-                      controller: pwController,
-                      title: "Password",
-                      type: "pw",
-                    ),
-                  ],
-                ),
-              ),
-              Flexible(
-                flex: 1,
-                child: SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  height: 56,
-                  child: ElevatedButton(
-                    onPressed: () => loginValidation(
-                        context, idController.text, pwController.text),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: ColorTheme.mainBlue,
-                    ),
-                    child: Text(
-                      "Next",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 15.sp,
-                      ),
-                    ),
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/background.png"),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 40,
+          ),
+          child: Center(
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset("assets/images/appicon_white.png"),
+                  const SizedBox(
+                    height: 80,
                   ),
-                ),
+                  LoginInput(
+                    controller: idController,
+                    title: "Username",
+                  ),
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                  LoginInput(
+                    controller: idController,
+                    title: "Password",
+                    type: "pw",
+                  ),
+                  SizedBox(
+                    height: 80.h,
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
       ),

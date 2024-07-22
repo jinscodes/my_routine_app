@@ -94,8 +94,8 @@ class _LoginOutlineState extends State<LoginOutline> {
                       ),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          minimumSize: Size(screenWidth, 52),
-                          backgroundColor: Colors.transparent,
+                          minimumSize: Size(screenWidth, 52.h),
+                          backgroundColor: ColorTheme.mainBlue,
                           side: const BorderSide(
                             color: Colors.white,
                           ),
@@ -137,8 +137,6 @@ class _LoginOutlineState extends State<LoginOutline> {
   }
 
   Widget slider() {
-    double screenHeight = MediaQuery.of(context).size.height;
-
     return CarouselSlider(
       carouselController: _controller,
       options: CarouselOptions(
