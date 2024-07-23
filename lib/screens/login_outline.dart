@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:workout_app/screens/login.dart';
 import 'package:workout_app/trash/common/color.dart';
+import 'package:workout_app/widgets/login_outline/login_outline_button.dart';
 import 'package:workout_app/widgets/login_outline/slide_content.dart';
 
 class LoginOutline extends StatefulWidget {
@@ -54,66 +55,21 @@ class _LoginOutlineState extends State<LoginOutline> {
                 flex: 1,
                 child: Padding(
                   padding: EdgeInsets.symmetric(
-                    horizontal: 30.w,
+                    horizontal: 40.w,
                     vertical: 24.h,
                   ),
                   child: Column(
                     children: [
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          minimumSize: Size(screenWidth, 52),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(24),
-                          ),
-                        ),
-                        onPressed: () => _navigateToLogin(),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            const Icon(
-                              Icons.login,
-                              color: Colors.black,
-                            ),
-                            SizedBox(
-                              width: 5.w,
-                            ),
-                            Text(
-                              "Continue with ID/PW",
-                              style: TextStyle(
-                                fontSize: 15.sp,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black,
-                              ),
-                            ),
-                          ],
-                        ),
+                      const LoginOutlineButton(
+                        type: "login",
+                        content: "Continue with ID/PW",
                       ),
                       SizedBox(
                         height: 12.h,
                       ),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          minimumSize: Size(screenWidth, 52.h),
-                          backgroundColor: ColorTheme.mainBlue,
-                          side: const BorderSide(
-                            color: Colors.white,
-                          ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(24),
-                          ),
-                        ),
-                        onPressed: () {
-                          print("Will navigate to signup page");
-                        },
-                        child: Text(
-                          "Signup with ID/PW",
-                          style: TextStyle(
-                            fontSize: 15.sp,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                        ),
+                      const LoginOutlineButton(
+                        type: "signup",
+                        content: "Signup with ID/PW",
                       ),
                       SizedBox(
                         height: 12.h,
@@ -121,10 +77,10 @@ class _LoginOutlineState extends State<LoginOutline> {
                       Text(
                         "By continuing you agree Terms of Services & Privacy Policy",
                         style: TextStyle(
-                          fontSize: 12.sp,
+                          fontSize: 11.5.sp,
                           color: ColorTheme.infoBlue,
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -155,7 +111,7 @@ class _LoginOutlineState extends State<LoginOutline> {
       items: [1, 2, 3].map((i) {
         return Padding(
           padding: const EdgeInsets.symmetric(
-            horizontal: 30,
+            horizontal: 40,
           ),
           child: Builder(
             builder: (BuildContext context) {
@@ -185,7 +141,7 @@ class _LoginOutlineState extends State<LoginOutline> {
   Widget sliderIndicator() {
     return Padding(
       padding: const EdgeInsets.symmetric(
-        horizontal: 30,
+        horizontal: 40,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:workout_app/screens/home.dart';
+import 'package:workout_app/trash/common/color.dart';
+import 'package:workout_app/utilities/login/login_validation.dart';
 import 'package:workout_app/widgets/login_outline/login_input.dart';
 
 class Login extends StatefulWidget {
@@ -63,12 +65,35 @@ class _LoginState extends State<Login> {
                     height: 20.h,
                   ),
                   LoginInput(
-                    controller: idController,
+                    controller: pwController,
                     title: "Password",
                     type: "pw",
                   ),
                   SizedBox(
                     height: 80.h,
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      loginValidation(
+                        context,
+                        idController.text,
+                        pwController.text,
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      minimumSize: Size(1.sw, 60),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    child: const Text(
+                      "LOGIN",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: ColorTheme.mainBlue,
+                      ),
+                    ),
                   ),
                 ],
               ),
