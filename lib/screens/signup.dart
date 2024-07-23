@@ -1,38 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:workout_app/screens/home.dart';
 import 'package:workout_app/trash/common/color.dart';
-import 'package:workout_app/utilities/login/login_validation.dart';
 import 'package:workout_app/widgets/login_outline/login_input.dart';
 
-class Login extends StatefulWidget {
-  const Login({super.key});
+class Signup extends StatefulWidget {
+  const Signup({super.key});
 
   @override
-  State<Login> createState() => _LoginState();
+  State<Signup> createState() => _SignupState();
 }
 
-class _LoginState extends State<Login> {
-  TextEditingController idController = TextEditingController();
+class _SignupState extends State<Signup> {
+  TextEditingController emailController = TextEditingController();
   TextEditingController pwController = TextEditingController();
-  bool visible = false;
-  String type = "";
-
-  @override
-  void dispose() {
-    super.dispose();
-    idController.dispose();
-    pwController.dispose();
-  }
-
-  void _navigator() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (_) => const Home(),
-      ),
-    );
-  }
+  TextEditingController nameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +39,7 @@ class _LoginState extends State<Login> {
                   height: 80,
                 ),
                 LoginInput(
-                  controller: idController,
+                  controller: emailController,
                   title: "Email",
                 ),
                 SizedBox(
@@ -70,15 +51,19 @@ class _LoginState extends State<Login> {
                   type: "pw",
                 ),
                 SizedBox(
+                  height: 12.h,
+                ),
+                LoginInput(
+                  controller: nameController,
+                  title: "Username",
+                  type: "username",
+                ),
+                SizedBox(
                   height: 80.h,
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    loginValidation(
-                      context,
-                      idController.text,
-                      pwController.text,
-                    );
+                    print("Signup");
                   },
                   style: ElevatedButton.styleFrom(
                     minimumSize: Size(1.sw, 55.h),
@@ -87,7 +72,7 @@ class _LoginState extends State<Login> {
                     ),
                   ),
                   child: Text(
-                    "LOGIN",
+                    "SIGNUP",
                     style: TextStyle(
                       fontSize: 18.sp,
                       fontWeight: FontWeight.bold,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:workout_app/screens/login.dart';
+import 'package:workout_app/screens/signup.dart';
 import 'package:workout_app/trash/common/color.dart';
 
 class LoginOutlineButton extends StatelessWidget {
@@ -28,9 +29,7 @@ class LoginButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-
-    navigateToLogin() {
+    void navigateToLogin() {
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -41,9 +40,9 @@ class LoginButton extends StatelessWidget {
 
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        minimumSize: Size(screenWidth, 52),
+        minimumSize: Size(1.sw, 55.h),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(100),
         ),
       ),
       onPressed: () => navigateToLogin(),
@@ -53,7 +52,7 @@ class LoginButton extends StatelessWidget {
         children: [
           const Icon(
             Icons.login,
-            color: Colors.black,
+            color: ColorTheme.mainBlue,
           ),
           SizedBox(
             width: 5.w,
@@ -63,7 +62,7 @@ class LoginButton extends StatelessWidget {
             style: TextStyle(
               fontSize: 15.sp,
               fontWeight: FontWeight.bold,
-              color: Colors.black,
+              color: ColorTheme.mainBlue,
             ),
           ),
         ],
@@ -82,22 +81,27 @@ class SignupButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
+    void navigateToSignup() {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => const Signup(),
+        ),
+      );
+    }
 
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        minimumSize: Size(screenWidth, 52.h),
+        minimumSize: Size(1.sw, 55.h),
         backgroundColor: ColorTheme.mainBlue,
         side: const BorderSide(
           color: Colors.white,
         ),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(100),
         ),
       ),
-      onPressed: () {
-        print("Will navigate to signup page");
-      },
+      onPressed: () => navigateToSignup(),
       child: Text(
         "Signup with ID/PW",
         style: TextStyle(
