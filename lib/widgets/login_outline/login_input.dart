@@ -83,10 +83,10 @@ class _LoginInputState extends State<LoginInput> {
   Widget build(BuildContext context) {
     return Container(
       width: 1.sw,
-      height: 60,
+      height: 60.h,
       decoration: BoxDecoration(
         color: Colors.white.withOpacity(0.3),
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(100),
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(
@@ -105,7 +105,9 @@ class _LoginInputState extends State<LoginInput> {
             prefixIcon: Icon(
               type == "pw"
                   ? Icons.lock_outline_rounded
-                  : Icons.person_outline_rounded,
+                  : type == "username"
+                      ? Icons.person_outline_rounded
+                      : Icons.email_outlined,
               color: Colors.white,
               size: 30,
             ),
