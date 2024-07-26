@@ -13,9 +13,9 @@ Future<String?> getLoginToken() async {
   return loginToken;
 }
 
-Future<String?> removeLoginToken(String key) async {
+Future<String?> removeLoginToken() async {
   final SharedPreferences prefs = await SharedPreferences.getInstance();
 
-  await prefs.remove(key);
+  await prefs.remove("login_token");
   return null;
 }
