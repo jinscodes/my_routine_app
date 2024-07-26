@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:workout_app/screens/home.dart';
 import 'package:workout_app/utilities/login/login_validation.dart';
 import 'package:workout_app/widgets/login_outline/login_button.dart';
 import 'package:workout_app/widgets/login_outline/login_input.dart';
@@ -25,13 +24,20 @@ class _LoginState extends State<Login> {
     pwController.dispose();
   }
 
-  void _navigator() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (_) => const Home(),
-      ),
+  void _navigateToHome() async {
+    dynamic result = loginValidation(
+      idController.text,
+      pwController.text,
     );
+
+    print(result);
+
+    // Navigator.push(
+    //   context,
+    //   MaterialPageRoute(
+    //     builder: (_) => const Home(),
+    //   ),
+    // );
   }
 
   @override
@@ -95,11 +101,10 @@ class _LoginState extends State<Login> {
                   ),
                   LoginButton(
                     title: "LOGIN",
-                    handleClick: () => loginValidation(
-                      context,
-                      idController.text,
-                      pwController.text,
-                    ),
+                    handleClick: () => _navigateToHome(),
+                  ),
+                  SizedBox(
+                    height: 36.h,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -111,22 +116,28 @@ class _LoginState extends State<Login> {
                           fontSize: 16.sp,
                         ),
                       ),
+                      SizedBox(
+                        width: 5.w,
+                      ),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          print("Click Signup");
+                        },
+                        style: TextButton.styleFrom(
+                          padding: EdgeInsets.zero,
+                          minimumSize: Size.zero,
+                        ),
                         child: Text(
                           "SIGN UP",
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 18.sp,
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.w900,
                           ),
                         ),
                       ),
                     ],
-                  )
-                  // const SizedBox(
-                  //   height: 60,
-                  // ),
+                  ),
                 ],
               ),
             ),

@@ -1,8 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:workout_app/utilities/api/http_method.dart';
 import 'package:workout_app/utilities/manage_login_token.dart';
 
-void loginValidation(BuildContext context, String id, String pw) async {
+dynamic loginValidation(String id, String pw) async {
+  bool success = false;
+
   try {
     print("Working with $id/$pw");
     Map<String, dynamic> res = await PostApi(
@@ -17,12 +18,9 @@ void loginValidation(BuildContext context, String id, String pw) async {
 
     await setLoginToken(loginToken);
 
-    // Navigator.push(
-    //   context,
-    //   MaterialPageRoute(
-    //     builder: (_) => const Home(),
-    //   ),
-    // );
+    success = true;
+
+    return {loginToken, success};
   } catch (e) {
     print("Err: $e");
   }
