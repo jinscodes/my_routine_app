@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:workout_app/utilities/manage_login_token.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -11,7 +10,6 @@ class Home extends StatelessWidget {
         child: Center(
           child: ElevatedButton(
             onPressed: () {
-              removeLoginToken("token");
               print("remove token");
             },
             child: const Text("Logout"),
