@@ -86,7 +86,7 @@ class _LoginInputState extends State<LoginInput> {
       height: 60.h,
       decoration: BoxDecoration(
         color: Colors.white.withOpacity(0.3),
-        borderRadius: BorderRadius.circular(100),
+        borderRadius: BorderRadius.circular(10),
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(
@@ -101,6 +101,7 @@ class _LoginInputState extends State<LoginInput> {
             fontSize: 16,
             fontWeight: FontWeight.bold,
           ),
+          cursorColor: Colors.white,
           decoration: InputDecoration(
             prefixIcon: Icon(
               type == "pw"

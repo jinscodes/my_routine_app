@@ -42,7 +42,7 @@ class LoginButton extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         minimumSize: Size(1.sw, 55.h),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(100),
+          borderRadius: BorderRadius.circular(10),
         ),
       ),
       onPressed: () => navigateToLogin(),
@@ -98,7 +98,7 @@ class SignupButton extends StatelessWidget {
           color: Colors.white,
         ),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(100),
+          borderRadius: BorderRadius.circular(10),
         ),
       ),
       onPressed: () => navigateToSignup(),

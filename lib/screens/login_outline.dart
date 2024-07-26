@@ -28,7 +28,6 @@ class _LoginOutlineState extends State<LoginOutline> {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Container(

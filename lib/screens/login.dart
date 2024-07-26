@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:workout_app/screens/home.dart';
-import 'package:workout_app/trash/common/color.dart';
 import 'package:workout_app/utilities/login/login_validation.dart';
+import 'package:workout_app/widgets/login_outline/login_button.dart';
 import 'package:workout_app/widgets/login_outline/login_input.dart';
 
 class Login extends StatefulWidget {
@@ -36,66 +36,99 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/images/background.png"),
-            fit: BoxFit.cover,
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        body: Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/images/background.png"),
+              fit: BoxFit.cover,
+            ),
           ),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 40,
-          ),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset("assets/images/appicon_white.png"),
-                const SizedBox(
-                  height: 80,
-                ),
-                LoginInput(
-                  controller: idController,
-                  title: "Email",
-                ),
-                SizedBox(
-                  height: 12.h,
-                ),
-                LoginInput(
-                  controller: pwController,
-                  title: "Password",
-                  type: "pw",
-                ),
-                SizedBox(
-                  height: 80.h,
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    loginValidation(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 25,
+            ),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset("assets/images/appicon.png"),
+                  SizedBox(
+                    height: 60.h,
+                  ),
+                  LoginInput(
+                    controller: idController,
+                    title: "Email",
+                  ),
+                  SizedBox(
+                    height: 12.h,
+                  ),
+                  LoginInput(
+                    controller: pwController,
+                    title: "Password",
+                    type: "pw",
+                  ),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: TextButton(
+                      onPressed: () {
+                        print("Forgot Password");
+                      },
+                      style: TextButton.styleFrom(
+                        padding: EdgeInsets.zero,
+                        minimumSize: Size.zero,
+                      ),
+                      child: Text(
+                        "Forgot Password?",
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 16.sp,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 30.h,
+                  ),
+                  LoginButton(
+                    title: "LOGIN",
+                    handleClick: () => loginValidation(
                       context,
                       idController.text,
                       pwController.text,
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: Size(1.sw, 55.h),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(100),
                     ),
                   ),
-                  child: Text(
-                    "LOGIN",
-                    style: TextStyle(
-                      fontSize: 18.sp,
-                      fontWeight: FontWeight.bold,
-                      color: ColorTheme.mainBlue,
-                    ),
-                  ),
-                ),
-              ],
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Don’t have an account?",
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 16.sp,
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          "SIGN UP",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+                  // const SizedBox(
+                  //   height: 60,
+                  // ),
+                ],
+              ),
             ),
           ),
         ),
