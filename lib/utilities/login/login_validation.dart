@@ -5,7 +5,6 @@ dynamic loginValidation(String id, String pw) async {
   bool success = false;
 
   try {
-    print("Working with $id/$pw");
     Map<String, dynamic> res = await PostApi(
       apiUrl: "/login",
       body: {
@@ -22,6 +21,7 @@ dynamic loginValidation(String id, String pw) async {
 
     return {loginToken, success};
   } catch (e) {
-    print("Err: $e");
+    success = false;
+    return {e, success};
   }
 }
