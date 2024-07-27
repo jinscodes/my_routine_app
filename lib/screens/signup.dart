@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:workout_app/colors.dart';
+import 'package:workout_app/widgets/signup/signup_input.dart';
 
 class Signup extends StatefulWidget {
   const Signup({super.key});
@@ -57,35 +58,9 @@ class _SignupState extends State<Signup> {
                     const SizedBox(
                       height: 5,
                     ),
-                    Container(
-                      width: 1.sw,
-                      height: 55.h,
-                      decoration: BoxDecoration(
-                        color: ColorsTheme.white,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: const Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 18,
-                        ),
-                        child: TextField(
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          cursorColor: ColorsTheme.gray500,
-                          decoration: InputDecoration(
-                            prefixIcon: Icon(
-                              Icons.person_outline_rounded,
-                              color: ColorsTheme.gray500,
-                            ),
-                            border: OutlineInputBorder(
-                              borderSide: BorderSide.none,
-                            ),
-                          ),
-                        ),
-                      ),
+                    SignupInput(
+                      controller: emailController,
+                      title: "Username",
                     ),
                   ],
                 )
