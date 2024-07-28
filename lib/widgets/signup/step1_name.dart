@@ -5,12 +5,14 @@ import 'package:workout_app/widgets/signup/signup_input.dart';
 import 'package:workout_app/widgets/signup/step2_email.dart';
 
 class Step1Name extends StatelessWidget {
-  final TextEditingController controller;
+  final TextEditingController nameController;
+  final TextEditingController emailController;
   final String title;
 
   const Step1Name({
     super.key,
-    required this.controller,
+    required this.nameController,
+    required this.emailController,
     required this.title,
   });
 
@@ -20,67 +22,81 @@ class Step1Name extends StatelessWidget {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (_) => const Step2Email(),
+          builder: (_) => Step2Email(
+            emailController: emailController,
+          ),
         ),
       );
     }
 
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Create\nAccount",
-              style: TextStyle(
-                fontSize: 40.sp,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(
-              height: 20.h,
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+    return Scaffold(
+      body: Container(
+        decoration: const BoxDecoration(
+          color: ColorsTheme.gray200,
+        ),
+        child: Center(
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(25, 120.h, 25, 50.h),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  "Fullname",
-                  style: TextStyle(
-                    fontSize: 20.sp,
-                    fontWeight: FontWeight.bold,
-                    color: ColorsTheme.gray600,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Create\nAccount",
+                      style: TextStyle(
+                        fontSize: 40.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20.h,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Fullname",
+                          style: TextStyle(
+                            fontSize: 20.sp,
+                            fontWeight: FontWeight.bold,
+                            color: ColorsTheme.gray600,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        SignupInput(
+                          controller: nameController,
+                          title: "Username",
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+                ElevatedButton(
+                  onPressed: () => navigateToNext(),
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: Size(1.sw, 55.h),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  child: Text(
+                    "Next",
+                    style: TextStyle(
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.bold,
+                      color: ColorsTheme.black,
+                    ),
                   ),
                 ),
-                const SizedBox(
-                  height: 5,
-                ),
-                SignupInput(
-                  controller: controller,
-                  title: "Username",
-                ),
               ],
-            )
-          ],
-        ),
-        ElevatedButton(
-          onPressed: () => navigateToNext(),
-          style: ElevatedButton.styleFrom(
-            minimumSize: Size(1.sw, 55.h),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-          ),
-          child: Text(
-            "Next",
-            style: TextStyle(
-              fontSize: 18.sp,
-              fontWeight: FontWeight.bold,
-              color: ColorsTheme.black,
             ),
           ),
         ),
-      ],
+      ),
     );
   }
 }
