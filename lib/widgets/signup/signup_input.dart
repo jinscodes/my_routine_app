@@ -38,7 +38,7 @@ class _SignupInputState extends State<SignupInput> {
       width: 1.sw,
       height: 60.h,
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.3),
+        color: Colors.white,
         borderRadius: BorderRadius.circular(10),
       ),
       child: Padding(

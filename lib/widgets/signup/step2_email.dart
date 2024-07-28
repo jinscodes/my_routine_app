@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:workout_app/colors.dart';
 import 'package:workout_app/widgets/signup/signup_input.dart';
+import 'package:workout_app/widgets/signup/step3_password.dart';
 
-class Step2Email extends StatelessWidget {
+class Step2Email extends StatefulWidget {
   final TextEditingController emailController;
 
   const Step2Email({
@@ -12,7 +13,23 @@ class Step2Email extends StatelessWidget {
   });
 
   @override
+  State<Step2Email> createState() => _Step2EmailState();
+}
+
+class _Step2EmailState extends State<Step2Email> {
+  final TextEditingController emailCodeController = TextEditingController();
+
+  @override
   Widget build(BuildContext context) {
+    void navigateToNext() {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => const Step3Password(),
+        ),
+      );
+    }
+
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -52,7 +69,7 @@ class Step2Email extends StatelessWidget {
                           height: 5,
                         ),
                         SignupInput(
-                          controller: emailController,
+                          controller: widget.emailController,
                           title: "Email",
                         ),
                         SizedBox(
@@ -61,13 +78,45 @@ class Step2Email extends StatelessWidget {
                         Row(
                           children: [
                             Container(
-                              height: 60.h,
                               width: 246.w,
+                              height: 60.h,
                               decoration: BoxDecoration(
-                                color: ColorsTheme.white,
+                                color: Colors.white,
                                 borderRadius: BorderRadius.circular(10),
                               ),
-                              child: const TextField(),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 18,
+                                ),
+                                child: TextField(
+                                  controller: emailCodeController,
+                                  onChanged: (value) =>
+                                      setState(() => emailCodeController.text),
+                                  style: const TextStyle(
+                                    color: ColorsTheme.gray500,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  cursorColor: ColorsTheme.gray500,
+                                  decoration: const InputDecoration(
+                                    prefixIcon: Icon(
+                                      Icons.email_outlined,
+                                      color: ColorsTheme.gray500,
+                                      size: 30,
+                                    ),
+                                    // suffixIcon: suffix(),
+                                    hintText: "XXX-XXX",
+                                    hintStyle: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: ColorsTheme.gray500,
+                                    ),
+                                    border: OutlineInputBorder(
+                                      borderSide: BorderSide.none,
+                                    ),
+                                  ),
+                                ),
+                              ),
                             ),
                             const SizedBox(
                               width: 12,
@@ -97,7 +146,7 @@ class Step2Email extends StatelessWidget {
                   ],
                 ),
                 ElevatedButton(
-                  onPressed: () => {},
+                  onPressed: () => navigateToNext(),
                   style: ElevatedButton.styleFrom(
                     minimumSize: Size(1.sw, 55.h),
                     shape: RoundedRectangleBorder(
