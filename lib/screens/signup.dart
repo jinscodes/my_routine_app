@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:workout_app/colors.dart';
 import 'package:workout_app/widgets/signup/step1_name.dart';
 
 class Signup extends StatefulWidget {
@@ -17,21 +15,10 @@ class _SignupState extends State<Signup> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          color: ColorsTheme.gray200,
-        ),
-        child: Center(
-          child: Padding(
-            padding: EdgeInsets.fromLTRB(25, 120.h, 25, 50.h),
-            child: Step1Name(
-              controller: nameController,
-              title: "title",
-            ),
-          ),
-        ),
-      ),
+    return Step1Name(
+      nameController: nameController,
+      emailController: emailController,
+      title: "Fullname",
     );
   }
 }
