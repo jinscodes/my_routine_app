@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:workout_app/colors.dart';
-import 'package:workout_app/widgets/signup/signup_input.dart';
 import 'package:workout_app/widgets/signup/step2_email.dart';
 
 class Step1Name extends StatelessWidget {
@@ -29,70 +28,61 @@ class Step1Name extends StatelessWidget {
       );
     }
 
-    return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          color: ColorsTheme.gray200,
-        ),
-        child: Center(
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: Scaffold(
+        body: Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/images/signupBg.png"),
+              fit: BoxFit.cover,
+            ),
+          ),
           child: Padding(
-            padding: EdgeInsets.fromLTRB(25, 120.h, 25, 50.h),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Create\nAccount",
+            padding: EdgeInsets.symmetric(
+              horizontal: 25.w,
+            ),
+            child: Center(
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 175.h,
+                  ),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "이름을 알려주세요",
                       style: TextStyle(
-                        fontSize: 40.sp,
+                        fontSize: 28.sp,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(
-                      height: 20.h,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Fullname",
-                          style: TextStyle(
-                            fontSize: 20.sp,
-                            fontWeight: FontWeight.bold,
-                            color: ColorsTheme.gray600,
-                          ),
+                  ),
+                  SizedBox(
+                    height: 105.h,
+                  ),
+                  const TextField(
+                    decoration: InputDecoration(
+                      hintText: "이름",
+                      hintStyle: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.w600,
+                        color: ColorsTheme.gray600,
+                      ),
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: ColorsTheme.gray600,
                         ),
-                        const SizedBox(
-                          height: 5,
+                      ),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: ColorsTheme.point,
                         ),
-                        SignupInput(
-                          controller: nameController,
-                          title: "Username",
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-                ElevatedButton(
-                  onPressed: () => navigateToNext(),
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: Size(1.sw, 55.h),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+                      ),
                     ),
                   ),
-                  child: Text(
-                    "Next",
-                    style: TextStyle(
-                      fontSize: 18.sp,
-                      fontWeight: FontWeight.bold,
-                      color: ColorsTheme.black,
-                    ),
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
