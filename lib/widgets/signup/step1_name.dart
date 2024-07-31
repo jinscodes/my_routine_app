@@ -61,20 +61,20 @@ class Step1Name extends StatelessWidget {
                   SizedBox(
                     height: 105.h,
                   ),
-                  const TextField(
+                  TextField(
                     decoration: InputDecoration(
                       hintText: "이름",
                       hintStyle: TextStyle(
-                        fontSize: 22,
+                        fontSize: 22.sp,
                         fontWeight: FontWeight.w600,
                         color: ColorsTheme.gray600,
                       ),
-                      enabledBorder: UnderlineInputBorder(
+                      enabledBorder: const UnderlineInputBorder(
                         borderSide: BorderSide(
                           color: ColorsTheme.gray600,
                         ),
                       ),
-                      focusedBorder: UnderlineInputBorder(
+                      focusedBorder: const UnderlineInputBorder(
                         borderSide: BorderSide(
                           color: ColorsTheme.point,
                         ),
