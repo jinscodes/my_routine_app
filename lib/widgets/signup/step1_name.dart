@@ -20,9 +20,32 @@ class _Step1NameState extends State<Step1Name> {
   late TextEditingController nameController;
   final FocusNode _focusNode = FocusNode();
 
+  label() {
+    if (_focusNode.hasFocus) {
+      return Text(
+        "이름",
+        style: TextStyle(
+          fontSize: 16.sp,
+          color: ColorsTheme.point,
+        ),
+      );
+    } else if (!_focusNode.hasFocus && nameController.text.isNotEmpty) {
+      return Text(
+        "이름",
+        style: TextStyle(
+          fontSize: 16.sp,
+          color: ColorsTheme.gray600,
+        ),
+      );
+    } else {
+      return null;
+    }
+  }
+
   @override
   void initState() {
     nameController = widget.nameController;
+    _focusNode.addListener(() => setState(() {}));
     super.initState();
   }
 
@@ -58,7 +81,7 @@ class _Step1NameState extends State<Step1Name> {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      "이름을 알려주세요",
+                      "이름을 입력해주세요",
                       style: TextStyle(
                         fontSize: 28.sp,
                         fontWeight: FontWeight.bold,
@@ -68,19 +91,15 @@ class _Step1NameState extends State<Step1Name> {
                   SizedBox(
                     height: 90.h,
                   ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: _focusNode.hasFocus || nameController.text.isNotEmpty
-                        ? Text(
-                            "이름",
-                            style: TextStyle(
-                              fontSize: 16.sp,
-                              color: ColorsTheme.point,
-                            ),
-                          )
-                        : null,
+                  SizedBox(
+                    height: 20,
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: label(),
+                    ),
                   ),
                   TextField(
+                    controller: nameController,
                     focusNode: _focusNode,
                     style: TextStyle(
                       fontSize: 22.sp,
