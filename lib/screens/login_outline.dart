@@ -54,7 +54,7 @@ class _LoginOutlineState extends State<LoginOutline> {
                 flex: 1,
                 child: Padding(
                   padding: EdgeInsets.symmetric(
-                    horizontal: 40.w,
+                    horizontal: 25.w,
                     vertical: 24.h,
                   ),
                   child: Column(
@@ -109,8 +109,8 @@ class _LoginOutlineState extends State<LoginOutline> {
           }),
       items: [1, 2, 3].map((i) {
         return Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 40,
+          padding: EdgeInsets.symmetric(
+            horizontal: 25.w,
           ),
           child: Builder(
             builder: (BuildContext context) {
@@ -139,8 +139,8 @@ class _LoginOutlineState extends State<LoginOutline> {
 
   Widget sliderIndicator() {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 40,
+      padding: EdgeInsets.symmetric(
+        horizontal: 25.w,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,

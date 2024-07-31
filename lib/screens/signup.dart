@@ -18,7 +18,6 @@ class _SignupState extends State<Signup> {
     return Step1Name(
       nameController: nameController,
       emailController: emailController,
-      title: "Fullname",
     );
   }
 }
