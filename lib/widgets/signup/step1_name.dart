@@ -68,70 +68,93 @@ class _Step1NameState extends State<Step1Name> {
               fit: BoxFit.cover,
             ),
           ),
-          child: Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: 25.w,
-            ),
-            child: Center(
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 175.h,
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 25.w,
                   ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      "이름을 입력해주세요",
-                      style: TextStyle(
-                        fontSize: 28.sp,
-                        fontWeight: FontWeight.bold,
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 175.h,
                       ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "이름을 입력해주세요",
+                          style: TextStyle(
+                            fontSize: 28.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 90.h,
+                      ),
+                      SizedBox(
+                        height: 20,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: label(),
+                        ),
+                      ),
+                      TextField(
+                        controller: nameController,
+                        focusNode: _focusNode,
+                        style: TextStyle(
+                          fontSize: 22.sp,
+                          fontWeight: FontWeight.w500,
+                        ),
+                        decoration: InputDecoration(
+                          contentPadding: const EdgeInsets.only(
+                            bottom: 10,
+                            top: 5,
+                          ),
+                          hintText: "이름",
+                          hintStyle: TextStyle(
+                            fontSize: 22.sp,
+                            fontWeight: FontWeight.w600,
+                            color: ColorsTheme.gray600,
+                          ),
+                          enabledBorder: const UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              width: 2,
+                              color: ColorsTheme.gray600,
+                            ),
+                          ),
+                          focusedBorder: const UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              width: 2,
+                              color: ColorsTheme.point,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: Size(1.sw, 80),
+                    backgroundColor: ColorsTheme.point,
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.zero,
                     ),
                   ),
-                  SizedBox(
-                    height: 90.h,
-                  ),
-                  SizedBox(
-                    height: 20,
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: label(),
-                    ),
-                  ),
-                  TextField(
-                    controller: nameController,
-                    focusNode: _focusNode,
+                  child: Text(
+                    "확인",
                     style: TextStyle(
-                      fontSize: 22.sp,
-                      fontWeight: FontWeight.w500,
-                    ),
-                    decoration: InputDecoration(
-                      contentPadding: const EdgeInsets.only(
-                        bottom: 10,
-                        top: 5,
-                      ),
-                      hintText: "이름",
-                      hintStyle: TextStyle(
-                        fontSize: 22.sp,
-                        fontWeight: FontWeight.w600,
-                        color: ColorsTheme.gray600,
-                      ),
-                      enabledBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          width: 2,
-                          color: ColorsTheme.gray600,
-                        ),
-                      ),
-                      focusedBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          width: 2,
-                          color: ColorsTheme.point,
-                        ),
-                      ),
+                      color: ColorsTheme.white,
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),
