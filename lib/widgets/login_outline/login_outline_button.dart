@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
+import 'package:workout_app/models/signup_model.dart';
 import 'package:workout_app/screens/login.dart';
 import 'package:workout_app/screens/signup.dart';
 import 'package:workout_app/trash/common/color.dart';
@@ -85,7 +87,10 @@ class SignupButton extends StatelessWidget {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (_) => const Signup(),
+          builder: (_) => ChangeNotifierProvider(
+            create: (_) => SignupModel(),
+            child: const Signup(),
+          ),
         ),
       );
     }
