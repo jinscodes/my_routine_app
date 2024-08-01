@@ -113,7 +113,7 @@ class _Step1NameState extends State<Step1Name> {
                             bottom: 10,
                             top: 5,
                           ),
-                          hintText: "이름",
+                          hintText: _focusNode.hasFocus ? "" : "이름",
                           hintStyle: TextStyle(
                             fontSize: 22.sp,
                             fontWeight: FontWeight.w600,
@@ -136,21 +136,27 @@ class _Step1NameState extends State<Step1Name> {
                     ],
                   ),
                 ),
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: Size(1.sw, 80),
-                    backgroundColor: ColorsTheme.point,
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.zero,
-                    ),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 25.w,
+                    vertical: _focusNode.hasFocus ? 20.h : 70.h,
                   ),
-                  child: Text(
-                    "확인",
-                    style: TextStyle(
-                      color: ColorsTheme.white,
-                      fontSize: 18.sp,
-                      fontWeight: FontWeight.bold,
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      minimumSize: Size(1.sw, 60.h),
+                      backgroundColor: ColorsTheme.point,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    child: Text(
+                      "확인",
+                      style: TextStyle(
+                        color: ColorsTheme.white,
+                        fontSize: 18.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),
