@@ -9,15 +9,8 @@ class Signup extends StatefulWidget {
 }
 
 class _SignupState extends State<Signup> {
-  TextEditingController emailController = TextEditingController();
-  TextEditingController pwController = TextEditingController();
-  TextEditingController nameController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
-    return Step1Name(
-      nameController: nameController,
-      emailController: emailController,
-    );
+    return const Step1Name();
   }
 }
