@@ -96,7 +96,7 @@ class _LoginOutlineState extends State<LoginOutline> {
       carouselController: _controller,
       options: CarouselOptions(
           enableInfiniteScroll: true,
-          autoPlay: false,
+          autoPlay: true,
           autoPlayInterval: const Duration(
             seconds: 3,
           ),

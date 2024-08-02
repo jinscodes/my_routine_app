@@ -37,6 +37,12 @@ class _Step1NameState extends State<Step1Name> {
   }
 
   @override
+  void dispose() {
+    _focusNode.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final nameController = Provider.of<SignupModel>(context).nameController;
 
