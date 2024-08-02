@@ -28,7 +28,7 @@ class SignupTextField extends StatelessWidget {
           bottom: 10,
           top: 5,
         ),
-        hintText: focusNode.hasFocus ? "" : "이름",
+        hintText: focusNode.hasFocus ? "" : title,
         hintStyle: TextStyle(
           fontSize: 22.sp,
           fontWeight: FontWeight.w600,
