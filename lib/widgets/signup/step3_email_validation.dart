@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:workout_app/colors.dart';
 import 'package:workout_app/models/signup_model.dart';
 import 'package:workout_app/widgets/signup/aligned_title_text.dart';
+import 'package:workout_app/widgets/signup/pin_input.dart';
 import 'package:workout_app/widgets/signup/signup_button.dart';
 
 class Step3EmailValidation extends StatefulWidget {
@@ -26,15 +28,15 @@ class _Step3EmailValidationState extends State<Step3EmailValidation> {
     final emailValidationController =
         Provider.of<SignupModel>(context).emailValidationController;
 
-    return Container(
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assetName"),
-          fit: BoxFit.cover,
+    return Scaffold(
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/signupBg.png"),
+            fit: BoxFit.cover,
+          ),
         ),
-      ),
-      child: Scaffold(
-        body: Center(
+        child: Center(
           child: Padding(
             padding: EdgeInsets.symmetric(
               horizontal: 25.w,
@@ -53,15 +55,35 @@ class _Step3EmailValidationState extends State<Step3EmailValidation> {
                     SizedBox(
                       height: 90.h,
                     ),
+                    const PinInput(),
                   ],
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(
                     vertical: _focusNode.hasFocus ? 20.h : 70.h,
                   ),
-                  child: SignupButton(
-                    handlePressed: () => print("object"),
-                    content: "확인",
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TextButton(
+                        onPressed: () => print("clicked"),
+                        style: TextButton.styleFrom(
+                          padding: EdgeInsets.zero,
+                          minimumSize: Size.zero,
+                        ),
+                        child: Text(
+                          "인증번호 재전송",
+                          style: TextStyle(
+                            fontSize: 17.sp,
+                            color: ColorsTheme.point,
+                          ),
+                        ),
+                      ),
+                      SignupButton(
+                        handlePressed: () => print("object"),
+                        content: "확인",
+                      ),
+                    ],
                   ),
                 ),
               ],
