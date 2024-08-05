@@ -6,33 +6,16 @@ import 'package:workout_app/widgets/signup/aligned_title_text.dart';
 import 'package:workout_app/widgets/signup/label_text.dart';
 import 'package:workout_app/widgets/signup/signup_button.dart';
 import 'package:workout_app/widgets/signup/signup_textfield.dart';
-import 'package:workout_app/widgets/signup/step3_email_validation.dart';
 
-class Step2Email extends StatefulWidget {
-  const Step2Email({
-    super.key,
-  });
+class Step4Password extends StatefulWidget {
+  const Step4Password({super.key});
 
   @override
-  State<Step2Email> createState() => _Step2EmailState();
+  State<Step4Password> createState() => _Step4PasswordState();
 }
 
-class _Step2EmailState extends State<Step2Email> {
+class _Step4PasswordState extends State<Step4Password> {
   final FocusNode _focusNode = FocusNode();
-
-  void _navigateToNext(TextEditingController controller) {
-    if (controller.text.isNotEmpty) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (_) => ChangeNotifierProvider(
-            create: (_) => SignupModel(),
-            child: const Step3EmailValidation(),
-          ),
-        ),
-      );
-    }
-  }
 
   @override
   void dispose() {
@@ -42,7 +25,7 @@ class _Step2EmailState extends State<Step2Email> {
 
   @override
   Widget build(BuildContext context) {
-    final emailController = Provider.of<SignupModel>(context).emailController;
+    final pwController = Provider.of<SignupModel>(context).pwController;
 
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
@@ -68,20 +51,20 @@ class _Step2EmailState extends State<Step2Email> {
                         height: 175.h,
                       ),
                       const AlignedTitleText(
-                        title: "이메일을 입력해주세요",
+                        title: "비밀번호를 입력해주세요",
                       ),
                       SizedBox(
                         height: 90.h,
                       ),
                       LabelText(
-                        title: "이메일",
+                        title: "비밀번호",
                         focusNode: _focusNode,
-                        controller: emailController,
+                        controller: pwController,
                       ),
                       SignupTextField(
-                        controller: emailController,
+                        controller: pwController,
                         focusNode: _focusNode,
-                        title: "이메일",
+                        title: "비밀번호",
                       ),
                     ],
                   ),
@@ -90,8 +73,8 @@ class _Step2EmailState extends State<Step2Email> {
                       vertical: _focusNode.hasFocus ? 20.h : 70.h,
                     ),
                     child: SignupButton(
-                      handlePressed: () => _navigateToNext(emailController),
-                      content: "인증번호 받기",
+                      handlePressed: () => print("click"),
+                      content: "확인",
                     ),
                   ),
                 ],
