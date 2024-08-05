@@ -68,14 +68,10 @@ class _Step4PasswordState extends State<Step4Password> {
                       ),
                     ],
                   ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                      vertical: _focusNode.hasFocus ? 20.h : 70.h,
-                    ),
-                    child: SignupButton(
-                      handlePressed: () => print("click"),
-                      content: "확인",
-                    ),
+                  SignupButton(
+                    focusNode: _focusNode,
+                    handlePressed: () => print("click"),
+                    content: "확인",
                   ),
                 ],
               ),

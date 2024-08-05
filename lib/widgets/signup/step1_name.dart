@@ -37,6 +37,11 @@ class _Step1NameState extends State<Step1Name> {
   }
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   void dispose() {
     _focusNode.dispose();
     super.dispose();
@@ -87,14 +92,10 @@ class _Step1NameState extends State<Step1Name> {
                       ),
                     ],
                   ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                      vertical: _focusNode.hasFocus ? 20.h : 70.h,
-                    ),
-                    child: SignupButton(
-                      handlePressed: () => _navigateToNext(nameController),
-                      content: "확인",
-                    ),
+                  SignupButton(
+                    focusNode: _focusNode,
+                    handlePressed: () => _navigateToNext(nameController),
+                    content: "확인",
                   ),
                 ],
               ),

@@ -85,14 +85,10 @@ class _Step2EmailState extends State<Step2Email> {
                       ),
                     ],
                   ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                      vertical: _focusNode.hasFocus ? 20.h : 70.h,
-                    ),
-                    child: SignupButton(
-                      handlePressed: () => _navigateToNext(emailController),
-                      content: "인증번호 받기",
-                    ),
+                  SignupButton(
+                    focusNode: _focusNode,
+                    handlePressed: () => _navigateToNext(emailController),
+                    content: "인증번호 받기",
                   ),
                 ],
               ),
