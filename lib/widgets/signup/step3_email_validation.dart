@@ -95,6 +95,7 @@ class _Step3EmailValidationState extends State<Step3EmailValidation> {
                         ),
                       ),
                       SignupButton(
+                        focusNode: _focusNode,
                         handlePressed: () =>
                             _navigateToNext(emailValidationController),
                         content: "확인",

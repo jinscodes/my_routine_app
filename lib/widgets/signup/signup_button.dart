@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:workout_app/colors.dart';
 
 class SignupButton extends StatelessWidget {
+  final FocusNode focusNode;
   final Function handlePressed;
   final String content;
 
@@ -10,25 +11,31 @@ class SignupButton extends StatelessWidget {
     super.key,
     required this.handlePressed,
     required this.content,
+    required this.focusNode,
   });
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () => handlePressed(),
-      style: ElevatedButton.styleFrom(
-        minimumSize: Size(1.sw, 60.h),
-        backgroundColor: ColorsTheme.point,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        vertical: focusNode.hasFocus ? 20.h : 70.h,
       ),
-      child: Text(
-        content,
-        style: TextStyle(
-          color: ColorsTheme.white,
-          fontSize: 18.sp,
-          fontWeight: FontWeight.bold,
+      child: ElevatedButton(
+        onPressed: () => handlePressed(),
+        style: ElevatedButton.styleFrom(
+          minimumSize: Size(1.sw, 60.h),
+          backgroundColor: ColorsTheme.point,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+        child: Text(
+          content,
+          style: TextStyle(
+            color: ColorsTheme.white,
+            fontSize: 18.sp,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
     );
