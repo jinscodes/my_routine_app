@@ -50,7 +50,7 @@ class PinInput extends StatelessWidget {
         defaultPinTheme: defaultPinTheme,
         focusedPinTheme: focusedPinTheme,
         pinputAutovalidateMode: PinputAutovalidateMode.onSubmit,
-        onCompleted: (pin) => print(pin),
+        // onCompleted: (pin) => print(pin),
       ),
     );
   }

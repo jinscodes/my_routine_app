@@ -6,6 +6,7 @@ import 'package:workout_app/models/signup_model.dart';
 import 'package:workout_app/widgets/signup/aligned_title_text.dart';
 import 'package:workout_app/widgets/signup/pin_input.dart';
 import 'package:workout_app/widgets/signup/signup_button.dart';
+import 'package:workout_app/widgets/signup/step4_password.dart';
 
 class Step3EmailValidation extends StatefulWidget {
   const Step3EmailValidation({super.key});
@@ -16,6 +17,20 @@ class Step3EmailValidation extends StatefulWidget {
 
 class _Step3EmailValidationState extends State<Step3EmailValidation> {
   final FocusNode _focusNode = FocusNode();
+
+  void _navigateToNext(TextEditingController controller) {
+    if (controller.text.isNotEmpty) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => ChangeNotifierProvider(
+            create: (_) => SignupModel(),
+            child: const Step4Password(),
+          ),
+        ),
+      );
+    }
+  }
 
   @override
   void dispose() {
@@ -80,7 +95,8 @@ class _Step3EmailValidationState extends State<Step3EmailValidation> {
                         ),
                       ),
                       SignupButton(
-                        handlePressed: () => print("object"),
+                        handlePressed: () =>
+                            _navigateToNext(emailValidationController),
                         content: "확인",
                       ),
                     ],
