@@ -39,8 +39,6 @@ class LabelText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(focusNode.hasFocus);
-
     return SizedBox(
       height: 20,
       child: Align(

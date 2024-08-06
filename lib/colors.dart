@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class ColorsTheme {
   static const Color white = Color(0xFFFFFFFF);
   static const Color black = Color(0xFF000000);
+  static const Color red = Color(0xFFFF0000);
   static const Color point = Color(0xFF4B45FF);
   static const Color pointLight1 = Color(0xFFDBDAFF);
   static const Color pointLight2 = Color(0xFFA4A2FF);

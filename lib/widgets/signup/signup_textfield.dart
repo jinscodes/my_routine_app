@@ -4,21 +4,23 @@ import 'package:workout_app/colors.dart';
 
 class SignupTextField extends StatelessWidget {
   final TextEditingController controller;
-  final FocusNode focusNode;
+  final FocusNode myFocusNode;
   final String title;
+  final String? errorText;
 
   const SignupTextField({
     super.key,
     required this.controller,
-    required this.focusNode,
+    required this.myFocusNode,
     required this.title,
+    this.errorText,
   });
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
       controller: controller,
-      focusNode: focusNode,
+      focusNode: myFocusNode,
       style: TextStyle(
         fontSize: 22.sp,
         fontWeight: FontWeight.w500,
@@ -28,11 +30,16 @@ class SignupTextField extends StatelessWidget {
           bottom: 10,
           top: 5,
         ),
-        hintText: focusNode.hasFocus ? "" : title,
+        hintText: myFocusNode.hasFocus ? "" : title,
         hintStyle: TextStyle(
           fontSize: 22.sp,
           fontWeight: FontWeight.w600,
           color: ColorsTheme.gray600,
+        ),
+        errorText: errorText,
+        errorStyle: TextStyle(
+          fontSize: 14.sp,
+          color: ColorsTheme.red,
         ),
         enabledBorder: const UnderlineInputBorder(
           borderSide: BorderSide(
@@ -44,6 +51,12 @@ class SignupTextField extends StatelessWidget {
           borderSide: BorderSide(
             width: 2,
             color: ColorsTheme.point,
+          ),
+        ),
+        errorBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(
+            width: 2,
+            color: ColorsTheme.red,
           ),
         ),
       ),

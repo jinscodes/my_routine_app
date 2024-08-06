@@ -17,8 +17,8 @@ class SignupButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(
-        vertical: focusNode.hasFocus ? 20.h : 70.h,
+      padding: EdgeInsets.only(
+        bottom: focusNode.hasFocus ? 20.h : 70.h,
       ),
       child: ElevatedButton(
         onPressed: () => handlePressed(),
