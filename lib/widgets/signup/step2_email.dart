@@ -6,7 +6,7 @@ import 'package:workout_app/widgets/signup/aligned_title_text.dart';
 import 'package:workout_app/widgets/signup/label_text.dart';
 import 'package:workout_app/widgets/signup/signup_button.dart';
 import 'package:workout_app/widgets/signup/signup_textfield.dart';
-import 'package:workout_app/widgets/signup/step3_email_validation.dart';
+import 'package:workout_app/widgets/signup/step3_email_valid.dart';
 
 class Step2Email extends StatefulWidget {
   const Step2Email({

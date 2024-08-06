@@ -5,6 +5,8 @@ import 'package:workout_app/models/signup_model.dart';
 import 'package:workout_app/widgets/signup/aligned_title_text.dart';
 import 'package:workout_app/widgets/signup/label_text.dart';
 import 'package:workout_app/widgets/signup/signup_button.dart';
+import 'package:workout_app/widgets/signup/signup_textfield.dart';
+import 'package:workout_app/widgets/signup/step5_pw_valid.dart';
 
 class Step4Password extends StatefulWidget {
   const Step4Password({super.key});
@@ -14,11 +16,44 @@ class Step4Password extends StatefulWidget {
 }
 
 class _Step4PasswordState extends State<Step4Password> {
-  final FocusNode _focusNode = FocusNode();
+  late FocusNode myFocusNode;
+  String? isEmpty;
+
+  void _navigateToNext(TextEditingController controller) {
+    if (controller.text.isNotEmpty) {
+      if (controller.text.length >= 6) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => ChangeNotifierProvider(
+              create: (_) => SignupModel(),
+              child: const Step5PasswordValidation(),
+            ),
+          ),
+        );
+      } else {
+        setState(() {
+          isEmpty = "비밀번호는 6자 이상 입력하셔야 합니다";
+        });
+      }
+    } else {
+      setState(() {
+        isEmpty = "비밀번호를 입력해주세요";
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    myFocusNode = FocusNode();
+    myFocusNode.addListener(() => setState(() {}));
+    super.initState();
+  }
 
   @override
   void dispose() {
-    _focusNode.dispose();
+    myFocusNode.dispose();
+    myFocusNode.removeListener(() => setState(() {}));
     super.dispose();
   }
 
@@ -57,18 +92,20 @@ class _Step4PasswordState extends State<Step4Password> {
                       ),
                       LabelText(
                         title: "비밀번호",
-                        focusNode: _focusNode,
+                        focusNode: myFocusNode,
                         controller: pwController,
                       ),
-                      // SignupTextField(
-                      //   controller: pwController,
-                      //   title: "비밀번호",
-                      // ),
+                      SignupTextField(
+                        controller: pwController,
+                        title: "비밀번호",
+                        myFocusNode: myFocusNode,
+                        errorText: isEmpty,
+                      ),
                     ],
                   ),
                   SignupButton(
-                    focusNode: _focusNode,
-                    handlePressed: () => print("click"),
+                    focusNode: myFocusNode,
+                    handlePressed: () => _navigateToNext(pwController),
                     content: "확인",
                   ),
                 ],
