@@ -18,7 +18,8 @@ class Step2Email extends StatefulWidget {
 }
 
 class _Step2EmailState extends State<Step2Email> {
-  final FocusNode _focusNode = FocusNode();
+  late FocusNode myFocusNode;
+  String? isEmpty;
 
   void _navigateToNext(TextEditingController controller) {
     if (controller.text.isNotEmpty) {
@@ -31,12 +32,24 @@ class _Step2EmailState extends State<Step2Email> {
           ),
         ),
       );
+    } else {
+      setState(() {
+        isEmpty = "올바르지 않은 이메일 형식입니다";
+      });
     }
   }
 
   @override
+  void initState() {
+    myFocusNode = FocusNode();
+    myFocusNode.addListener(() => setState(() {}));
+    super.initState();
+  }
+
+  @override
   void dispose() {
-    _focusNode.dispose();
+    myFocusNode.dispose();
+    myFocusNode.removeListener(() => setState(() {}));
     super.dispose();
   }
 
@@ -75,18 +88,19 @@ class _Step2EmailState extends State<Step2Email> {
                       ),
                       LabelText(
                         title: "이메일",
-                        focusNode: _focusNode,
+                        focusNode: myFocusNode,
                         controller: emailController,
                       ),
                       SignupTextField(
                         controller: emailController,
-                        focusNode: _focusNode,
                         title: "이메일",
+                        myFocusNode: myFocusNode,
+                        errorText: isEmpty,
                       ),
                     ],
                   ),
                   SignupButton(
-                    focusNode: _focusNode,
+                    focusNode: myFocusNode,
                     handlePressed: () => _navigateToNext(emailController),
                     content: "인증번호 받기",
                   ),

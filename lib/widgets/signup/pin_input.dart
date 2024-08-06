@@ -37,15 +37,15 @@ class PinInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final emailValidationController =
-        Provider.of<SignupModel>(context).emailValidationController;
+    final emailValidController =
+        Provider.of<SignupModel>(context).emailValidController;
 
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal: 60.h,
       ),
       child: Pinput(
-        controller: emailValidationController,
+        controller: emailValidController,
         length: 6,
         defaultPinTheme: defaultPinTheme,
         focusedPinTheme: focusedPinTheme,

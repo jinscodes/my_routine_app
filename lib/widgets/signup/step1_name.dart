@@ -18,7 +18,8 @@ class Step1Name extends StatefulWidget {
 }
 
 class _Step1NameState extends State<Step1Name> {
-  final FocusNode _focusNode = FocusNode();
+  late FocusNode myFocusNode;
+  String? isEmpty;
 
   void _navigateToNext(TextEditingController nameController) {
     if (nameController.text.isNotEmpty) {
@@ -32,18 +33,23 @@ class _Step1NameState extends State<Step1Name> {
         ),
       );
     } else {
-      // alert something
+      setState(() {
+        isEmpty = "이름을 입력해주세요";
+      });
     }
   }
 
   @override
   void initState() {
+    myFocusNode = FocusNode();
+    myFocusNode.addListener(() => setState(() {}));
     super.initState();
   }
 
   @override
   void dispose() {
-    _focusNode.dispose();
+    myFocusNode.dispose();
+    myFocusNode.removeListener(() => setState(() {}));
     super.dispose();
   }
 
@@ -82,18 +88,19 @@ class _Step1NameState extends State<Step1Name> {
                       ),
                       LabelText(
                         title: "이름",
-                        focusNode: _focusNode,
+                        focusNode: myFocusNode,
                         controller: nameController,
                       ),
                       SignupTextField(
                         controller: nameController,
-                        focusNode: _focusNode,
+                        myFocusNode: myFocusNode,
                         title: "이름",
+                        errorText: isEmpty,
                       ),
                     ],
                   ),
                   SignupButton(
-                    focusNode: _focusNode,
+                    focusNode: myFocusNode,
                     handlePressed: () => _navigateToNext(nameController),
                     content: "확인",
                   ),

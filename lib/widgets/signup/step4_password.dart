@@ -5,7 +5,6 @@ import 'package:workout_app/models/signup_model.dart';
 import 'package:workout_app/widgets/signup/aligned_title_text.dart';
 import 'package:workout_app/widgets/signup/label_text.dart';
 import 'package:workout_app/widgets/signup/signup_button.dart';
-import 'package:workout_app/widgets/signup/signup_textfield.dart';
 
 class Step4Password extends StatefulWidget {
   const Step4Password({super.key});
@@ -61,11 +60,10 @@ class _Step4PasswordState extends State<Step4Password> {
                         focusNode: _focusNode,
                         controller: pwController,
                       ),
-                      SignupTextField(
-                        controller: pwController,
-                        focusNode: _focusNode,
-                        title: "비밀번호",
-                      ),
+                      // SignupTextField(
+                      //   controller: pwController,
+                      //   title: "비밀번호",
+                      // ),
                     ],
                   ),
                   SignupButton(

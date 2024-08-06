@@ -40,8 +40,8 @@ class _Step3EmailValidationState extends State<Step3EmailValidation> {
 
   @override
   Widget build(BuildContext context) {
-    final emailValidationController =
-        Provider.of<SignupModel>(context).emailValidationController;
+    final emailValidController =
+        Provider.of<SignupModel>(context).emailValidController;
 
     return Scaffold(
       body: Container(
@@ -73,35 +73,30 @@ class _Step3EmailValidationState extends State<Step3EmailValidation> {
                     const PinInput(),
                   ],
                 ),
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                    vertical: _focusNode.hasFocus ? 20.h : 70.h,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      TextButton(
-                        onPressed: () => print("clicked"),
-                        style: TextButton.styleFrom(
-                          padding: EdgeInsets.zero,
-                          minimumSize: Size.zero,
-                        ),
-                        child: Text(
-                          "인증번호 재전송",
-                          style: TextStyle(
-                            fontSize: 17.sp,
-                            color: ColorsTheme.point,
-                          ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TextButton(
+                      onPressed: () => print("clicked"),
+                      style: TextButton.styleFrom(
+                        padding: EdgeInsets.zero,
+                        minimumSize: Size.zero,
+                      ),
+                      child: Text(
+                        "인증번호 재전송",
+                        style: TextStyle(
+                          fontSize: 17.sp,
+                          color: ColorsTheme.point,
                         ),
                       ),
-                      SignupButton(
-                        focusNode: _focusNode,
-                        handlePressed: () =>
-                            _navigateToNext(emailValidationController),
-                        content: "확인",
-                      ),
-                    ],
-                  ),
+                    ),
+                    SignupButton(
+                      focusNode: _focusNode,
+                      handlePressed: () =>
+                          _navigateToNext(emailValidController),
+                      content: "확인",
+                    ),
+                  ],
                 ),
               ],
             ),
