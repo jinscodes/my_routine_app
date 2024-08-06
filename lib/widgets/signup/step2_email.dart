@@ -23,18 +23,28 @@ class _Step2EmailState extends State<Step2Email> {
 
   void _navigateToNext(TextEditingController controller) {
     if (controller.text.isNotEmpty) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (_) => ChangeNotifierProvider(
-            create: (_) => SignupModel(),
-            child: const Step3EmailValidation(),
+      bool isValidEmail = RegExp(
+              r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
+          .hasMatch(controller.text);
+
+      if (isValidEmail) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => ChangeNotifierProvider(
+              create: (_) => SignupModel(),
+              child: const Step3EmailValidation(),
+            ),
           ),
-        ),
-      );
+        );
+      } else {
+        setState(() {
+          isEmpty = "올바르지 않은 이메일 형식입니다";
+        });
+      }
     } else {
       setState(() {
-        isEmpty = "올바르지 않은 이메일 형식입니다";
+        isEmpty = "이메일을 입력해주세요";
       });
     }
   }
