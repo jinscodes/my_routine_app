@@ -27,7 +27,9 @@ class _Step4PasswordState extends State<Step4Password> {
           MaterialPageRoute(
             builder: (_) => ChangeNotifierProvider(
               create: (_) => SignupModel(),
-              child: const Step5PasswordValidation(),
+              child: Step5PasswordValidation(
+                preController: controller,
+              ),
             ),
           ),
         );

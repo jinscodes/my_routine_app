@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pinput/pinput.dart';
-import 'package:provider/provider.dart';
 import 'package:workout_app/colors.dart';
-import 'package:workout_app/models/signup_model.dart';
 
 final defaultPinTheme = PinTheme(
   width: 55.w,
@@ -33,13 +31,15 @@ final focusedPinTheme = defaultPinTheme.copyDecorationWith(
 );
 
 class PinInput extends StatelessWidget {
-  const PinInput({super.key});
+  final TextEditingController emailValidController;
+
+  const PinInput({
+    super.key,
+    required this.emailValidController,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final emailValidController =
-        Provider.of<SignupModel>(context).emailValidController;
-
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal: 60.h,

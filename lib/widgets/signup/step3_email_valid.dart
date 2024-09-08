@@ -17,6 +17,7 @@ class Step3EmailValidation extends StatefulWidget {
 
 class _Step3EmailValidationState extends State<Step3EmailValidation> {
   late FocusNode myFocusNode;
+  TextEditingController emailValidController = TextEditingController();
   String? isEmpty;
 
   void _navigateToNext(TextEditingController controller) {
@@ -49,9 +50,6 @@ class _Step3EmailValidationState extends State<Step3EmailValidation> {
 
   @override
   Widget build(BuildContext context) {
-    final emailValidController =
-        Provider.of<SignupModel>(context).emailValidController;
-
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -79,7 +77,7 @@ class _Step3EmailValidationState extends State<Step3EmailValidation> {
                     SizedBox(
                       height: 90.h,
                     ),
-                    const PinInput(),
+                    PinInput(emailValidController: emailValidController),
                   ],
                 ),
                 Column(
