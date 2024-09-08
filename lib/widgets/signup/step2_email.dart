@@ -21,20 +21,20 @@ class _Step2EmailState extends State<Step2Email> {
   late FocusNode myFocusNode;
   String? isEmpty;
 
-  void _navigateToNext(TextEditingController controller) {
-    if (controller.text.isNotEmpty) {
+  void _navigateToNext() {
+    final emailController =
+        Provider.of<SignupModel>(context, listen: false).emailController;
+
+    if (emailController.text.isNotEmpty) {
       bool isValidEmail = RegExp(
               r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
-          .hasMatch(controller.text);
+          .hasMatch(emailController.text);
 
       if (isValidEmail) {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (_) => ChangeNotifierProvider(
-              create: (_) => SignupModel(),
-              child: const Step3EmailValidation(),
-            ),
+            builder: (_) => const Step3EmailValidation(),
           ),
         );
       } else {
@@ -111,7 +111,7 @@ class _Step2EmailState extends State<Step2Email> {
                   ),
                   SignupButton(
                     focusNode: myFocusNode,
-                    handlePressed: () => _navigateToNext(emailController),
+                    handlePressed: () => _navigateToNext(),
                     content: "인증번호 받기",
                   ),
                 ],

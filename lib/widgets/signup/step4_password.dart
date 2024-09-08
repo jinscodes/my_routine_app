@@ -19,18 +19,16 @@ class _Step4PasswordState extends State<Step4Password> {
   late FocusNode myFocusNode;
   String? isEmpty;
 
-  void _navigateToNext(TextEditingController controller) {
-    if (controller.text.isNotEmpty) {
-      if (controller.text.length >= 6) {
+  void _navigateToNext() {
+    final pwController =
+        Provider.of<SignupModel>(context, listen: false).pwController;
+
+    if (pwController.text.isNotEmpty) {
+      if (pwController.text.length >= 6) {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (_) => ChangeNotifierProvider(
-              create: (_) => SignupModel(),
-              child: Step5PasswordValidation(
-                preController: controller,
-              ),
-            ),
+            builder: (_) => const Step5PasswordValidation(),
           ),
         );
       } else {
@@ -107,7 +105,7 @@ class _Step4PasswordState extends State<Step4Password> {
                   ),
                   SignupButton(
                     focusNode: myFocusNode,
-                    handlePressed: () => _navigateToNext(pwController),
+                    handlePressed: () => _navigateToNext(),
                     content: "확인",
                   ),
                 ],

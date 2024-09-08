@@ -21,15 +21,15 @@ class _Step1NameState extends State<Step1Name> {
   late FocusNode myFocusNode;
   String? isEmpty;
 
-  void _navigateToNext(TextEditingController nameController) {
+  void _navigateToNext() {
+    final nameController =
+        Provider.of<SignupModel>(context, listen: false).nameController;
+
     if (nameController.text.isNotEmpty) {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (_) => ChangeNotifierProvider(
-            create: (_) => SignupModel(),
-            child: const Step2Email(),
-          ),
+          builder: (_) => const Step2Email(),
         ),
       );
     } else {
@@ -101,7 +101,7 @@ class _Step1NameState extends State<Step1Name> {
                   ),
                   SignupButton(
                     focusNode: myFocusNode,
-                    handlePressed: () => _navigateToNext(nameController),
+                    handlePressed: () => _navigateToNext(),
                     content: "확인",
                   ),
                 ],

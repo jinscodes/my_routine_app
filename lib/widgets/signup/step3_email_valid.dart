@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
 import 'package:workout_app/colors.dart';
-import 'package:workout_app/models/signup_model.dart';
 import 'package:workout_app/widgets/signup/aligned_title_text.dart';
 import 'package:workout_app/widgets/signup/pin_input.dart';
 import 'package:workout_app/widgets/signup/signup_button.dart';
@@ -25,10 +23,7 @@ class _Step3EmailValidationState extends State<Step3EmailValidation> {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (_) => ChangeNotifierProvider(
-            create: (_) => SignupModel(),
-            child: const Step4Password(),
-          ),
+          builder: (_) => const Step4Password(),
         ),
       );
     }
