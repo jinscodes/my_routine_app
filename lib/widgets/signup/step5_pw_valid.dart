@@ -9,11 +9,8 @@ import 'package:workout_app/widgets/signup/signup_complete.dart';
 import 'package:workout_app/widgets/signup/signup_textfield.dart';
 
 class Step5PasswordValidation extends StatefulWidget {
-  final TextEditingController preController;
-
   const Step5PasswordValidation({
     super.key,
-    required this.preController,
   });
 
   @override
@@ -23,22 +20,16 @@ class Step5PasswordValidation extends StatefulWidget {
 
 class _Step5PasswordValidationState extends State<Step5PasswordValidation> {
   late FocusNode myFocusNode;
-  late TextEditingController preController;
   String? isEmpty;
   TextEditingController pwValidController = TextEditingController();
 
   void _navigateToNext() {
+    final pwController =
+        Provider.of<SignupModel>(context, listen: false).pwController;
+
     if (pwValidController.text.isNotEmpty) {
-      if (preController.text == pwValidController.text) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (_) => ChangeNotifierProvider(
-              create: (_) => SignupModel(),
-              child: const SignupComplete(),
-            ),
-          ),
-        );
+      if (pwController.text == pwValidController.text) {
+        _postSignup();
       } else {
         setState(() {
           isEmpty = "비밀번호가 일치하지 않습니다";
@@ -51,9 +42,24 @@ class _Step5PasswordValidationState extends State<Step5PasswordValidation> {
     }
   }
 
+  void _postSignup() {
+    final pwController =
+        Provider.of<SignupModel>(context, listen: false).pwController.text;
+    final nameController =
+        Provider.of<SignupModel>(context, listen: false).nameController.text;
+
+    print("$nameController, $pwController");
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => const SignupComplete(),
+      ),
+    );
+  }
+
   @override
   void initState() {
-    preController = widget.preController;
     myFocusNode = FocusNode();
     myFocusNode.addListener(() => setState(() {}));
     super.initState();
