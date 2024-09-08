@@ -9,7 +9,12 @@ import 'package:workout_app/widgets/signup/signup_complete.dart';
 import 'package:workout_app/widgets/signup/signup_textfield.dart';
 
 class Step5PasswordValidation extends StatefulWidget {
-  const Step5PasswordValidation({super.key});
+  final TextEditingController preController;
+
+  const Step5PasswordValidation({
+    super.key,
+    required this.preController,
+  });
 
   @override
   State<Step5PasswordValidation> createState() =>
@@ -18,12 +23,13 @@ class Step5PasswordValidation extends StatefulWidget {
 
 class _Step5PasswordValidationState extends State<Step5PasswordValidation> {
   late FocusNode myFocusNode;
+  late TextEditingController preController;
   String? isEmpty;
+  TextEditingController pwValidController = TextEditingController();
 
-  void _navigateToNext(
-      TextEditingController preController, TextEditingController controller) {
-    if (controller.text.isNotEmpty) {
-      if (preController.text == controller.text) {
+  void _navigateToNext() {
+    if (pwValidController.text.isNotEmpty) {
+      if (preController.text == pwValidController.text) {
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -47,6 +53,7 @@ class _Step5PasswordValidationState extends State<Step5PasswordValidation> {
 
   @override
   void initState() {
+    preController = widget.preController;
     myFocusNode = FocusNode();
     myFocusNode.addListener(() => setState(() {}));
     super.initState();
@@ -61,10 +68,6 @@ class _Step5PasswordValidationState extends State<Step5PasswordValidation> {
 
   @override
   Widget build(BuildContext context) {
-    final pwController = Provider.of<SignupModel>(context).pwController;
-    final pwValidController =
-        Provider.of<SignupModel>(context).pwValidController;
-
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
@@ -109,8 +112,7 @@ class _Step5PasswordValidationState extends State<Step5PasswordValidation> {
                   ),
                   SignupButton(
                     focusNode: myFocusNode,
-                    handlePressed: () =>
-                        _navigateToNext(pwController, pwValidController),
+                    handlePressed: () => _navigateToNext(),
                     content: "확인",
                   ),
                 ],

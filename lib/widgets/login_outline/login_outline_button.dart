@@ -62,7 +62,7 @@ class LoginButton extends StatelessWidget {
           Text(
             content,
             style: TextStyle(
-              fontSize: 15.sp,
+              fontSize: 18.sp,
               fontWeight: FontWeight.bold,
               color: ColorTheme.mainBlue,
             ),
@@ -110,7 +110,7 @@ class SignupButton extends StatelessWidget {
       child: Text(
         "Signup with ID/PW",
         style: TextStyle(
-          fontSize: 15.sp,
+          fontSize: 18.sp,
           fontWeight: FontWeight.bold,
           color: Colors.white,
         ),

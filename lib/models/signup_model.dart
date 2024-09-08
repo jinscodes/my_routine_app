@@ -5,7 +5,6 @@ class SignupModel with ChangeNotifier {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController emailValidController = TextEditingController();
   final TextEditingController pwController = TextEditingController();
-  final TextEditingController pwValidController = TextEditingController();
 
   @override
   void dispose() {
@@ -13,7 +12,6 @@ class SignupModel with ChangeNotifier {
     emailController.dispose();
     emailValidController.dispose();
     pwController.dispose();
-    pwValidController.dispose();
     super.dispose();
   }
 }
