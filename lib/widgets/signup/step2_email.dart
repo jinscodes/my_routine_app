@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:workout_app/models/signup_model.dart';
+import 'package:workout_app/utilities/signup/email_double_check.dart';
 import 'package:workout_app/widgets/signup/aligned_title_text.dart';
 import 'package:workout_app/widgets/signup/label_text.dart';
 import 'package:workout_app/widgets/signup/signup_button.dart';
 import 'package:workout_app/widgets/signup/signup_textfield.dart';
-import 'package:workout_app/widgets/signup/step3_email_valid.dart';
 
 class Step2Email extends StatefulWidget {
   const Step2Email({
@@ -21,7 +21,7 @@ class _Step2EmailState extends State<Step2Email> {
   late FocusNode myFocusNode;
   String? isEmpty;
 
-  void _navigateToNext() {
+  void _navigateToNext() async {
     final emailController =
         Provider.of<SignupModel>(context, listen: false).emailController;
 
@@ -31,12 +31,16 @@ class _Step2EmailState extends State<Step2Email> {
           .hasMatch(emailController.text);
 
       if (isValidEmail) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (_) => const Step3EmailValidation(),
-          ),
-        );
+        bool res = await emailDoubleCheck("jay");
+
+        print("step2: $res");
+
+        // Navigator.push(
+        //   context,
+        //   MaterialPageRoute(
+        //     builder: (_) => const Step3EmailValidation(),
+        //   ),
+        // );
       } else {
         setState(() {
           isEmpty = "올바르지 않은 이메일 형식입니다";
