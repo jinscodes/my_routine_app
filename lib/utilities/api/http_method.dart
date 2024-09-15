@@ -29,7 +29,7 @@ class GetApi {
       url,
     );
 
-    print("api: $res");
+    print("http_method: $res");
 
     return res;
   }

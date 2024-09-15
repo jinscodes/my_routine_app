@@ -48,8 +48,6 @@ class _Step5PasswordValidationState extends State<Step5PasswordValidation> {
     final nameController =
         Provider.of<SignupModel>(context, listen: false).nameController.text;
 
-    print("$nameController, $pwController");
-
     Navigator.push(
       context,
       MaterialPageRoute(
