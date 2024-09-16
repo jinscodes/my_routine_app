@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:workout_app/colors.dart';
+import 'package:workout_app/models/signup_model.dart';
+import 'package:workout_app/utilities/signup/certificate_email.dart';
 import 'package:workout_app/widgets/signup/aligned_title_text.dart';
 import 'package:workout_app/widgets/signup/pin_input.dart';
 import 'package:workout_app/widgets/signup/signup_button.dart';
@@ -30,6 +33,15 @@ class _Step3EmailValidationState extends State<Step3EmailValidation> {
         ),
       );
     }
+  }
+
+  void retransmit() async {
+    final controller =
+        Provider.of<SignupModel>(context, listen: false).emailController;
+    final email = controller.text;
+
+    String res = await certificateEmail(email);
+    emailPassKey = res;
   }
 
   @override
@@ -83,7 +95,7 @@ class _Step3EmailValidationState extends State<Step3EmailValidation> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     TextButton(
-                      onPressed: () => print("clicked"),
+                      onPressed: () => retransmit(),
                       style: TextButton.styleFrom(
                         padding: EdgeInsets.zero,
                         minimumSize: Size.zero,
