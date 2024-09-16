@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:workout_app/trash/common/color.dart';
+import 'package:workout_app/colors.dart';
 
 class LoginButton extends StatelessWidget {
   final String title;
@@ -27,7 +27,7 @@ class LoginButton extends StatelessWidget {
         style: TextStyle(
           fontSize: 18.sp,
           fontWeight: FontWeight.bold,
-          color: ColorTheme.mainBlue,
+          color: ColorsTheme.point,
         ),
       ),
     );

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:workout_app/trash/common/color.dart';
+import 'package:workout_app/colors.dart';
 
 class LoginInput extends StatefulWidget {
   final TextEditingController controller;
@@ -36,7 +36,7 @@ class _LoginInputState extends State<LoginInput> {
                 onPressed: () => setState(() => visible = !visible),
                 icon: Icon(
                   visible ? Icons.visibility_off : Icons.visibility,
-                  color: ColorTheme.gray,
+                  color: ColorsTheme.gray300,
                 ),
               ),
               IconButton(
@@ -45,7 +45,7 @@ class _LoginInputState extends State<LoginInput> {
                 ),
                 icon: const Icon(
                   Icons.cancel_rounded,
-                  color: ColorTheme.gray,
+                  color: ColorsTheme.gray300,
                 ),
               ),
             ],
@@ -62,7 +62,7 @@ class _LoginInputState extends State<LoginInput> {
           ),
           icon: const Icon(
             Icons.cancel_rounded,
-            color: ColorTheme.gray,
+            color: ColorsTheme.gray300,
           ),
         );
       } else {
