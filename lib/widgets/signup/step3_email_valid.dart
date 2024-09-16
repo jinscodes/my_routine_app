@@ -7,19 +7,22 @@ import 'package:workout_app/widgets/signup/signup_button.dart';
 import 'package:workout_app/widgets/signup/step4_password.dart';
 
 class Step3EmailValidation extends StatefulWidget {
-  const Step3EmailValidation({super.key});
+  final String emailPassKey;
+
+  const Step3EmailValidation({super.key, required this.emailPassKey});
 
   @override
   State<Step3EmailValidation> createState() => _Step3EmailValidationState();
 }
 
 class _Step3EmailValidationState extends State<Step3EmailValidation> {
+  late String emailPassKey;
   late FocusNode myFocusNode;
   TextEditingController emailValidController = TextEditingController();
   String? isEmpty;
 
   void _navigateToNext(TextEditingController controller) {
-    if (controller.text.isNotEmpty) {
+    if (emailPassKey == controller.text) {
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -33,6 +36,7 @@ class _Step3EmailValidationState extends State<Step3EmailValidation> {
   void initState() {
     myFocusNode = FocusNode();
     myFocusNode.addListener(() => setState(() {}));
+    emailPassKey = widget.emailPassKey;
     super.initState();
   }
 

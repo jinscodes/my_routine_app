@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:workout_app/models/signup_model.dart';
+import 'package:workout_app/utilities/signup/certificate_email.dart';
 import 'package:workout_app/utilities/signup/email_double_check.dart';
 import 'package:workout_app/utilities/validate_email.dart';
 import 'package:workout_app/widgets/signup/aligned_title_text.dart';
@@ -41,7 +42,13 @@ class _Step2EmailState extends State<Step2Email> {
     bool isAvailable = await emailDoubleCheck(email);
 
     if (isAvailable) {
-      _navigateToNext();
+      String res = await certificateEmail(email);
+
+      print(res);
+
+      _navigateToNext(res);
+    } else {
+      _setErrorMessage("중복된 이메일 입니다");
     }
   }
 
@@ -51,11 +58,13 @@ class _Step2EmailState extends State<Step2Email> {
     });
   }
 
-  void _navigateToNext() {
+  void _navigateToNext(String emailPassKey) {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (_) => const Step3EmailValidation(),
+        builder: (_) => Step3EmailValidation(
+          emailPassKey: emailPassKey,
+        ),
       ),
     );
   }

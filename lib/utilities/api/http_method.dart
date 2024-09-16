@@ -29,8 +29,6 @@ class GetApi {
       url,
     );
 
-    print("http_method: $res");
-
     return res;
   }
 }
