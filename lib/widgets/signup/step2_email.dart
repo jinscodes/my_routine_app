@@ -23,7 +23,7 @@ class _Step2EmailState extends State<Step2Email> {
   late FocusNode myFocusNode;
   String? isEmpty;
 
-  void _handleEmailValidation() async {
+  void _proceedEmailValidation() async {
     final emailController =
         Provider.of<SignupModel>(context, listen: false).emailController;
     final email = emailController.text;
@@ -122,7 +122,7 @@ class _Step2EmailState extends State<Step2Email> {
                   ),
                   SignupButton(
                     focusNode: myFocusNode,
-                    handlePressed: () => _handleEmailValidation(),
+                    handlePressed: () => _proceedEmailValidation(),
                     content: "인증번호 받기",
                   ),
                 ],
