@@ -3,10 +3,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:workout_app/models/signup_model.dart';
 import 'package:workout_app/utilities/signup/email_double_check.dart';
+import 'package:workout_app/utilities/validate_email.dart';
 import 'package:workout_app/widgets/signup/aligned_title_text.dart';
 import 'package:workout_app/widgets/signup/label_text.dart';
 import 'package:workout_app/widgets/signup/signup_button.dart';
 import 'package:workout_app/widgets/signup/signup_textfield.dart';
+import 'package:workout_app/widgets/signup/step3_email_valid.dart';
 
 class Step2Email extends StatefulWidget {
   const Step2Email({
@@ -21,36 +23,41 @@ class _Step2EmailState extends State<Step2Email> {
   late FocusNode myFocusNode;
   String? isEmpty;
 
-  void _navigateToNext() async {
+  void _handleEmailValidation() async {
     final emailController =
         Provider.of<SignupModel>(context, listen: false).emailController;
+    final email = emailController.text;
 
-    if (emailController.text.isNotEmpty) {
-      bool isValidEmail = RegExp(
-              r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
-          .hasMatch(emailController.text);
-
-      if (isValidEmail) {
-        bool res = await emailDoubleCheck("jay");
-
-        print("step2: $res");
-
-        // Navigator.push(
-        //   context,
-        //   MaterialPageRoute(
-        //     builder: (_) => const Step3EmailValidation(),
-        //   ),
-        // );
-      } else {
-        setState(() {
-          isEmpty = "올바르지 않은 이메일 형식입니다";
-        });
-      }
-    } else {
-      setState(() {
-        isEmpty = "이메일을 입력해주세요";
-      });
+    if (email.isEmpty) {
+      _setErrorMessage("이메일을 입력해주세요");
+      return;
     }
+
+    if (!validateEmail(email)) {
+      _setErrorMessage("올바르지 않은 이메일 형식입니다");
+      return;
+    }
+
+    bool isAvailable = await emailDoubleCheck(email);
+
+    if (isAvailable) {
+      _navigateToNext();
+    }
+  }
+
+  void _setErrorMessage(String message) {
+    setState(() {
+      isEmpty = message;
+    });
+  }
+
+  void _navigateToNext() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => const Step3EmailValidation(),
+      ),
+    );
   }
 
   @override
@@ -115,7 +122,7 @@ class _Step2EmailState extends State<Step2Email> {
                   ),
                   SignupButton(
                     focusNode: myFocusNode,
-                    handlePressed: () => _navigateToNext(),
+                    handlePressed: () => _handleEmailValidation(),
                     content: "인증번호 받기",
                   ),
                 ],

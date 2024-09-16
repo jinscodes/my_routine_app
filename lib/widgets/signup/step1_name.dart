@@ -21,22 +21,26 @@ class _Step1NameState extends State<Step1Name> {
   late FocusNode myFocusNode;
   String? isEmpty;
 
-  void _navigateToNext() {
+  void _proceedNameValidation() {
     final nameController =
         Provider.of<SignupModel>(context, listen: false).nameController;
 
     if (nameController.text.isNotEmpty) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (_) => const Step2Email(),
-        ),
-      );
+      _navigateToNext();
     } else {
       setState(() {
         isEmpty = "이름을 입력해주세요";
       });
     }
+  }
+
+  void _navigateToNext() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => const Step2Email(),
+      ),
+    );
   }
 
   @override
@@ -101,7 +105,7 @@ class _Step1NameState extends State<Step1Name> {
                   ),
                   SignupButton(
                     focusNode: myFocusNode,
-                    handlePressed: () => _navigateToNext(),
+                    handlePressed: () => _proceedNameValidation(),
                     content: "확인",
                   ),
                 ],

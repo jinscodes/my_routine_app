@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:workout_app/colors.dart';
 import 'package:workout_app/screens/login.dart';
-import 'package:workout_app/trash/common/color.dart';
 import 'package:workout_app/widgets/signup/SignupFlow.dart';
 
 class LoginOutlineButton extends StatelessWidget {
@@ -52,7 +52,7 @@ class LoginButton extends StatelessWidget {
         children: [
           const Icon(
             Icons.login,
-            color: ColorTheme.mainBlue,
+            color: ColorsTheme.point,
           ),
           SizedBox(
             width: 5.w,
@@ -62,7 +62,7 @@ class LoginButton extends StatelessWidget {
             style: TextStyle(
               fontSize: 18.sp,
               fontWeight: FontWeight.bold,
-              color: ColorTheme.mainBlue,
+              color: ColorsTheme.point,
             ),
           ),
         ],
@@ -93,7 +93,7 @@ class SignupButton extends StatelessWidget {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         minimumSize: Size(1.sw, 55.h),
-        backgroundColor: ColorTheme.mainBlue,
+        backgroundColor: ColorsTheme.point,
         side: const BorderSide(
           color: Colors.white,
         ),
