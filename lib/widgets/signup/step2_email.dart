@@ -44,7 +44,10 @@ class _Step2EmailState extends State<Step2Email> {
     if (isAvailable) {
       String res = await certificateEmail(email);
 
-      print(res);
+      if (res.isEmpty) {
+        _setErrorMessage("에러가 발생하였습니다. 재인증해주세요");
+        return;
+      }
 
       _navigateToNext(res);
     } else {
