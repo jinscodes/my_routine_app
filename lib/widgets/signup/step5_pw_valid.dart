@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:workout_app/models/signup_model.dart';
+import 'package:workout_app/utilities/signup/complete_signup.dart';
 import 'package:workout_app/widgets/signup/aligned_title_text.dart';
 import 'package:workout_app/widgets/signup/label_text.dart';
 import 'package:workout_app/widgets/signup/signup_button.dart';
-import 'package:workout_app/widgets/signup/signup_complete.dart';
 import 'package:workout_app/widgets/signup/signup_textfield.dart';
 
 class Step5PasswordValidation extends StatefulWidget {
@@ -42,18 +42,22 @@ class _Step5PasswordValidationState extends State<Step5PasswordValidation> {
     }
   }
 
-  void _postSignup() {
-    final pwController =
-        Provider.of<SignupModel>(context, listen: false).pwController.text;
-    final nameController =
+  void _postSignup() async {
+    final email =
+        Provider.of<SignupModel>(context, listen: false).emailController.text;
+    final name =
         Provider.of<SignupModel>(context, listen: false).nameController.text;
+    final password =
+        Provider.of<SignupModel>(context, listen: false).pwController.text;
 
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (_) => const SignupComplete(),
-      ),
-    );
+    completeSignup(email, name, password);
+
+    // Navigator.push(
+    //   context,
+    //   MaterialPageRoute(
+    //     builder: (_) => const SignupComplete(),
+    //   ),
+    // );
   }
 
   @override
