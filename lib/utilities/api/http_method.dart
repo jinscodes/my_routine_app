@@ -79,7 +79,6 @@ class PatchApi {
 
   Future patchData() async {
     await dotenv.load(fileName: ".env");
-    // String token = await getLoginToken();
 
     String? baseUrl = dotenv.env["BASE_URL"];
 
@@ -93,11 +92,6 @@ class PatchApi {
 
     Response res = await dio.patch(
       url,
-      // options: Options(
-      //   headers: {
-      //     "authorization": "Bearer $token",
-      //   },
-      // ),
       data: body,
     );
 

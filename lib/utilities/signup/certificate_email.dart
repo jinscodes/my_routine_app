@@ -11,6 +11,7 @@ Future<String> certificateEmail(String email) async {
 
     return res;
   } catch (e) {
+    // ignore: avoid_print
     print(e);
 
     return "";

@@ -19,9 +19,9 @@ dynamic loginValidation(String id, String pw) async {
 
     success = true;
 
-    return {loginToken, success};
+    return {"loginToken": loginToken, "isSuccess": success};
   } catch (e) {
     success = false;
-    return {e, success};
+    return {"error": e, "isSuccess": success};
   }
 }

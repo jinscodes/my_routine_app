@@ -36,9 +36,8 @@ class _Step3EmailValidationState extends State<Step3EmailValidation> {
   }
 
   void retransmit() async {
-    final controller =
-        Provider.of<SignupModel>(context, listen: false).emailController;
-    final email = controller.text;
+    final email =
+        Provider.of<SignupModel>(context, listen: false).emailController.text;
 
     String res = await certificateEmail(email);
     emailPassKey = res;
@@ -56,6 +55,7 @@ class _Step3EmailValidationState extends State<Step3EmailValidation> {
   void dispose() {
     myFocusNode.dispose();
     myFocusNode.removeListener(() => setState(() {}));
+    SignupModel().dispose();
     super.dispose();
   }
 

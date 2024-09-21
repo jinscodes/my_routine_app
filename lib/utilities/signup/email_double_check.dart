@@ -9,7 +9,9 @@ Future<bool> emailDoubleCheck(String email) async {
 
     return res.data["isAvailable"] ?? false;
   } catch (e) {
+    // ignore: avoid_print
     print(e);
+
     return false;
   }
 }

@@ -20,11 +20,11 @@ class _Step4PasswordState extends State<Step4Password> {
   String? isEmpty;
 
   void _navigateToNext() {
-    final pwController =
-        Provider.of<SignupModel>(context, listen: false).pwController;
+    final password =
+        Provider.of<SignupModel>(context, listen: false).pwController.text;
 
-    if (pwController.text.isNotEmpty) {
-      if (pwController.text.length >= 6) {
+    if (password.isNotEmpty) {
+      if (password.length >= 6) {
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -54,6 +54,7 @@ class _Step4PasswordState extends State<Step4Password> {
   void dispose() {
     myFocusNode.dispose();
     myFocusNode.removeListener(() => setState(() {}));
+    SignupModel().dispose();
     super.dispose();
   }
 

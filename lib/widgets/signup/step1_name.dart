@@ -54,6 +54,7 @@ class _Step1NameState extends State<Step1Name> {
   void dispose() {
     myFocusNode.dispose();
     myFocusNode.removeListener(() => setState(() {}));
+    SignupModel().dispose();
     super.dispose();
   }
 
