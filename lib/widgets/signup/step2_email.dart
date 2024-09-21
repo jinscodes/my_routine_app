@@ -25,9 +25,8 @@ class _Step2EmailState extends State<Step2Email> {
   String? isEmpty;
 
   void _proceedEmailValidation() async {
-    final emailController =
-        Provider.of<SignupModel>(context, listen: false).emailController;
-    final email = emailController.text;
+    final email =
+        Provider.of<SignupModel>(context, listen: false).emailController.text;
 
     if (email.isEmpty) {
       _setErrorMessage("이메일을 입력해주세요");
@@ -83,6 +82,7 @@ class _Step2EmailState extends State<Step2Email> {
   void dispose() {
     myFocusNode.dispose();
     myFocusNode.removeListener(() => setState(() {}));
+    SignupModel().dispose();
     super.dispose();
   }
 

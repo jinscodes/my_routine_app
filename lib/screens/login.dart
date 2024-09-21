@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:workout_app/screens/signup.dart';
+import 'package:workout_app/screens/home.dart';
 import 'package:workout_app/utilities/login/login_validation.dart';
 import 'package:workout_app/widgets/login_outline/login_button.dart';
 import 'package:workout_app/widgets/login_outline/login_input.dart';
+import 'package:workout_app/widgets/signup/SignupFlow.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -25,27 +26,34 @@ class _LoginState extends State<Login> {
     pwController.dispose();
   }
 
-  void _navigateToHome() async {
+  void _validateIdAndPw() async {
     dynamic result = await loginValidation(
       idController.text,
       pwController.text,
     );
 
-    print(result);
-
-    // Navigator.push(
-    //   context,
-    //   MaterialPageRoute(
-    //     builder: (_) => const Home(),
-    //   ),
-    // );
+    if (result["isSuccess"]) {
+      print("login complete");
+      _navigateToHome();
+    } else {
+      print("login fail");
+    }
   }
 
   void _navigateToSignup() {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (_) => const Signup(),
+        builder: (_) => const SignupFlow(),
+      ),
+    );
+  }
+
+  void _navigateToHome() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => const Home(),
       ),
     );
   }
@@ -111,7 +119,7 @@ class _LoginState extends State<Login> {
                   ),
                   LoginButton(
                     title: "LOGIN",
-                    handleClick: () => _navigateToHome(),
+                    handleClick: () => _validateIdAndPw(),
                   ),
                   SizedBox(
                     height: 36.h,

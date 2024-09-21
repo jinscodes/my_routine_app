@@ -94,6 +94,7 @@ class _Step5PasswordValidationState extends State<Step5PasswordValidation> {
   void dispose() {
     myFocusNode.dispose();
     myFocusNode.removeListener(() => setState(() {}));
+    SignupModel().dispose();
     super.dispose();
   }
 

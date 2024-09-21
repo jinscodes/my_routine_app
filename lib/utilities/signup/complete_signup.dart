@@ -13,6 +13,7 @@ Future<bool> completeSignup(String email, String name, String password) async {
 
     return true;
   } catch (e) {
+    // ignore: avoid_print
     print(e);
 
     return false;
