@@ -1,6 +1,6 @@
 import 'package:workout_app/utilities/api/http_method.dart';
 
-void completeSignup(String email, String name, String password) async {
+Future<bool> completeSignup(String email, String name, String password) async {
   try {
     await PostApi(
       apiUrl: "/signup",
@@ -10,7 +10,11 @@ void completeSignup(String email, String name, String password) async {
         "nickname": name,
       },
     ).postData();
+
+    return true;
   } catch (e) {
     print(e);
+
+    return false;
   }
 }

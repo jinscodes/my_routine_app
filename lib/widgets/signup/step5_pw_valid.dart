@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:workout_app/models/signup_model.dart';
+import 'package:workout_app/screens/login_outline.dart';
 import 'package:workout_app/utilities/signup/complete_signup.dart';
 import 'package:workout_app/widgets/signup/aligned_title_text.dart';
 import 'package:workout_app/widgets/signup/label_text.dart';
 import 'package:workout_app/widgets/signup/signup_button.dart';
+import 'package:workout_app/widgets/signup/signup_complete.dart';
 import 'package:workout_app/widgets/signup/signup_textfield.dart';
 
 class Step5PasswordValidation extends StatefulWidget {
@@ -23,7 +25,7 @@ class _Step5PasswordValidationState extends State<Step5PasswordValidation> {
   String? isEmpty;
   TextEditingController pwValidController = TextEditingController();
 
-  void _navigateToNext() {
+  void _validPassword() {
     final pwController =
         Provider.of<SignupModel>(context, listen: false).pwController;
 
@@ -50,14 +52,35 @@ class _Step5PasswordValidationState extends State<Step5PasswordValidation> {
     final password =
         Provider.of<SignupModel>(context, listen: false).pwController.text;
 
-    completeSignup(email, name, password);
+    bool res = await completeSignup(email, name, password);
 
-    // Navigator.push(
-    //   context,
-    //   MaterialPageRoute(
-    //     builder: (_) => const SignupComplete(),
-    //   ),
-    // );
+    if (res) {
+      _navigateToNext();
+    } else {
+      setState(() {
+        isEmpty = "회원가입에 실패했습니다";
+      });
+
+      _navigateToHome();
+    }
+  }
+
+  void _navigateToNext() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => const SignupComplete(),
+      ),
+    );
+  }
+
+  void _navigateToHome() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => const LoginOutline(),
+      ),
+    );
   }
 
   @override
@@ -120,7 +143,7 @@ class _Step5PasswordValidationState extends State<Step5PasswordValidation> {
                   ),
                   SignupButton(
                     focusNode: myFocusNode,
-                    handlePressed: () => _navigateToNext(),
+                    handlePressed: () => _validPassword(),
                     content: "확인",
                   ),
                 ],
