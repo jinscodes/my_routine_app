@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:workout_app/colors.dart';
 import 'package:workout_app/screens/home.dart';
 import 'package:workout_app/utilities/login/login_validation.dart';
 import 'package:workout_app/widgets/login_outline/login_button.dart';
@@ -18,6 +19,7 @@ class _LoginState extends State<Login> {
   TextEditingController pwController = TextEditingController();
   bool visible = false;
   String type = "";
+  String? isValid;
 
   @override
   void dispose() {
@@ -33,11 +35,16 @@ class _LoginState extends State<Login> {
     );
 
     if (result["isSuccess"]) {
-      print("login complete");
       _navigateToHome();
     } else {
-      print("login fail");
+      _setErrorMessage("아이디 또는 비밀번호가 일치하지 않습니다");
     }
+  }
+
+  void _setErrorMessage(String message) {
+    setState(() {
+      isValid = message;
+    });
   }
 
   void _navigateToSignup() {
@@ -94,28 +101,10 @@ class _LoginState extends State<Login> {
                     controller: pwController,
                     title: "Password",
                     type: "pw",
-                  ),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: TextButton(
-                      onPressed: () {
-                        print("Forgot Password");
-                      },
-                      style: TextButton.styleFrom(
-                        padding: EdgeInsets.zero,
-                        minimumSize: Size.zero,
-                      ),
-                      child: Text(
-                        "Forgot Password?",
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 16.sp,
-                        ),
-                      ),
-                    ),
+                    errorText: isValid,
                   ),
                   SizedBox(
-                    height: 30.h,
+                    height: 60.h,
                   ),
                   LoginButton(
                     title: "LOGIN",
@@ -130,7 +119,7 @@ class _LoginState extends State<Login> {
                       Text(
                         "Don’t have an account?",
                         style: TextStyle(
-                          color: Colors.grey,
+                          color: ColorsTheme.gray400,
                           fontSize: 16.sp,
                         ),
                       ),
