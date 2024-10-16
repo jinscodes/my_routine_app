@@ -18,4 +18,5 @@ class ColorsTheme {
   static const Color gray700 = Color(0xFF666666);
   static const Color gray800 = Color(0xFF333333);
   static const Color gray900 = Color(0xFF222222);
+  static const Color home = Color(0xFF161616);
 }
