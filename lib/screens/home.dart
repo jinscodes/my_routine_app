@@ -7,6 +7,8 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final today = DateTime.now();
+
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -38,6 +40,9 @@ class Home extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
+                      ),
+                      const Text(
+                        "",
                       ),
                     ],
                   ),
